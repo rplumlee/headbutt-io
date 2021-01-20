@@ -1,0 +1,54 @@
+body {
+  background-color: #f3f3f3;
+  font-family: 'Open Sans', sans-serif;
+}
+.navv {
+  display: flex;
+  position: fixed;
+  bottom: 30px;
+  background: #fff;
+  z-index: 50;
+  left: 50%;
+  padding: 25px;
+  width: 200px;
+  justify-content: space-between;
+  transform: translateX(-50%);
+  box-shadow: 0 8px 35px rgba(50, 105, 132, 0.15);
+  border-radius: 8px;
+
+  svg {
+    width: 25px;
+
+    &:first-of-type {
+      path {
+        stroke-width: 1px;
+      }
+    }
+    path {
+      stroke-width: 1.5px;
+    }
+  }
+}
+
+a {
+  color: rgba(50, 105, 132, 1);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+h3 a {
+  position: relative;
+
+  &:hover:after {
+    width: 120px;
+  }
+}
+h3 a:after {
+  background: rgba(50, 105, 132, 0.75);
+  height: 3px;
+  width: 80px;
+  bottom: -5px;
+  content: '';
+  position: absolute;
+  left: 0;
+  transition: 250ms;
+}

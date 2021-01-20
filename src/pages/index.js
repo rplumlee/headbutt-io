@@ -8,6 +8,8 @@ import Bio from '../components/Bio'
 import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
 
+import '../styles.scss'
+
 class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(
@@ -21,7 +23,7 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={location}>
         <Helmet title={siteTitle} />
-        <Bio settings={author} />
+
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           return (

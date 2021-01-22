@@ -12,13 +12,13 @@ body {
 .background {
   max-width: 100%;
   overflow: hidden;
-}
-.background svg {
   position: absolute;
   width: 50%;
   left: 25%;
-  transform: scale(2);
+  transform: scale(2.2);
   transform-origin: center top;
+}
+.background svg {
   min-width: 400px;
 }
 .navv {

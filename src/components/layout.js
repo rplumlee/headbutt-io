@@ -87,18 +87,20 @@ export default ({ children, location }) => (
       }
 
       header = (
-        <div style={{ overflow: 'hidden' }}>
+        <div
+          style={{ overflow: 'hidden', maxWidth: '100%', position: 'relative' }}
+        >
           <div className="background">
             <svg viewBox="0 0 1440 320">
               <defs>
                 <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop
                     offset="0%"
-                    style={{ stopColor: 'blue', stopOpacity: 1 }}
+                    style={{ stopColor: 'purple', stopOpacity: 1 }}
                   />
                   <stop
                     offset="100%"
-                    style={{ stopColor: 'red', stopOpacity: 1 }}
+                    style={{ stopColor: 'cyan', stopOpacity: 1 }}
                   />
                 </linearGradient>
               </defs>
@@ -115,6 +117,7 @@ export default ({ children, location }) => (
                     repeatType: 'reverse',
                     duration: 4 + index / 2,
                   }}
+                  key={`${index}-wave`}
                 />
               ))}
             </svg>
@@ -148,7 +151,7 @@ export default ({ children, location }) => (
                 width="436.887px"
                 height="47.59px"
                 viewBox="0 0 436.887 47.59"
-                enable-background="new 0 0 436.887 47.59"
+                enableBackground="new 0 0 436.887 47.59"
                 style={{ maxWidth: '45vw' }}
               >
                 <g strokeWidth="2">
@@ -329,9 +332,9 @@ export default ({ children, location }) => (
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
                 />
               </svg>
@@ -344,9 +347,9 @@ export default ({ children, location }) => (
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>

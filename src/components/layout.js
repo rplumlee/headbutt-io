@@ -162,7 +162,7 @@ export default ({ children, location }) => (
                 height="47.59px"
                 viewBox="0 0 436.887 47.59"
                 enableBackground="new 0 0 436.887 47.59"
-                style={{ maxWidth: '45vw' }}
+                style={{ maxWidth: 'calc(50vw - 30px)' }}
               >
                 <g strokeWidth="2">
                   <motion.path

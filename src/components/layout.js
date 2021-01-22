@@ -87,15 +87,13 @@ export default ({ children, location }) => (
       }
 
       header = (
-        <div
-          style={{
-            overflow: 'hidden',
-            maxWidth: '100%',
-            position: 'relative',
-            minHeight: 320,
-          }}
-        >
-          <div className="background">
+        <>
+          <div
+            className={profile ? `profile-container open` : 'profile-container'}
+          >
+            <Profile />
+          </div>
+          <div className={profile ? `background open` : 'background'}>
             <svg viewBox="0 0 1440 320">
               <defs>
                 <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -115,7 +113,7 @@ export default ({ children, location }) => (
                   variants={bg_variants}
                   initial={{ d: `${wave}` }}
                   animate={{ d: `${waves[getRandomInt(6)]}` }}
-                  fillOpacity="0.3"
+                  fillOpacity="0.6"
                   fill="url(#grad1)"
                   transition={{
                     repeat: Infinity,
@@ -137,7 +135,10 @@ export default ({ children, location }) => (
               maxWidth: '100vw',
               overflow: 'hidden',
               marginBottom: 100,
+              zIndex: 6,
+              position: 'relative',
             }}
+            className="logo"
           >
             <Link
               style={{
@@ -303,11 +304,11 @@ export default ({ children, location }) => (
               </svg>
             </Link>
           </h1>
-        </div>
+        </>
       )
 
       return (
-        <div>
+        <div style={{ overflow: 'hidden', position: 'relative' }}>
           {header}
           <div
             style={{
@@ -318,7 +319,7 @@ export default ({ children, location }) => (
               minHeight: 'calc(100vh - 42px)',
             }}
           >
-            {profile ? <Profile /> : children}
+            {!profile ? children : ''}
           </div>
           <footer
             style={{

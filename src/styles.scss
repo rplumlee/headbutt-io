@@ -71,3 +71,9 @@ h3 a:after {
   left: 0;
   transition: 250ms;
 }
+
+@media (max-width: 1100px) {
+  .post-list {
+    margin-top: -120px;
+  }
+}

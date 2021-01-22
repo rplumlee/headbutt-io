@@ -23,27 +23,30 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={location}>
         <Helmet title={siteTitle} />
-
-        {posts.map(({ node }) => {
-          const title = get(node, 'title') || node.slug
-          return (
-            <div key={node.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: 'none' }} to={`posts/${node.slug}`}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.created}</small>
-              <p
-                dangerouslySetInnerHTML={{ __html: node.metadata.description }}
-              />
-            </div>
-          )
-        })}
+        <div className="post-list">
+          {posts.map(({ node }) => {
+            const title = get(node, 'title') || node.slug
+            return (
+              <div key={node.slug}>
+                <h3
+                  style={{
+                    marginBottom: rhythm(1 / 4),
+                  }}
+                >
+                  <Link style={{ boxShadow: 'none' }} to={`posts/${node.slug}`}>
+                    {title}
+                  </Link>
+                </h3>
+                <small>{node.created}</small>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: node.metadata.description,
+                  }}
+                />
+              </div>
+            )
+          })}
+        </div>
       </Layout>
     )
   }

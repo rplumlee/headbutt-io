@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import { StaticQuery, graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
 
-import Profile from './profile'
+import Profile from './Profile'
 import cosmicjsLogo from '../../static/cosmicjs.svg'
 import gatsbyLogo from '../../static/gatsby.png'
 import { rhythm, scale } from '../utils/typography'
@@ -88,7 +88,12 @@ export default ({ children, location }) => (
 
       header = (
         <div
-          style={{ overflow: 'hidden', maxWidth: '100%', position: 'relative' }}
+          style={{
+            overflow: 'hidden',
+            maxWidth: '100%',
+            position: 'relative',
+            minHeight: 320,
+          }}
         >
           <div className="background">
             <svg viewBox="0 0 1440 320">

@@ -2,6 +2,25 @@ body {
   background-color: #f3f3f3;
   font-family: 'Open Sans', sans-serif;
 }
+#profile {
+  background: #000;
+  min-height: 500px;
+  z-index: 48;
+  top: 0;
+  left: 0;
+}
+.background {
+  max-width: 100%;
+  overflow: hidden;
+}
+.background svg {
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  transform: scale(2);
+  transform-origin: center top;
+  min-width: 400px;
+}
 .navv {
   display: flex;
   position: fixed;

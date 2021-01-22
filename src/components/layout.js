@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import { StaticQuery, graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
 
+import Profile from './profile'
 import cosmicjsLogo from '../../static/cosmicjs.svg'
 import gatsbyLogo from '../../static/gatsby.png'
 import { rhythm, scale } from '../utils/typography'
@@ -24,6 +25,28 @@ const clip_path_variants = {
     pathLength: 0,
   }),
 }
+
+const bg_variants = {
+  start: {
+    d:
+      'M 0 0 L 0 500 Q 150 550 200 450 Q 300 200 450 350 C 600 400 600 100 800 250 L 800 0',
+  },
+  finish: {
+    d:
+      'M 0 0 L 0 500 Q 100 400 200 450 Q 400 600 550 450 C 650 300 600 100 800 150 L 800 0',
+  },
+}
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max))
+}
+const waves = [
+  'M0,160L30,149.3C60,139,120,117,180,128C240,139,300,181,360,176C420,171,480,117,540,106.7C600,96,660,128,720,154.7C780,181,840,203,900,197.3C960,192,1020,160,1080,138.7C1140,117,1200,107,1260,96C1320,85,1380,75,1410,69.3L1440,64L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z',
+  'M0,160L30,181.3C60,203,120,245,180,261.3C240,277,300,267,360,234.7C420,203,480,149,540,149.3C600,149,660,203,720,224C780,245,840,235,900,224C960,213,1020,203,1080,165.3C1140,128,1200,64,1260,48C1320,32,1380,64,1410,80L1440,96L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z',
+  'M0,256L30,261.3C60,267,120,277,180,277.3C240,277,300,267,360,250.7C420,235,480,213,540,218.7C600,224,660,256,720,245.3C780,235,840,181,900,154.7C960,128,1020,128,1080,149.3C1140,171,1200,213,1260,202.7C1320,192,1380,128,1410,96L1440,64L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z',
+  'M0,224L30,218.7C60,213,120,203,180,213.3C240,224,300,256,360,229.3C420,203,480,117,540,106.7C600,96,660,160,720,186.7C780,213,840,203,900,218.7C960,235,1020,277,1080,250.7C1140,224,1200,128,1260,74.7C1320,21,1380,11,1410,5.3L1440,0L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z',
+  'M0,192L30,197.3C60,203,120,213,180,224C240,235,300,245,360,234.7C420,224,480,192,540,202.7C600,213,660,267,720,277.3C780,288,840,256,900,240C960,224,1020,224,1080,208C1140,192,1200,160,1260,154.7C1320,149,1380,171,1410,181.3L1440,192L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z',
+  'M0,224L30,234.7C60,245,120,267,180,256C240,245,300,203,360,176C420,149,480,139,540,138.7C600,139,660,149,720,165.3C780,181,840,203,900,176C960,149,1020,75,1080,69.3C1140,64,1200,128,1260,154.7C1320,181,1380,171,1410,165.3L1440,160L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z',
+]
 
 export default ({ children, location }) => (
   <StaticQuery
@@ -51,7 +74,10 @@ export default ({ children, location }) => (
         data.cosmicjsSettings.metadata.homepage_hero.local.childImageSharp.fluid
       let header
 
+      const [profile, setProfile] = React.useState(false)
+
       const animation1 = useAnimation()
+      const animation2 = useAnimation()
 
       let rootPath = `/`
       let postsPath = `/posts`
@@ -62,6 +88,37 @@ export default ({ children, location }) => (
 
       header = (
         <div style={{ overflow: 'hidden' }}>
+          <div className="background">
+            <svg viewBox="0 0 1440 320">
+              <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop
+                    offset="0%"
+                    style={{ stopColor: 'blue', stopOpacity: 1 }}
+                  />
+                  <stop
+                    offset="100%"
+                    style={{ stopColor: 'red', stopOpacity: 1 }}
+                  />
+                </linearGradient>
+              </defs>
+              {waves.map((wave, index) => (
+                <motion.path
+                  d={`${wave}`}
+                  variants={bg_variants}
+                  initial={{ d: `${wave}` }}
+                  animate={{ d: `${waves[getRandomInt(6)]}` }}
+                  fillOpacity="0.3"
+                  fill="url(#grad1)"
+                  transition={{
+                    repeat: Infinity,
+                    repeatType: 'reverse',
+                    duration: 4 + index / 2,
+                  }}
+                />
+              ))}
+            </svg>
+          </div>
           <h1
             style={{
               ...scale(1.3),
@@ -92,11 +149,12 @@ export default ({ children, location }) => (
                 height="47.59px"
                 viewBox="0 0 436.887 47.59"
                 enable-background="new 0 0 436.887 47.59"
+                style={{ maxWidth: '45vw' }}
               >
-                <g strokeWidth="1">
+                <g strokeWidth="2">
                   <motion.path
                     fill="none"
-                    stroke="#000000"
+                    stroke="#FFFFFF"
                     stroke-miterlimit="10"
                     d="M28.688,45.357V29.684H14.156v15.674H1.5V3.346
 		h12.656v15.557h14.531V3.346h12.656v42.012H28.688z"
@@ -107,7 +165,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#000000"
+                    stroke="#FFFFFF"
                     stroke-miterlimit="10"
                     d="M52.635,45.357V3.346h26.162v9.902H65.291v6.123
 		h12.686v9.902H65.291v6.182h14.473v9.902H52.635z"
@@ -118,7 +176,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#000000"
+                    stroke="#FFFFFF"
                     stroke-miterlimit="10"
                     d="M115.078,45.357l-1.846-7.734h-12.539l-1.992,7.734
 		H85.02L99.492,3.346h15.703l13.623,42.012H115.078z M107.109,12.486h-0.293c-0.04,0.469-0.176,1.241-0.41,2.314
@@ -130,7 +188,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#000000"
+                    stroke="#FFFFFF"
                     stroke-miterlimit="10"
                     d="M176.35,23.824c0,4.258-0.894,8.023-2.681,11.294
 		c-1.787,3.271-4.341,5.796-7.661,7.573c-3.321,1.777-7.148,2.666-11.484,2.666H136.74V3.346h17.402
@@ -144,7 +202,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#000000"
+                    stroke="#FFFFFF"
                     stroke-miterlimit="10"
                     d="M221.156,32.467c0,4.121-1.446,7.3-4.336,9.536
 		c-2.891,2.237-7.021,3.354-12.393,3.354h-19.16V3.346h17.842c11.152,0,16.729,3.389,16.729,10.166c0,1.465-0.352,2.808-1.055,4.028
@@ -160,7 +218,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#000000"
+                    stroke="#FFFFFF"
                     stroke-miterlimit="10"
                     d="M266.344,26.168c0,6.738-1.538,11.744-4.614,15.015
 		c-3.076,3.271-7.817,4.907-14.224,4.907c-5.977,0-10.513-1.636-13.608-4.907c-3.096-3.271-4.644-8.198-4.644-14.78V3.346h12.715
@@ -173,7 +231,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#000000"
+                    stroke="#FFFFFF"
                     stroke-miterlimit="10"
                     d="M298.377,13.248v32.109h-12.715V13.248h-11.748
 		V3.346h36.357v9.902H298.377z"
@@ -184,7 +242,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#000000"
+                    stroke="#FFFFFF"
                     stroke-miterlimit="10"
                     d="M339.551,13.248v32.109h-12.715V13.248h-11.748
 		V3.346h36.357v9.902H339.551z"
@@ -195,7 +253,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#000000"
+                    stroke="#FFFFFF"
                     stroke-miterlimit="10"
                     d="M371.906,40.143c0,1.777-0.625,3.213-1.875,4.307
 		s-2.979,1.641-5.186,1.641c-2.012,0-3.657-0.571-4.937-1.714s-1.919-2.553-1.919-4.233c0-1.718,0.63-3.11,1.89-4.175
@@ -207,7 +265,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#000000"
+                    stroke="#FFFFFF"
                     stroke-miterlimit="10"
                     d="M393.744,7.271c0,1.758-0.64,3.184-1.919,4.277
 		c-1.279,1.094-2.964,1.641-5.054,1.641c-2.031,0-3.696-0.566-4.995-1.699c-1.299-1.132-1.948-2.539-1.948-4.219
@@ -220,7 +278,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#000000"
+                    stroke="#FFFFFF"
                     stroke-miterlimit="10"
                     d="M435.387,29.83c0,5.059-1.528,9.034-4.585,11.924
 		c-3.057,2.891-7.329,4.336-12.817,4.336c-5.449,0-9.692-1.411-12.729-4.233c-3.037-2.822-4.556-6.713-4.556-11.675
@@ -252,7 +310,7 @@ export default ({ children, location }) => (
               minHeight: 'calc(100vh - 42px)',
             }}
           >
-            {children}
+            {profile ? <Profile /> : children}
           </div>
           <footer
             style={{
@@ -260,51 +318,39 @@ export default ({ children, location }) => (
               padding: `0 20px 80px 0`,
             }}
           ></footer>
+
           <div className="navv">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
-              <path
-                fill="#fff"
-                d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-              />
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-              />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-              />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+            <a onClick={() => setProfile(false)}>
+              {' '}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                />
+              </svg>
+            </a>
+            <a onClick={() => setProfile(true)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </a>
           </div>
         </div>
       )

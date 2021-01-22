@@ -1,9 +1,29 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import { SiReact, SiJavascript, SiFramer } from 'react-icons/si'
-
-export default function Profile() {
+const variants = {
+  open: {
+    opacity: 1,
+    transition: {
+      delay: 0.5,
+      duration: 0.4,
+    },
+  },
+  closed: {
+    opacity: 0,
+    transition: {
+      delay: 0,
+    },
+  },
+}
+export default function Profile({ profile }) {
   return (
-    <div id="profile">
+    <motion.div
+      id="profile"
+      variants={variants}
+      initial={'closed'}
+      animate={profile ? 'open' : 'closed'}
+    >
       <h2>Hi, I'm Reid!</h2>
       <p>
         I'm a self taught software developer living in Portland, OR with my
@@ -36,6 +56,6 @@ export default function Profile() {
         <SiFramer />
         <SiJavascript />
       </p>
-    </div>
+    </motion.div>
   )
 }

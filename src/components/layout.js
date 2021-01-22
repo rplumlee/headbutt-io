@@ -91,7 +91,7 @@ export default ({ children, location }) => (
           <div
             className={profile ? `profile-container open` : 'profile-container'}
           >
-            <Profile />
+            <Profile profile={profile} />
           </div>
           <div className={profile ? `background open` : 'background'}>
             <svg viewBox="0 0 1440 320">
@@ -319,7 +319,7 @@ export default ({ children, location }) => (
               minHeight: 'calc(100vh - 42px)',
             }}
           >
-            {!profile ? children : ''}
+            {children}
           </div>
           <footer
             style={{

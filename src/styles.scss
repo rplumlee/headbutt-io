@@ -48,7 +48,7 @@ body {
   @media (max-width: 800px) {
     h2 {
       font-size: 22px;
-      padding-top: 50px;
+      padding-top: 90px;
     }
     p {
       font-size: 13px;
@@ -60,12 +60,12 @@ body {
 }
 .profile-container {
   position: absolute;
-  top: -90vh;
-  height: 90vh;
+  top: -80vh;
+  height: 80vh;
   width: 100%;
   background: linear-gradient(to right, purple, cyan);
   transition: 800ms ease-in-out;
-  z-index: 5;
+  z-index: 6;
   min-width: 800px;
   &.open {
     top: -10vh;
@@ -84,7 +84,7 @@ body {
   z-index: 5;
 
   &.open {
-    top: 80vh;
+    top: 70vh;
   }
 }
 .background svg {
@@ -93,7 +93,7 @@ body {
 .navv {
   display: flex;
   position: fixed;
-  top: 85vh;
+  bottom: 30px;
   background: #fff;
   z-index: 50;
   left: 50vw;

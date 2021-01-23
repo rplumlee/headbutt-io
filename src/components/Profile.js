@@ -56,6 +56,10 @@ export default function Profile({ profile }) {
         <SiFramer />
         <SiJavascript />
       </p>
+      <p>
+        Thank you for coming to my Ted talk. Feel free to drop me a line at
+        &nbsp;<a href="mailto:reid@43webstudio.com">reid@43webstudio.com</a>!
+      </p>
     </motion.div>
   )
 }

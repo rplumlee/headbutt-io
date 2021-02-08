@@ -12,6 +12,14 @@ import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import IconButton from '@material-ui/core/IconButton'
+import Input from '@material-ui/core/Input'
+import FilledInput from '@material-ui/core/FilledInput'
+import OutlinedInput from '@material-ui/core/OutlinedInput'
+import InputLabel from '@material-ui/core/InputLabel'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import FormHelperText from '@material-ui/core/FormHelperText'
+import FormControl from '@material-ui/core/FormControl'
+import TextField from '@material-ui/core/TextField'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import {
@@ -224,121 +232,126 @@ export default function WaveBuilder() {
   return (
     <ThemeProvider theme={theme}>
       <div style={{ width: '100%' }}>
-        <svg
-          viewBox={`0 0 ${width} ${height}`}
-          id="waves"
-          style={{ width: '100%' }}
-        >
-          <defs>
-            <linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="50%">
-              <motion.stop
-                stopColor="#FF7744"
-                animate={{
-                  stopColor: ['#FF7744', '#4d3e96'],
-                }}
-                transition={{
-                  yoyo: Infinity,
-                  ease: 'linear',
-                  duration: 8,
-                }}
-                offset="25%"
-              />
-              <motion.stop
-                stopColor="#BF5FFF"
-                animate={{
-                  stopColor: ['#BF5FFF', '#FFC6A8', '#FF7744', '#5f41f2'],
-                }}
-                transition={{
-                  yoyo: Infinity,
-                  ease: 'linear',
-                  duration: 8,
-                }}
-                offset="50%"
-              />
-              <motion.stop
-                stopColor="#5f41f2"
-                animate={{
-                  stopColor: ['#5f41f2', '#BF5FFF'],
-                }}
-                transition={{
-                  yoyo: Infinity,
-                  ease: 'linear',
-                  duration: 8,
-                }}
-                offset="75%"
-              />
-              <motion.stop
-                stopColor="#D4504C"
-                animate={{
-                  stopColor: ['#D4504C', '#5f41f2', '#f7d319'],
-                }}
-                transition={{
-                  yoyo: Infinity,
-                  ease: 'linear',
-                  duration: 8,
-                }}
-                offset="100%"
-              />
-            </linearGradient>
-          </defs>
-          <motion.path
-            fill="url(#rainbow)"
-            d={newWave.d}
-            animate={{ d: newWave.d, transition: { duration: 0.5 } }}
-            style={{ opacity: newWave.opacity }}
-          />
-          {waves.length > 0 ? (
+        <div className="checkered-bg">
+          <svg
+            viewBox={`0 0 ${width} ${height}`}
+            id="waves"
+            style={{
+              width: '100%',
+              background: 'transparent',
+            }}
+          >
+            <defs>
+              <linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="50%">
+                <motion.stop
+                  stopColor="#FF7744"
+                  animate={{
+                    stopColor: ['#FF7744', '#4d3e96'],
+                  }}
+                  transition={{
+                    yoyo: Infinity,
+                    ease: 'linear',
+                    duration: 8,
+                  }}
+                  offset="25%"
+                />
+                <motion.stop
+                  stopColor="#BF5FFF"
+                  animate={{
+                    stopColor: ['#BF5FFF', '#FFC6A8', '#FF7744', '#5f41f2'],
+                  }}
+                  transition={{
+                    yoyo: Infinity,
+                    ease: 'linear',
+                    duration: 8,
+                  }}
+                  offset="50%"
+                />
+                <motion.stop
+                  stopColor="#5f41f2"
+                  animate={{
+                    stopColor: ['#5f41f2', '#BF5FFF'],
+                  }}
+                  transition={{
+                    yoyo: Infinity,
+                    ease: 'linear',
+                    duration: 8,
+                  }}
+                  offset="75%"
+                />
+                <motion.stop
+                  stopColor="#D4504C"
+                  animate={{
+                    stopColor: ['#D4504C', '#5f41f2', '#f7d319'],
+                  }}
+                  transition={{
+                    yoyo: Infinity,
+                    ease: 'linear',
+                    duration: 8,
+                  }}
+                  offset="100%"
+                />
+              </linearGradient>
+            </defs>
             <motion.path
               fill="url(#rainbow)"
               d={newWave.d}
-              animate={{ d: waves[0].d, transition: { duration: 0.5 } }}
-              style={{ opacity: waves[0].opacity }}
+              animate={{ d: newWave.d, transition: { duration: 0.5 } }}
+              style={{ opacity: newWave.opacity }}
             />
-          ) : (
-            ''
-          )}
+            {waves.length > 0 ? (
+              <motion.path
+                fill="url(#rainbow)"
+                d={newWave.d}
+                animate={{ d: waves[0].d, transition: { duration: 0.5 } }}
+                style={{ opacity: waves[0].opacity }}
+              />
+            ) : (
+              ''
+            )}
 
-          {waves.length > 1 ? (
-            <motion.path
-              fill="url(#rainbow)"
-              animate={{ d: waves[1].d, transition: { duration: 1.8 } }}
-              d={newWave.d}
-              style={{ opacity: waves[1].opacity }}
-            />
-          ) : (
-            ''
-          )}
-          {waves.length > 2 ? (
-            <motion.path
-              fill="url(#rainbow)"
-              d={newWave.d}
-              animate={{ d: waves[2].d, transition: { duration: 2.1 } }}
-              style={{ opacity: waves[2].opacity }}
-            />
-          ) : (
-            ''
-          )}
-          {waves.length > 3 ? (
-            <motion.path
-              fill="url(#rainbow)"
-              d={newWave.d}
-              animate={{ d: waves[3].d, transition: { duration: 2.4 } }}
-              style={{ opacity: waves[3].opacity }}
-            />
-          ) : (
-            ''
-          )}
-          {waves.length > 4 ? (
-            <motion.path
-              fill="url(#rainbow)"
-              animate={{ d: waves[4].d, transition: { duration: 2.7 } }}
-              d={newWave.d}
-              style={{ opacity: waves[4].opacity }}
-            />
-          ) : (
-            ''
-          )}
-        </svg>
+            {waves.length > 1 ? (
+              <motion.path
+                fill="url(#rainbow)"
+                animate={{ d: waves[1].d, transition: { duration: 1.8 } }}
+                d={newWave.d}
+                style={{ opacity: waves[1].opacity }}
+              />
+            ) : (
+              ''
+            )}
+            {waves.length > 2 ? (
+              <motion.path
+                fill="url(#rainbow)"
+                d={newWave.d}
+                animate={{ d: waves[2].d, transition: { duration: 2.1 } }}
+                style={{ opacity: waves[2].opacity }}
+              />
+            ) : (
+              ''
+            )}
+            {waves.length > 3 ? (
+              <motion.path
+                fill="url(#rainbow)"
+                d={newWave.d}
+                animate={{ d: waves[3].d, transition: { duration: 2.4 } }}
+                style={{ opacity: waves[3].opacity }}
+              />
+            ) : (
+              ''
+            )}
+            {waves.length > 4 ? (
+              <motion.path
+                fill="url(#rainbow)"
+                animate={{ d: waves[4].d, transition: { duration: 2.7 } }}
+                d={newWave.d}
+                style={{ opacity: waves[4].opacity }}
+              />
+            ) : (
+              ''
+            )}
+          </svg>
+        </div>
 
         <div className="wavebuilder-controls">
           {' '}
@@ -524,6 +537,51 @@ export default function WaveBuilder() {
                 </div>
               )
             })}
+          </div>
+          <div style={{ width: 100, marginLeft: 20 }}>
+            <FormControl>
+              <Input
+                id="standard-adornment-weight"
+                value={width}
+                color={`secondary`}
+                disabled
+                onBlur={(e) => {
+                  e.target.value != width ? setWidth(e.target.value) : ''
+                }}
+                endAdornment={
+                  <InputAdornment position="end">px</InputAdornment>
+                }
+                aria-describedby="standard-weight-helper-text"
+                inputProps={{
+                  'aria-label': 'width',
+                }}
+                size="small"
+              />
+              <FormHelperText id="standard-weight-helper-text">
+                Width
+              </FormHelperText>
+            </FormControl>
+            <FormControl>
+              <Input
+                id="standard-adornment-weight"
+                value={height}
+                color={`secondary`}
+                size="small"
+                onChange={(e) => {
+                  e.target.value != height ? setHeight(e.target.value) : ''
+                }}
+                endAdornment={
+                  <InputAdornment position="end">px</InputAdornment>
+                }
+                aria-describedby="standard-weight-helper-text"
+                inputProps={{
+                  'aria-label': 'height',
+                }}
+              />
+              <FormHelperText id="standard-weight-helper-text">
+                Height
+              </FormHelperText>
+            </FormControl>
           </div>
           {/* <div>
             <Checkbox

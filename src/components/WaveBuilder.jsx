@@ -5,6 +5,8 @@ import Slider from '@material-ui/core/Slider'
 import Fab from '@material-ui/core/Fab'
 import { GiPerspectiveDiceSixFacesThree } from 'react-icons/gi'
 import { BiAddToQueue } from 'react-icons/bi'
+import { IoIosSave } from 'react-icons/io'
+import { MdDelete } from 'react-icons/md'
 import Checkbox from '@material-ui/core/Checkbox'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
@@ -93,7 +95,7 @@ function generateWaves(
   right
 ) {
   let orient = 0
-  let x = width / (bumps * 3)
+  let x = Math.ceil(width / (bumps * 3))
 
   switch (orientation) {
     case 'top':
@@ -155,47 +157,67 @@ export default function WaveBuilder() {
   const [intensity, setIntensity] = React.useState(3)
   const [width, setWidth] = React.useState(1600)
   const [height, setHeight] = React.useState(600)
-  const [waves, setWaves] = React.useState([
-    {
-      id: 1,
-      saved: false,
-      d: generateWaves(intensity, bumps, orientation, width, height),
-    },
-  ])
+  const [waves, setWaves] = React.useState([])
+  const [newWave, setNewWave] = React.useState({
+    id: 1,
+    saved: false,
+    d: generateWaves(intensity, bumps, orientation, width, height),
+    opacity: 0.7,
+  })
 
-  function randomizeWaves() {
-    const newWaves = waves.map((wave) =>
-      wave.saved
-        ? wave
-        : {
-            ...wave,
-            d: generateWaves(intensity, bumps, orientation, width, height),
-          }
-    )
-    return newWaves
+  function randomizeWave() {
+    setNewWave((oldWave) => {
+      return {
+        ...oldWave,
+        d: generateWaves(intensity, bumps, orientation, width, height),
+        opacity: opacity,
+      }
+    })
+  }
+
+  function deleteWave(id) {
+    console.log(waves)
+    console.log(id)
+    const newWaves = waves.filter((wave) => wave.id != id)
+    setWaves(newWaves)
+  }
+
+  function updateOpacity(v) {
+    setNewWave((oldWave) => {
+      return {
+        ...oldWave,
+        opacity: v,
+      }
+    })
+    setOpacity(v)
   }
 
   function addWave() {
-    const newWaves = [
-      ...waves,
-      {
-        id: waves[waves.length - 1].id + 1,
+    setWaves((oldWaves) => [...oldWaves, newWave])
+    setNewWave((oldWave) => {
+      return {
+        ...oldWave,
+        id: newWave.id + 1,
         d: generateWaves(intensity, bumps, orientation, width, height),
-        saved: false,
-      },
-    ]
-    return newWaves
+        opacity: opacity,
+      }
+    })
   }
 
   React.useEffect(() => {
-    setWaves(randomizeWaves())
+    randomizeWave()
   }, [number, intensity, bumps, orientation])
 
   let svg = `<svg viewBox="0 0 ${width} ${height}">`
-  waves.map((wave) => {
-    svg += `
+  svg += `
+  <path d="${newWave.d}" />`
+
+  waves.length > 0
+    ? waves.map((wave) => {
+        svg += `
   <path d="${wave.d}" />`
-  })
+      })
+    : ''
   svg += `
 </svg>`
 
@@ -259,20 +281,29 @@ export default function WaveBuilder() {
               />
             </linearGradient>
           </defs>
-
           <motion.path
             fill="url(#rainbow)"
-            d={waves[0].d}
-            animate={{ d: waves[0].d, transition: { duration: 0.5 } }}
-            style={{ opacity: opacity }}
+            d={newWave.d}
+            animate={{ d: newWave.d, transition: { duration: 0.5 } }}
+            style={{ opacity: newWave.opacity }}
           />
+          {waves.length > 0 ? (
+            <motion.path
+              fill="url(#rainbow)"
+              d={newWave.d}
+              animate={{ d: waves[0].d, transition: { duration: 0.5 } }}
+              style={{ opacity: waves[0].opacity }}
+            />
+          ) : (
+            ''
+          )}
 
           {waves.length > 1 ? (
             <motion.path
               fill="url(#rainbow)"
               animate={{ d: waves[1].d, transition: { duration: 1.8 } }}
-              d={waves[0].d}
-              style={{ opacity: opacity }}
+              d={newWave.d}
+              style={{ opacity: waves[1].opacity }}
             />
           ) : (
             ''
@@ -280,9 +311,9 @@ export default function WaveBuilder() {
           {waves.length > 2 ? (
             <motion.path
               fill="url(#rainbow)"
-              d={waves[0].d}
+              d={newWave.d}
               animate={{ d: waves[2].d, transition: { duration: 2.1 } }}
-              style={{ opacity: opacity }}
+              style={{ opacity: waves[2].opacity }}
             />
           ) : (
             ''
@@ -290,9 +321,9 @@ export default function WaveBuilder() {
           {waves.length > 3 ? (
             <motion.path
               fill="url(#rainbow)"
-              d={waves[0].d}
+              d={newWave.d}
               animate={{ d: waves[3].d, transition: { duration: 2.4 } }}
-              style={{ opacity: opacity }}
+              style={{ opacity: waves[3].opacity }}
             />
           ) : (
             ''
@@ -301,8 +332,8 @@ export default function WaveBuilder() {
             <motion.path
               fill="url(#rainbow)"
               animate={{ d: waves[4].d, transition: { duration: 2.7 } }}
-              d={waves[0].d}
-              style={{ opacity: opacity }}
+              d={newWave.d}
+              style={{ opacity: waves[4].opacity }}
             />
           ) : (
             ''
@@ -417,7 +448,7 @@ export default function WaveBuilder() {
               min={0.05}
               max={1}
               color="secondary"
-              onChange={(e, v) => setOpacity(v)}
+              onChange={(e, v) => updateOpacity(v)}
             />
             <svg viewBox="0 0 12 12">
               <circle
@@ -433,6 +464,35 @@ export default function WaveBuilder() {
           </div>
           <div className={`wave-icons-container`}>
             <h5>Waves</h5>
+
+            <div key={`waveicon`}>
+              <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%' }}>
+                <motion.path
+                  fill="url(#rainbow)"
+                  d={newWave.d}
+                  animate={{
+                    d: newWave.d,
+                    transition: { duration: 0.5 },
+                  }}
+                  style={{
+                    opacity: newWave.opacity,
+                  }}
+                />
+              </svg>
+              {waves.length < 6 ? (
+                <div className="save-button">
+                  <IconButton
+                    color="secondary"
+                    aria-label="edit"
+                    onClick={(e) => addWave()}
+                  >
+                    <IoIosSave style={{ fontSize: 40 }} />
+                  </IconButton>
+                </div>
+              ) : (
+                ''
+              )}
+            </div>
             {waves.map((wave, index) => {
               return (
                 <div key={`waveicon-${index}`}>
@@ -443,24 +503,27 @@ export default function WaveBuilder() {
                     <motion.path
                       fill="url(#rainbow)"
                       d={wave.d}
-                      animate={{ d: wave.d, transition: { duration: 0.5 } }}
+                      animate={{
+                        d: wave.d,
+                        transition: { duration: 0.5 },
+                      }}
+                      style={{
+                        opacity: wave.opacity,
+                      }}
                     />
                   </svg>
+                  <div className="save-button">
+                    <IconButton
+                      color="secondary"
+                      aria-label="edit"
+                      onClick={(e) => deleteWave(wave.id)}
+                    >
+                      <MdDelete style={{ fontSize: 40 }} />
+                    </IconButton>
+                  </div>
                 </div>
               )
             })}
-            {waves.length < 6 ? (
-              <div style={{ padding: '10px', textAlign: 'center' }}>
-                <IconButton aria-label="edit">
-                  <BiAddToQueue
-                    style={{ fontSize: 40 }}
-                    onClick={(e) => setWaves(addWave())}
-                  />
-                </IconButton>
-              </div>
-            ) : (
-              ''
-            )}
           </div>
           {/* <div>
             <Checkbox
@@ -474,7 +537,7 @@ export default function WaveBuilder() {
           <Fab color="secondary" aria-label="edit">
             <GiPerspectiveDiceSixFacesThree
               style={{ fontSize: 40 }}
-              onClick={(e) => setWaves(randomizeWaves())}
+              onClick={(e) => randomizeWave()}
             />
           </Fab>
         </div>

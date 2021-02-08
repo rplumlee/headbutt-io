@@ -91,6 +91,17 @@ body pre {
     flex-direction: row;
     padding-top: 10px;
 
+    .save-button {
+      position: absolute;
+      bottom: -15px;
+      right: 0;
+      width: auto;
+
+      svg {
+        background: transparent;
+      }
+    }
+
     h5 {
       position: absolute;
       top: -16px;
@@ -99,7 +110,7 @@ body pre {
       background: #333;
     }
 
-    div {
+    > div {
       width: 33%;
       position: relative;
       padding: 10px 20px;
@@ -108,10 +119,13 @@ body pre {
       justify-content: center;
     }
 
+    svg {
+      opacity: 1;
+      background: #151515;
+    }
+
     .MuiIconButton-root {
-      margin: 0 auto;
       color: #ccc;
-      transform: scale(0.8);
 
       svg {
         font-size: 22px !important;

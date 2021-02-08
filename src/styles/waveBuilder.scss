@@ -1,0 +1,137 @@
+body {
+  background: #333;
+}
+.hljs-string {
+  color: rgb(185, 227, 251);
+}
+.hljs-attr {
+  color: rgb(226, 207, 255);
+}
+.hljs-name {
+  color: rgb(255, 189, 198);
+}
+body pre {
+  background: #1a1a1a !important;
+  padding: 1.5em !important;
+
+  &::-webkit-scrollbar {
+    background: #222;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #5c5c5c;
+    border-radius: 8px;
+    border: 5px solid #222;
+  }
+}
+.wavebuilder-controls {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  color: #ccc;
+  border-radius: 14px;
+  padding: 40px;
+  align-items: center;
+
+  .MuiRadio-root {
+    padding: 2px;
+  }
+
+  > div {
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  button {
+    margin-left: auto;
+  }
+
+  h5,
+  .MuiFormControlLabel-label {
+    margin: 0 0 10px 0;
+    font-size: 12px;
+
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .MuiFormControlLabel-label {
+    display: flex;
+
+    svg {
+      width: 35px;
+      transform: scaleY(1.5);
+      margin-left: 8px;
+
+      path {
+        fill: #aaa !important;
+      }
+    }
+  }
+
+  .MuiFormControlLabel-label {
+    margin: 0;
+    font-size: 12px;
+
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .wave-icons-container {
+    border: 1px solid rgba(120, 120, 120, 0.6);
+    height: 112px;
+    border-radius: 10px;
+    margin-left: 30px;
+    position: relative;
+    flex-wrap: wrap;
+    width: 350px;
+    flex-direction: row;
+    padding-top: 10px;
+
+    h5 {
+      position: absolute;
+      top: -16px;
+      left: 5px;
+      padding: 10px;
+      background: #333;
+    }
+
+    div {
+      width: 33%;
+      position: relative;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .MuiIconButton-root {
+      margin: 0 auto;
+      color: #ccc;
+      transform: scale(0.8);
+
+      svg {
+        font-size: 22px !important;
+      }
+    }
+  }
+
+  .MuiSlider-root.MuiSlider-vertical {
+    margin: 15px auto;
+    height: 65px;
+  }
+  .opacity {
+    padding-bottom: 3px;
+    svg {
+      width: 12px !important;
+      margin: 0 auto;
+    }
+    .MuiSlider-root.MuiSlider-vertical {
+      margin: 10px auto;
+      height: 65px;
+    }
+  }
+}

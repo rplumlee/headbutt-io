@@ -2,12 +2,12 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { StaticQuery, graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
-
 import Profile from './Profile'
 import cosmicjsLogo from '../../static/cosmicjs.svg'
 import gatsbyLogo from '../../static/gatsby.png'
 import { rhythm, scale } from '../utils/typography'
 import { motion, useAnimation } from 'framer-motion'
+import Waves from './Waves'
 
 // Import typefaces
 import 'typeface-montserrat'
@@ -93,48 +93,13 @@ export default ({ children, location }) => (
           >
             <Profile profile={profile} />
           </div>
-          <div className={profile ? `background open` : 'background'}>
-            <svg viewBox="0 0 1440 320">
-              <defs>
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop
-                    offset="0%"
-                    style={{ stopColor: 'purple', stopOpacity: 1 }}
-                  />
-                  <stop
-                    offset="100%"
-                    style={{ stopColor: 'cyan', stopOpacity: 1 }}
-                  />
-                </linearGradient>
-              </defs>
-              {waves.map((wave, index) => {
-                if (index < 4) {
-                  return (
-                    <motion.path
-                      d={`${wave}`}
-                      variants={bg_variants}
-                      initial={{ d: `${wave}` }}
-                      animate={{ d: `${waves[getRandomInt(6)]}` }}
-                      fillOpacity="0.7"
-                      fill="url(#grad1)"
-                      transition={{
-                        repeat: Infinity,
-                        repeatType: 'reverse',
-                        duration: 4 + index / 2,
-                      }}
-                      key={`${index}-wave`}
-                    />
-                  )
-                }
-              })}
-            </svg>
-          </div>
+          <div className={profile ? `background open` : 'background'}></div>
           <h1
             style={{
               ...scale(1.3),
               textAlign: 'center',
               height: rhythm(2.5),
-              color: '#fff',
+              color: '#333',
               transform: 'scale(2)',
               maxWidth: '100vw',
               overflow: 'hidden',
@@ -164,10 +129,73 @@ export default ({ children, location }) => (
                 enableBackground="new 0 0 436.887 47.59"
                 style={{ maxWidth: 'calc(50vw - 30px)' }}
               >
+                {' '}
+                <defs>
+                  <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop
+                      offset="0%"
+                      style={{ stopColor: 'purple', stopOpacity: 1 }}
+                    />
+                    <stop
+                      offset="100%"
+                      style={{ stopColor: '#a01aed', stopOpacity: 1 }}
+                    />
+                  </linearGradient>
+                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="50%">
+                    <motion.stop
+                      stopColor="#FF7744"
+                      animate={{
+                        stopColor: ['#FF7744', '#4d3e96'],
+                      }}
+                      transition={{
+                        yoyo: Infinity,
+                        ease: 'linear',
+                        duration: 8,
+                      }}
+                      offset="25%"
+                    />
+                    <motion.stop
+                      stopColor="#BF5FFF"
+                      animate={{
+                        stopColor: ['#BF5FFF', '#FFC6A8', '#FF7744', '#5f41f2'],
+                      }}
+                      transition={{
+                        yoyo: Infinity,
+                        ease: 'linear',
+                        duration: 8,
+                      }}
+                      offset="50%"
+                    />
+                    <motion.stop
+                      stopColor="#5f41f2"
+                      animate={{
+                        stopColor: ['#5f41f2', '#BF5FFF'],
+                      }}
+                      transition={{
+                        yoyo: Infinity,
+                        ease: 'linear',
+                        duration: 8,
+                      }}
+                      offset="75%"
+                    />
+                    <motion.stop
+                      stopColor="#D4504C"
+                      animate={{
+                        stopColor: ['#D4504C', '#5f41f2', '#f7d319'],
+                      }}
+                      transition={{
+                        yoyo: Infinity,
+                        ease: 'linear',
+                        duration: 8,
+                      }}
+                      offset="100%"
+                    />
+                  </linearGradient>
+                </defs>
                 <g strokeWidth="2">
                   <motion.path
                     fill="none"
-                    stroke="#FFFFFF"
+                    stroke="#444"
                     stroke-miterlimit="10"
                     d="M28.688,45.357V29.684H14.156v15.674H1.5V3.346
 		h12.656v15.557h14.531V3.346h12.656v42.012H28.688z"
@@ -178,7 +206,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#FFFFFF"
+                    stroke="#444"
                     stroke-miterlimit="10"
                     d="M52.635,45.357V3.346h26.162v9.902H65.291v6.123
 		h12.686v9.902H65.291v6.182h14.473v9.902H52.635z"
@@ -189,7 +217,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#FFFFFF"
+                    stroke="#444"
                     stroke-miterlimit="10"
                     d="M115.078,45.357l-1.846-7.734h-12.539l-1.992,7.734
 		H85.02L99.492,3.346h15.703l13.623,42.012H115.078z M107.109,12.486h-0.293c-0.04,0.469-0.176,1.241-0.41,2.314
@@ -201,7 +229,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#FFFFFF"
+                    stroke="#444"
                     stroke-miterlimit="10"
                     d="M176.35,23.824c0,4.258-0.894,8.023-2.681,11.294
 		c-1.787,3.271-4.341,5.796-7.661,7.573c-3.321,1.777-7.148,2.666-11.484,2.666H136.74V3.346h17.402
@@ -215,7 +243,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#FFFFFF"
+                    stroke="#444"
                     stroke-miterlimit="10"
                     d="M221.156,32.467c0,4.121-1.446,7.3-4.336,9.536
 		c-2.891,2.237-7.021,3.354-12.393,3.354h-19.16V3.346h17.842c11.152,0,16.729,3.389,16.729,10.166c0,1.465-0.352,2.808-1.055,4.028
@@ -231,7 +259,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#FFFFFF"
+                    stroke="#444"
                     stroke-miterlimit="10"
                     d="M266.344,26.168c0,6.738-1.538,11.744-4.614,15.015
 		c-3.076,3.271-7.817,4.907-14.224,4.907c-5.977,0-10.513-1.636-13.608-4.907c-3.096-3.271-4.644-8.198-4.644-14.78V3.346h12.715
@@ -244,7 +272,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#FFFFFF"
+                    stroke="#444"
                     stroke-miterlimit="10"
                     d="M298.377,13.248v32.109h-12.715V13.248h-11.748
 		V3.346h36.357v9.902H298.377z"
@@ -255,7 +283,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#FFFFFF"
+                    stroke="#444"
                     stroke-miterlimit="10"
                     d="M339.551,13.248v32.109h-12.715V13.248h-11.748
 		V3.346h36.357v9.902H339.551z"
@@ -266,7 +294,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#FFFFFF"
+                    stroke="#444"
                     stroke-miterlimit="10"
                     d="M371.906,40.143c0,1.777-0.625,3.213-1.875,4.307
 		s-2.979,1.641-5.186,1.641c-2.012,0-3.657-0.571-4.937-1.714s-1.919-2.553-1.919-4.233c0-1.718,0.63-3.11,1.89-4.175
@@ -278,12 +306,9 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#FFFFFF"
+                    stroke="#444"
                     stroke-miterlimit="10"
-                    d="M393.744,7.271c0,1.758-0.64,3.184-1.919,4.277
-		c-1.279,1.094-2.964,1.641-5.054,1.641c-2.031,0-3.696-0.566-4.995-1.699c-1.299-1.132-1.948-2.539-1.948-4.219
-		c0-1.718,0.63-3.11,1.89-4.175c1.26-1.064,2.944-1.597,5.054-1.597c2.09,0,3.774,0.532,5.054,1.597
-		C393.104,4.162,393.744,5.553,393.744,7.271z M380.531,45.357v-30h12.48v30H380.531z"
+                    d="M380.531,45.357v-30h12.48v30H380.531z"
                     variants={clip_path_variants}
                     initial={'closed'}
                     animate={'open'}
@@ -291,7 +316,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#FFFFFF"
+                    stroke="#444"
                     stroke-miterlimit="10"
                     d="M435.387,29.83c0,5.059-1.528,9.034-4.585,11.924
 		c-3.057,2.891-7.329,4.336-12.817,4.336c-5.449,0-9.692-1.411-12.729-4.233c-3.037-2.822-4.556-6.713-4.556-11.675
@@ -318,9 +343,10 @@ export default ({ children, location }) => (
             style={{
               marginLeft: 'auto',
               marginRight: 'auto',
-              maxWidth: rhythm(24),
+              maxWidth: rhythm(36),
               padding: `0 ${rhythm(3 / 4)} ${rhythm(1.5)} ${rhythm(3 / 4)}`,
               minHeight: 'calc(100vh - 42px)',
+              display: 'flex',
             }}
           >
             {children}

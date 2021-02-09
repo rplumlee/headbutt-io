@@ -261,8 +261,10 @@ export default function WaveBuilder() {
                   id="waves"
                   style={{
                     width: '100%',
+                    minWidth: '100%',
                     zIndex: 2,
                     position: 'relative',
+                    display: 'flex',
                   }}
                 >
                   <defs>

@@ -249,13 +249,22 @@ export default function WaveBuilder() {
 
   return (
     <Layout>
-      <div style={{ maxWidth: '100%' }}>
+      <div style={{ maxWidth: '100%', width: '100%' }}>
         <ThemeProvider theme={theme}>
           <div style={{ width: '100%' }}>
             <div
               style={{ background: '#222', position: 'relative', zIndex: 1 }}
             >
-              <div className="checkered-bg">
+              <div
+                className="checkered-bg"
+                style={{
+                  minHeight: `${
+                    window.innerWidth > 830
+                      ? (830 * height) / width
+                      : (window.innerWidth * height) / width
+                  }px`,
+                }}
+              >
                 <svg
                   viewBox={`0 0 ${width} ${height}`}
                   id="waves"

@@ -103,7 +103,7 @@ export default ({ children, location }) => (
 
               maxWidth: '100%',
               overflow: 'hidden',
-              marginBottom: 50,
+              marginBottom: 30,
               zIndex: 6,
               position: 'relative',
             }}
@@ -195,7 +195,7 @@ export default ({ children, location }) => (
                 <g strokeWidth="2">
                   <motion.path
                     fill="none"
-                    stroke="#444"
+                    stroke="#666"
                     stroke-miterlimit="10"
                     d="M28.688,45.357V29.684H14.156v15.674H1.5V3.346
 		h12.656v15.557h14.531V3.346h12.656v42.012H28.688z"
@@ -206,7 +206,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#444"
+                    stroke="#666"
                     stroke-miterlimit="10"
                     d="M52.635,45.357V3.346h26.162v9.902H65.291v6.123
 		h12.686v9.902H65.291v6.182h14.473v9.902H52.635z"
@@ -217,7 +217,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#444"
+                    stroke="#666"
                     stroke-miterlimit="10"
                     d="M115.078,45.357l-1.846-7.734h-12.539l-1.992,7.734
 		H85.02L99.492,3.346h15.703l13.623,42.012H115.078z M107.109,12.486h-0.293c-0.04,0.469-0.176,1.241-0.41,2.314
@@ -229,7 +229,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#444"
+                    stroke="#666"
                     stroke-miterlimit="10"
                     d="M176.35,23.824c0,4.258-0.894,8.023-2.681,11.294
 		c-1.787,3.271-4.341,5.796-7.661,7.573c-3.321,1.777-7.148,2.666-11.484,2.666H136.74V3.346h17.402
@@ -243,7 +243,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#444"
+                    stroke="#666"
                     stroke-miterlimit="10"
                     d="M221.156,32.467c0,4.121-1.446,7.3-4.336,9.536
 		c-2.891,2.237-7.021,3.354-12.393,3.354h-19.16V3.346h17.842c11.152,0,16.729,3.389,16.729,10.166c0,1.465-0.352,2.808-1.055,4.028
@@ -259,7 +259,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#444"
+                    stroke="#666"
                     stroke-miterlimit="10"
                     d="M266.344,26.168c0,6.738-1.538,11.744-4.614,15.015
 		c-3.076,3.271-7.817,4.907-14.224,4.907c-5.977,0-10.513-1.636-13.608-4.907c-3.096-3.271-4.644-8.198-4.644-14.78V3.346h12.715
@@ -272,7 +272,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#444"
+                    stroke="#666"
                     stroke-miterlimit="10"
                     d="M298.377,13.248v32.109h-12.715V13.248h-11.748
 		V3.346h36.357v9.902H298.377z"
@@ -283,7 +283,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#444"
+                    stroke="#666"
                     stroke-miterlimit="10"
                     d="M339.551,13.248v32.109h-12.715V13.248h-11.748
 		V3.346h36.357v9.902H339.551z"
@@ -294,7 +294,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#444"
+                    stroke="#666"
                     stroke-miterlimit="10"
                     d="M371.906,40.143c0,1.777-0.625,3.213-1.875,4.307
 		s-2.979,1.641-5.186,1.641c-2.012,0-3.657-0.571-4.937-1.714s-1.919-2.553-1.919-4.233c0-1.718,0.63-3.11,1.89-4.175
@@ -306,7 +306,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#444"
+                    stroke="#666"
                     stroke-miterlimit="10"
                     d="M380.531,45.357v-30h12.48v30H380.531z"
                     variants={clip_path_variants}
@@ -316,7 +316,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="#444"
+                    stroke="#666"
                     stroke-miterlimit="10"
                     d="M435.387,29.83c0,5.059-1.528,9.034-4.585,11.924
 		c-3.057,2.891-7.329,4.336-12.817,4.336c-5.449,0-9.692-1.411-12.729-4.233c-3.037-2.822-4.556-6.713-4.556-11.675

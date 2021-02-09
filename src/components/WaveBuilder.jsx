@@ -246,7 +246,9 @@ export default function WaveBuilder() {
     : ''
   svg += `
 </svg>`
-
+  if (typeof window === `undefined`) {
+    return <></>
+  }
   return (
     <Layout>
       <div style={{ maxWidth: '100%', width: '100%' }}>

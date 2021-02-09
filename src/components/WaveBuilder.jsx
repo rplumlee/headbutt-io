@@ -617,7 +617,7 @@ export default function WaveBuilder() {
                   )
                 })}
                 {waves.length < 6 ? (
-                  <div className="">
+                  <div className="add-container">
                     <IconButton
                       color="secondary"
                       aria-label="edit"

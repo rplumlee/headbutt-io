@@ -51,10 +51,7 @@ function DarkToggleDemo() {
 
 class BlogIndex extends React.Component {
   render() {
-    const siteTitle = get(
-      this,
-      'props.data.cosmicjsSettings.metadata.site_title'
-    )
+    const siteTitle = 'Headbutt.io - frontend tools built with React'
     const posts = get(this, 'props.data.allCosmicjsPosts.edges')
     const author = get(this, 'props.data.cosmicjsSettings.metadata')
     const location = get(this, 'props.location')
@@ -68,7 +65,7 @@ class BlogIndex extends React.Component {
           className="parallax-effect card checkered-bg"
           perspective={1000}
           scale={1.05}
-          style={{ background: '#222', margin: '0 auto' }}
+          style={{ background: '#222', margin: '0 auto', maxWidth: '90%' }}
         >
           <Link
             to="/makeWaves"
@@ -81,7 +78,14 @@ class BlogIndex extends React.Component {
               justifyContent: 'space-between',
             }}
           >
-            <motion.svg viewBox="0 0 1300 600" style={{ y: 40 }}>
+            <motion.svg
+              viewBox="0 0 1300 600"
+              style={{
+                y: 40,
+                scale: 1.2,
+                transformOrigin: '50% 50%',
+              }}
+            >
               <path
                 opacity=".5"
                 fill="url(#grad1)"

@@ -66,6 +66,7 @@ body pre {
 
   .MuiFormControlLabel-label {
     display: flex;
+    height: 30px;
 
     svg {
       width: 35px;
@@ -89,7 +90,7 @@ body pre {
 
   .wave-icons-container {
     border: 1px solid rgba(120, 120, 120, 0.6);
-    min-height: 140px;
+
     border-radius: 10px;
     margin-left: 30px;
     position: relative;
@@ -97,6 +98,7 @@ body pre {
     width: 350px;
     flex-direction: row;
     padding-top: 10px;
+    align-items: center;
 
     .save-button {
       position: absolute;
@@ -234,6 +236,7 @@ body pre {
 }
 .add-button {
   padding: 8px !important;
+  margin-top: 5px;
   background-color: rgba(245, 0, 87, 0.18) !important;
 
   svg {
@@ -243,6 +246,11 @@ body pre {
   &:hover {
     background-color: rgba(245, 0, 87, 0.4) !important;
   }
+}
+.add-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 .wavestyle .MuiFormControlLabel-root {
   max-height: 50px;
@@ -306,7 +314,7 @@ body pre {
 .waveicon.active {
   opacity: 1;
   svg {
-    transform: scale(1.2);
+    transform: scale(1.15);
   }
   button svg {
     border: none;

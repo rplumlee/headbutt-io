@@ -15,9 +15,10 @@ import Slider from '@material-ui/core/Slider'
 import '../styles.scss'
 
 export default function MakeWaves() {
+  const siteTitle = 'Headbutt.io - MakeWaves SVG Wave Generator'
   return (
     <>
-      <Helmet />
+      <Helmet title={siteTitle} />
       <div
         style={{
           display: 'flex',

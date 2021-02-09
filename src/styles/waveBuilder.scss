@@ -311,13 +311,20 @@ body pre {
   }
 }
 .color-picker-r {
+  @media (max-width: 650px) {
+    > div > div {
+      right: 0;
+    }
+  }
+
   input {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: bold;
     letter-spacing: 0.05rem;
   }
   input.MuiInputBase-input.MuiInput-input::placeholder {
     opacity: 1;
+    font-size: 12px;
   }
 }
 .add-button {
@@ -372,6 +379,7 @@ path {
 .logo-container-makewaves {
   display: flex;
   justify-content: center;
+  margin-top: -20px;
 
   h2 {
     font-family: 'Montserrat';

@@ -265,7 +265,6 @@ export default function WaveBuilder() {
   function updateOpacity(v) {}
 
   function updateColor(v) {
-    console.log(waves[selectedIndex].fill)
     setWaves((oldWaves) => {
       return oldWaves.map((wave, index) => {
         return index == selectedIndex
@@ -314,7 +313,7 @@ export default function WaveBuilder() {
   if (typeof window === `undefined`) {
     return <></>
   }
-  console.log(waves)
+
   return (
     <div style={{ maxWidth: '100%', width: '100%' }}>
       <ThemeProvider theme={theme}>

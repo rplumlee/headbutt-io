@@ -355,14 +355,13 @@ export default function WaveBuilder() {
 
         <div className="wavebuilder-controls">
           {' '}
-          <div>
+          <div className="wavestyle">
             <RadioGroup
-              aria-label="gender"
-              name="gender1"
+              aria-label="wave style"
+              name="orientation"
               value={orientation}
               onChange={(e) => {
                 setOrientation(e.target.value)
-                console.log(e.target.value)
               }}
             >
               <FormControlLabel

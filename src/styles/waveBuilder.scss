@@ -210,3 +210,6 @@ body pre {
 .checkered-bg::after {
   background-image: linear-gradient(black, transparent);
 }
+.wavestyle .MuiFormControlLabel-root {
+  max-height: 30px;
+}

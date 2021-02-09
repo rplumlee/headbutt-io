@@ -6,7 +6,8 @@ import Fab from '@material-ui/core/Fab'
 import { GiPerspectiveDiceSixFacesThree } from 'react-icons/gi'
 import { BiAddToQueue } from 'react-icons/bi'
 import { IoIosSave } from 'react-icons/io'
-import { MdDelete } from 'react-icons/md'
+import { IoIosTrash } from 'react-icons/io'
+import { GiConvergenceTarget } from 'react-icons/gi'
 import Checkbox from '@material-ui/core/Checkbox'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
@@ -21,6 +22,7 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
 import SyntaxHighlighter from 'react-syntax-highlighter'
+import Layout from '../components/layout'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import {
   materialDark,
@@ -163,53 +165,71 @@ export default function WaveBuilder() {
   const [bumps, setBumps] = React.useState(3)
   const [orientation, setOrientation] = React.useState('middle-1')
   const [intensity, setIntensity] = React.useState(3)
-  const [width, setWidth] = React.useState(1600)
+  const [width, setWidth] = React.useState(1300)
   const [height, setHeight] = React.useState(600)
-  const [waves, setWaves] = React.useState([])
-  const [newWave, setNewWave] = React.useState({
-    id: 1,
-    saved: false,
-    d: generateWaves(intensity, bumps, orientation, width, height),
-    opacity: 0.7,
-  })
+  const [isolatedIndex, setIsolatedIndex] = React.useState(-1)
+  const [waves, setWaves] = React.useState([
+    {
+      id: 1,
+      saved: false,
+      d: generateWaves(intensity, bumps, orientation, width, height),
+      opacity: 0.7,
+    },
+  ])
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
 
   function randomizeWave() {
-    setNewWave((oldWave) => {
-      return {
-        ...oldWave,
-        d: generateWaves(intensity, bumps, orientation, width, height),
-        opacity: opacity,
-      }
+    setWaves((oldWaves) => {
+      return oldWaves.map((wave, index) => {
+        return selectedIndex == index
+          ? {
+              ...wave,
+              d: generateWaves(intensity, bumps, orientation, width, height),
+            }
+          : wave
+      })
     })
   }
 
   function deleteWave(id) {
-    console.log(waves)
-    console.log(id)
-    const newWaves = waves.filter((wave) => wave.id != id)
+    const newWaves = waves.filter((wave, index) => {
+      if (wave.id == id && index == selectedIndex) {
+        setSelectedIndex(waves.length - 2)
+      }
+      if (wave.id == id && index == isolatedIndex) {
+        setIsolatedIndex(-1)
+      }
+      return wave.id != id
+    })
     setWaves(newWaves)
+
+    setSelectedIndex(0)
   }
 
   function updateOpacity(v) {
-    setNewWave((oldWave) => {
-      return {
-        ...oldWave,
-        opacity: v,
-      }
+    setWaves((oldWaves) => {
+      return oldWaves.map((wave, index) => {
+        return index == selectedIndex
+          ? {
+              ...wave,
+              opacity: v,
+            }
+          : wave
+      })
     })
     setOpacity(v)
   }
 
   function addWave() {
-    setWaves((oldWaves) => [...oldWaves, newWave])
-    setNewWave((oldWave) => {
-      return {
-        ...oldWave,
-        id: newWave.id + 1,
+    setWaves((oldWaves) => [
+      ...oldWaves,
+      {
+        id: waves[waves.length - 1].id + 1,
         d: generateWaves(intensity, bumps, orientation, width, height),
         opacity: opacity,
-      }
-    })
+      },
+    ])
+    setSelectedIndex(waves.length)
   }
 
   React.useEffect(() => {
@@ -217,375 +237,436 @@ export default function WaveBuilder() {
   }, [number, intensity, bumps, orientation])
 
   let svg = `<svg viewBox="0 0 ${width} ${height}">`
-  svg += `
-  <path d="${newWave.d}" />`
 
   waves.length > 0
     ? waves.map((wave) => {
         svg += `
-  <path d="${wave.d}" />`
+  <path opacity="${wave.opacity}" d="${wave.d}" />`
       })
     : ''
   svg += `
 </svg>`
 
   return (
-    <ThemeProvider theme={theme}>
-      <div style={{ width: '100%' }}>
-        <div className="checkered-bg">
-          <svg
-            viewBox={`0 0 ${width} ${height}`}
-            id="waves"
-            style={{
-              width: '100%',
-              background: 'transparent',
-            }}
-          >
-            <defs>
-              <linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="50%">
-                <motion.stop
-                  stopColor="#FF7744"
-                  animate={{
-                    stopColor: ['#FF7744', '#4d3e96'],
-                  }}
-                  transition={{
-                    yoyo: Infinity,
-                    ease: 'linear',
-                    duration: 8,
-                  }}
-                  offset="25%"
-                />
-                <motion.stop
-                  stopColor="#BF5FFF"
-                  animate={{
-                    stopColor: ['#BF5FFF', '#FFC6A8', '#FF7744', '#5f41f2'],
-                  }}
-                  transition={{
-                    yoyo: Infinity,
-                    ease: 'linear',
-                    duration: 8,
-                  }}
-                  offset="50%"
-                />
-                <motion.stop
-                  stopColor="#5f41f2"
-                  animate={{
-                    stopColor: ['#5f41f2', '#BF5FFF'],
-                  }}
-                  transition={{
-                    yoyo: Infinity,
-                    ease: 'linear',
-                    duration: 8,
-                  }}
-                  offset="75%"
-                />
-                <motion.stop
-                  stopColor="#D4504C"
-                  animate={{
-                    stopColor: ['#D4504C', '#5f41f2', '#f7d319'],
-                  }}
-                  transition={{
-                    yoyo: Infinity,
-                    ease: 'linear',
-                    duration: 8,
-                  }}
-                  offset="100%"
-                />
-              </linearGradient>
-            </defs>
-            <motion.path
-              fill="url(#rainbow)"
-              d={newWave.d}
-              animate={{ d: newWave.d, transition: { duration: 0.5 } }}
-              style={{ opacity: newWave.opacity }}
-            />
-            {waves.length > 0 ? (
-              <motion.path
-                fill="url(#rainbow)"
-                d={newWave.d}
-                animate={{ d: waves[0].d, transition: { duration: 0.5 } }}
-                style={{ opacity: waves[0].opacity }}
-              />
-            ) : (
-              ''
-            )}
-
-            {waves.length > 1 ? (
-              <motion.path
-                fill="url(#rainbow)"
-                animate={{ d: waves[1].d, transition: { duration: 1.8 } }}
-                d={newWave.d}
-                style={{ opacity: waves[1].opacity }}
-              />
-            ) : (
-              ''
-            )}
-            {waves.length > 2 ? (
-              <motion.path
-                fill="url(#rainbow)"
-                d={newWave.d}
-                animate={{ d: waves[2].d, transition: { duration: 2.1 } }}
-                style={{ opacity: waves[2].opacity }}
-              />
-            ) : (
-              ''
-            )}
-            {waves.length > 3 ? (
-              <motion.path
-                fill="url(#rainbow)"
-                d={newWave.d}
-                animate={{ d: waves[3].d, transition: { duration: 2.4 } }}
-                style={{ opacity: waves[3].opacity }}
-              />
-            ) : (
-              ''
-            )}
-            {waves.length > 4 ? (
-              <motion.path
-                fill="url(#rainbow)"
-                animate={{ d: waves[4].d, transition: { duration: 2.7 } }}
-                d={newWave.d}
-                style={{ opacity: waves[4].opacity }}
-              />
-            ) : (
-              ''
-            )}
-          </svg>
-        </div>
-
-        <div className="wavebuilder-controls">
-          {' '}
-          <div className="wavestyle">
-            <RadioGroup
-              aria-label="wave style"
-              name="orientation"
-              value={orientation}
-              onChange={(e) => {
-                setOrientation(e.target.value)
-              }}
+    <Layout>
+      <div style={{ maxWidth: '100%' }}>
+        <ThemeProvider theme={theme}>
+          <div style={{ width: '100%' }}>
+            <div
+              style={{ background: '#222', position: 'relative', zIndex: 1 }}
             >
-              <FormControlLabel
-                value="top"
-                control={<Radio />}
-                label={
-                  <svg viewBox="0 0 1440 500">
-                    <path
-                      fill="url(#rainbow)"
-                      d="M0,252C240,312,480,110,720,63,C960,16,1200,64,1440,243,C1440, 0,1440, 0,1440, 0C1440, 0,1440, 0,1440, 0C1440, 0,1440, 0,1440, 0C1440, 0,1440, 0,1440, 0L1440,0C1200,0,960,0,720,0,C480,0,240,0,0,0,C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0L1401,0L0,0Z"
-                    />
-                  </svg>
-                }
-              />
-
-              <FormControlLabel
-                value="middle-1"
-                control={<Radio />}
-                label={
-                  <svg viewBox="0 0 1440 500">
-                    <path
-                      fill="url(#rainbow)"
-                      d="M0,243C160,117,320,79,480,356,C640,633,800,158,960,115,C1120,72,1280,184,1440,216C1440, 250,1440, 250,1440, 250C1440, 250,1440, 250,1440, 250C1440, 250,1440, 250,1440, 250L1440,250C1280,250,1120,250,960,250,C800,250,640,250,480,250,C320,250,160,250,0,250C0, 250,0, 250,0, 250C0, 250,0, 250,0, 250C0, 250,0, 250,0, 250L1404,250L0,250Z"
-                    />
-                  </svg>
-                }
-              />
-              <FormControlLabel
-                value="middle-2"
-                control={<Radio />}
-                label={
-                  <svg viewBox="0 0 1440 500">
-                    <path
-                      fill="url(#rainbow)"
-                      d="M0,448C240,287,480,280,720,338,C960,396,1200,389,1440,339,C1440, 0,1440, 0,1440, 0C1440, 0,1440, 0,1440, 0C1440, 0,1440, 0,1440, 0C1440, 0,1440, 0,1440, 0L1440,199C1200,63,960,18,720,180,C480,342,240,145,0,40,C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0L1401,0L0,0Z"
-                    />
-                  </svg>
-                }
-              />
-              <FormControlLabel
-                value="bottom"
-                control={<Radio />}
-                label={
-                  <svg viewBox="0 0 1440 500">
-                    <path
-                      fill="url(#rainbow)"
-                      d="M0,291C240,308,480,109,720,325,C960,541,1200,228,1440,238,C1440, 500,1440, 500,1440, 500C1440, 500,1440, 500,1440, 500C1440, 500,1440, 500,1440, 500C1440, 500,1440, 500,1440, 500L1440,500C1200,500,960,500,720,500,C480,500,240,500,0,500,C0, 500,0, 500,0, 500C0, 500,0, 500,0, 500C0, 500,0, 500,0, 500C0, 500,0, 500,0, 500L1401,500L0,500Z"
-                    />
-                  </svg>
-                }
-              />
-            </RadioGroup>
-          </div>
-          <div className="slider-container">
-            <svg
-              viewBox="0 0 1440 500"
-              style={{ width: 30, fill: 'transparent' }}
-            >
-              <path
-                stroke="#aaa"
-                strokeWidth="100px"
-                d="M0,356C96,151,192,251,288,128,C384,5,480,81,576,330,C672,579,768,125,864,290C960,455,1056,96,1152,228,C1248,360,1344,273,1440,195"
-              />
-            </svg>
-            <Slider
-              defaultValue={3}
-              aria-labelledby="discrete-slider"
-              step={1}
-              orientation="vertical"
-              min={1}
-              max={5}
-              color="secondary"
-              onChange={(e, v) => setBumps(v)}
-            />{' '}
-            <svg
-              viewBox="0 0 1440 500"
-              style={{ width: 30, fill: 'transparent' }}
-            >
-              <path
-                stroke="#aaa"
-                strokeWidth="100px"
-                d="M0,117C480,226,960,74,1440,130"
-              />
-            </svg>
-          </div>
-          <div className="slider-container opacity">
-            <svg viewBox="0 0 8 8">
-              <circle fill="#ccc" cx="4" cy="4" r="4" />
-            </svg>
-            <Slider
-              defaultValue={0.8}
-              aria-labelledby="discrete-slider"
-              valueLabelDisplay="auto"
-              step={0.1}
-              orientation="vertical"
-              min={0.05}
-              max={1}
-              color="secondary"
-              onChange={(e, v) => updateOpacity(v)}
-            />
-            <svg viewBox="0 0 12 12">
-              <circle
-                opacity=".5"
-                fill="transparent"
-                stroke="#ccc"
-                strokeWidth="2px"
-                cx="6"
-                cy="6"
-                r="5"
-              />
-            </svg>
-          </div>
-          <div className={`wave-icons-container`}>
-            <h5>Waves</h5>
-
-            <div key={`waveicon`}>
-              <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%' }}>
-                <motion.path
-                  fill="url(#rainbow)"
-                  d={newWave.d}
-                  animate={{
-                    d: newWave.d,
-                    transition: { duration: 0.5 },
-                  }}
+              <div className="checkered-bg">
+                <svg
+                  viewBox={`0 0 ${width} ${height}`}
+                  id="waves"
                   style={{
-                    opacity: newWave.opacity,
+                    width: '100%',
+                    zIndex: 2,
+                    position: 'relative',
                   }}
-                />
-              </svg>
-              {waves.length < 6 ? (
-                <div className="save-button">
-                  <IconButton
-                    color="secondary"
-                    aria-label="edit"
-                    onClick={(e) => addWave()}
-                  >
-                    <IoIosSave style={{ fontSize: 40 }} />
-                  </IconButton>
-                </div>
-              ) : (
-                ''
-              )}
-            </div>
-            {waves.map((wave, index) => {
-              return (
-                <div key={`waveicon-${index}`}>
-                  <svg
-                    viewBox={`0 0 ${width} ${height}`}
-                    style={{ width: '100%' }}
-                  >
+                >
+                  <defs>
+                    <linearGradient
+                      id="rainbow"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="50%"
+                    >
+                      <motion.stop
+                        stopColor="#FF7744"
+                        animate={{
+                          stopColor: ['#FF7744', '#4d3e96'],
+                        }}
+                        transition={{
+                          repeat: Infinity,
+                          ease: 'linear',
+                          duration: 8,
+                        }}
+                        offset="25%"
+                      />
+                      <motion.stop
+                        stopColor="#BF5FFF"
+                        animate={{
+                          stopColor: [
+                            '#BF5FFF',
+                            '#FFC6A8',
+                            '#FF7744',
+                            '#5f41f2',
+                          ],
+                        }}
+                        transition={{
+                          repeat: Infinity,
+                          ease: 'linear',
+                          duration: 8,
+                        }}
+                        offset="50%"
+                      />
+                      <motion.stop
+                        stopColor="#5f41f2"
+                        animate={{
+                          stopColor: ['#5f41f2', '#BF5FFF'],
+                        }}
+                        transition={{
+                          repeat: Infinity,
+                          ease: 'linear',
+                          duration: 8,
+                        }}
+                        offset="75%"
+                      />
+                      <motion.stop
+                        stopColor="#D4504C"
+                        animate={{
+                          stopColor: ['#D4504C', '#5f41f2', '#f7d319'],
+                        }}
+                        transition={{
+                          repeat: Infinity,
+                          ease: 'linear',
+                          duration: 8,
+                        }}
+                        offset="100%"
+                      />
+                    </linearGradient>
+                  </defs>
+
+                  <motion.path
+                    fill="url(#rainbow)"
+                    className={
+                      isolatedIndex != -1 && isolatedIndex != 0
+                        ? 'notIsolated'
+                        : ''
+                    }
+                    d={waves[0].d}
+                    animate={{ d: waves[0].d, transition: { duration: 0.5 } }}
+                    style={{ opacity: waves[0].opacity }}
+                  />
+
+                  {waves.length > 1 ? (
                     <motion.path
                       fill="url(#rainbow)"
-                      d={wave.d}
-                      animate={{
-                        d: wave.d,
-                        transition: { duration: 0.5 },
-                      }}
-                      style={{
-                        opacity: wave.opacity,
-                      }}
+                      className={
+                        isolatedIndex != -1 && isolatedIndex != 1
+                          ? 'notIsolated'
+                          : ''
+                      }
+                      animate={{ d: waves[1].d, transition: { duration: 0.5 } }}
+                      d={waves[0].d}
+                      style={{ opacity: waves[1].opacity }}
                     />
-                  </svg>
-                  <div className="save-button">
+                  ) : (
+                    ''
+                  )}
+                  {waves.length > 2 ? (
+                    <motion.path
+                      fill="url(#rainbow)"
+                      className={
+                        isolatedIndex != -1 && isolatedIndex != 2
+                          ? 'notIsolated'
+                          : ''
+                      }
+                      d={waves[0].d}
+                      animate={{ d: waves[2].d, transition: { duration: 0.5 } }}
+                      style={{ opacity: waves[2].opacity }}
+                    />
+                  ) : (
+                    ''
+                  )}
+                  {waves.length > 3 ? (
+                    <motion.path
+                      fill="url(#rainbow)"
+                      className={
+                        isolatedIndex != -1 && isolatedIndex != 3
+                          ? 'notIsolated'
+                          : ''
+                      }
+                      d={waves[0].d}
+                      animate={{ d: waves[3].d, transition: { duration: 0.5 } }}
+                      style={{ opacity: waves[3].opacity }}
+                    />
+                  ) : (
+                    ''
+                  )}
+                  {waves.length > 4 ? (
+                    <motion.path
+                      fill="url(#rainbow)"
+                      className={
+                        isolatedIndex != -1 && isolatedIndex != 4
+                          ? 'notIsolated'
+                          : ''
+                      }
+                      animate={{ d: waves[4].d, transition: { duration: 0.5 } }}
+                      d={waves[0].d}
+                      style={{ opacity: waves[4].opacity }}
+                    />
+                  ) : (
+                    ''
+                  )}
+                  {waves.length > 5 ? (
+                    <motion.path
+                      fill="url(#rainbow)"
+                      className={
+                        isolatedIndex != -1 && isolatedIndex != 5
+                          ? 'notIsolated'
+                          : ''
+                      }
+                      animate={{ d: waves[5].d, transition: { duration: 0.5 } }}
+                      d={waves[0].d}
+                      style={{ opacity: waves[5].opacity }}
+                    />
+                  ) : (
+                    ''
+                  )}
+                </svg>
+              </div>
+            </div>
+            <div className="wavebuilder-controls">
+              {' '}
+              <div className="wavestyle">
+                <RadioGroup
+                  aria-label="wave style"
+                  name="orientation"
+                  value={orientation}
+                  onChange={(e) => {
+                    setOrientation(e.target.value)
+                  }}
+                >
+                  <FormControlLabel
+                    value="top"
+                    control={<Radio />}
+                    label={
+                      <svg viewBox="0 0 1440 500">
+                        <path
+                          fill="url(#rainbow)"
+                          d="M0,252C240,312,480,110,720,63,C960,16,1200,64,1440,243,C1440, 0,1440, 0,1440, 0C1440, 0,1440, 0,1440, 0C1440, 0,1440, 0,1440, 0C1440, 0,1440, 0,1440, 0L1440,0C1200,0,960,0,720,0,C480,0,240,0,0,0,C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0L1401,0L0,0Z"
+                        />
+                      </svg>
+                    }
+                  />
+
+                  <FormControlLabel
+                    value="middle-1"
+                    control={<Radio />}
+                    label={
+                      <svg viewBox="0 0 1440 500">
+                        <path
+                          fill="url(#rainbow)"
+                          d="M0,243C160,117,320,79,480,356,C640,633,800,158,960,115,C1120,72,1280,184,1440,216C1440, 250,1440, 250,1440, 250C1440, 250,1440, 250,1440, 250C1440, 250,1440, 250,1440, 250L1440,250C1280,250,1120,250,960,250,C800,250,640,250,480,250,C320,250,160,250,0,250C0, 250,0, 250,0, 250C0, 250,0, 250,0, 250C0, 250,0, 250,0, 250L1404,250L0,250Z"
+                        />
+                      </svg>
+                    }
+                  />
+                  <FormControlLabel
+                    value="middle-2"
+                    control={<Radio />}
+                    label={
+                      <svg viewBox="0 0 1440 500">
+                        <path
+                          fill="url(#rainbow)"
+                          d="M0,448C240,287,480,280,720,338,C960,396,1200,389,1440,339,C1440, 0,1440, 0,1440, 0C1440, 0,1440, 0,1440, 0C1440, 0,1440, 0,1440, 0C1440, 0,1440, 0,1440, 0L1440,199C1200,63,960,18,720,180,C480,342,240,145,0,40,C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0L1401,0L0,0Z"
+                        />
+                      </svg>
+                    }
+                  />
+                  <FormControlLabel
+                    value="bottom"
+                    control={<Radio />}
+                    label={
+                      <svg viewBox="0 0 1440 500">
+                        <path
+                          fill="url(#rainbow)"
+                          d="M0,291C240,308,480,109,720,325,C960,541,1200,228,1440,238,C1440, 500,1440, 500,1440, 500C1440, 500,1440, 500,1440, 500C1440, 500,1440, 500,1440, 500C1440, 500,1440, 500,1440, 500L1440,500C1200,500,960,500,720,500,C480,500,240,500,0,500,C0, 500,0, 500,0, 500C0, 500,0, 500,0, 500C0, 500,0, 500,0, 500C0, 500,0, 500,0, 500L1401,500L0,500Z"
+                        />
+                      </svg>
+                    }
+                  />
+                </RadioGroup>
+              </div>
+              <div className="slider-container">
+                <svg
+                  viewBox="0 0 1440 500"
+                  style={{ width: '100%', fill: 'transparent' }}
+                >
+                  <path
+                    stroke="#aaa"
+                    strokeWidth="100px"
+                    d="M0,356C96,151,192,251,288,128,C384,5,480,81,576,330,C672,579,768,125,864,290C960,455,1056,96,1152,228,C1248,360,1344,273,1440,195"
+                  />
+                </svg>
+                <Slider
+                  defaultValue={3}
+                  aria-labelledby="discrete-slider"
+                  step={1}
+                  orientation="vertical"
+                  min={1}
+                  max={5}
+                  color="secondary"
+                  onChange={(e, v) => setBumps(v)}
+                />{' '}
+                <svg
+                  viewBox="0 0 1440 500"
+                  style={{ width: '100%', fill: 'transparent' }}
+                >
+                  <path
+                    stroke="#aaa"
+                    strokeWidth="100px"
+                    d="M0,117C480,226,960,74,1440,130"
+                  />
+                </svg>
+              </div>
+              <div className="slider-container opacity">
+                <svg viewBox="0 0 8 8">
+                  <circle fill="#ccc" cx="4" cy="4" r="4" />
+                </svg>
+                <Slider
+                  value={waves[selectedIndex].opacity}
+                  aria-labelledby="discrete-slider"
+                  valueLabelDisplay="auto"
+                  step={0.1}
+                  orientation="vertical"
+                  min={0.05}
+                  max={1}
+                  color="secondary"
+                  onChange={(e, v) => updateOpacity(v)}
+                />
+                <svg viewBox="0 0 12 12">
+                  <circle
+                    opacity=".5"
+                    fill="transparent"
+                    stroke="#ccc"
+                    strokeWidth="2px"
+                    cx="6"
+                    cy="6"
+                    r="5"
+                  />
+                </svg>
+              </div>
+              <div className={`wave-icons-container`}>
+                <h5>Waves</h5>
+
+                {waves.map((wave, index) => {
+                  return (
+                    <div
+                      key={`waveicon-${index}`}
+                      className={
+                        selectedIndex == index ? 'active waveicon' : ' waveicon'
+                      }
+                    >
+                      <svg
+                        viewBox={`0 0 ${width} ${height}`}
+                        style={{ width: '100%' }}
+                        onClick={(e) => {
+                          setSelectedIndex(index)
+                          setIsolatedIndex(-1)
+                        }}
+                      >
+                        <motion.path
+                          fill="url(#rainbow)"
+                          d={wave.d}
+                          animate={{
+                            d: wave.d,
+                            transition: { duration: 0.5 },
+                          }}
+                          style={{
+                            opacity: wave.opacity,
+                          }}
+                        />
+                      </svg>
+                      {waves.length > 1 ? (
+                        <div className="save-button">
+                          <IconButton
+                            color="secondary"
+                            aria-label="delete"
+                            onClick={(e) => {
+                              setIsolatedIndex(
+                                index == isolatedIndex ? -1 : index
+                              )
+                            }}
+                            className={
+                              isolatedIndex == index
+                                ? 'alternate active'
+                                : 'alternate'
+                            }
+                          >
+                            <GiConvergenceTarget style={{ fontSize: 40 }} />
+                          </IconButton>
+                          <IconButton
+                            color="secondary"
+                            aria-label="delete"
+                            onClick={(e) => deleteWave(wave.id)}
+                          >
+                            <IoIosTrash style={{ fontSize: 40 }} />
+                          </IconButton>
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                    </div>
+                  )
+                })}
+                {waves.length < 6 ? (
+                  <div className="">
                     <IconButton
                       color="secondary"
                       aria-label="edit"
-                      onClick={(e) => deleteWave(wave.id)}
+                      onClick={(e) => addWave()}
+                      className="add-button"
                     >
-                      <MdDelete style={{ fontSize: 40 }} />
+                      <BiAddToQueue style={{ fontSize: 40 }} />
                     </IconButton>
                   </div>
-                </div>
-              )
-            })}
-          </div>
-          <div
-            style={{ width: 100, marginLeft: 20 }}
-            className="wave-dimensions-controls"
-          >
-            <FormControl>
-              <Input
-                id="standard-adornment-weight"
-                value={width}
-                color={`secondary`}
-                disabled
-                onBlur={(e) => {
-                  e.target.value != width ? setWidth(e.target.value) : ''
-                }}
-                endAdornment={
-                  <InputAdornment position="end">px</InputAdornment>
-                }
-                aria-describedby="standard-weight-helper-text"
-                inputProps={{
-                  'aria-label': 'width',
-                }}
-                size="small"
-              />
-              <FormHelperText id="standard-weight-helper-text">
-                Width
-              </FormHelperText>
-            </FormControl>
-            <FormControl>
-              <Input
-                id="standard-adornment-weight"
-                value={height}
-                color={`secondary`}
-                size="small"
-                onChange={(e) => {
-                  e.target.value != height ? setHeight(e.target.value) : ''
-                }}
-                endAdornment={
-                  <InputAdornment position="end">px</InputAdornment>
-                }
-                aria-describedby="standard-weight-helper-text"
-                inputProps={{
-                  'aria-label': 'height',
-                }}
-              />
-              <FormHelperText id="standard-weight-helper-text">
-                Height
-              </FormHelperText>
-            </FormControl>
-          </div>
-          {/* <div>
+                ) : (
+                  ''
+                )}
+              </div>
+              <div
+                style={{ width: 100, marginLeft: 20 }}
+                className="wave-dimensions-controls"
+              >
+                <FormControl>
+                  <Input
+                    id="standard-adornment-weight"
+                    value={width}
+                    color={`secondary`}
+                    disabled
+                    onBlur={(e) => {
+                      e.target.value != width ? setWidth(e.target.value) : ''
+                    }}
+                    endAdornment={
+                      <InputAdornment position="end">px</InputAdornment>
+                    }
+                    aria-describedby="standard-weight-helper-text"
+                    inputProps={{
+                      'aria-label': 'width',
+                    }}
+                    size="small"
+                  />
+                  <FormHelperText id="standard-weight-helper-text">
+                    Width
+                  </FormHelperText>
+                </FormControl>
+                <FormControl>
+                  <Input
+                    id="standard-adornment-weight"
+                    value={height}
+                    color={`secondary`}
+                    size="small"
+                    onChange={(e) => {
+                      e.target.value != height ? setHeight(e.target.value) : ''
+                    }}
+                    endAdornment={
+                      <InputAdornment position="end">px</InputAdornment>
+                    }
+                    aria-describedby="standard-weight-helper-text"
+                    inputProps={{
+                      'aria-label': 'height',
+                    }}
+                  />
+                  <FormHelperText id="standard-weight-helper-text">
+                    Height
+                  </FormHelperText>
+                </FormControl>
+              </div>
+              {/* <div>
             <Checkbox
               checked={animating ? true : false}
               onChange={(e) => setAnimating((old) => !old)}
@@ -594,19 +675,21 @@ export default function WaveBuilder() {
             />
             <h5>Animate</h5>
           </div> */}
-          <Fab color="secondary" aria-label="edit">
-            <GiPerspectiveDiceSixFacesThree
-              style={{ fontSize: 40 }}
-              onClick={(e) => randomizeWave()}
-            />
-          </Fab>
-        </div>
+              <Fab color="secondary" aria-label="edit">
+                <GiPerspectiveDiceSixFacesThree
+                  style={{ fontSize: 40 }}
+                  onClick={(e) => randomizeWave()}
+                />
+              </Fab>
+            </div>
+          </div>
+          <div style={{ width: 800, margin: '0 auto', maxWidth: '90%' }}>
+            <SyntaxHighlighter language="xml" style={dracula} wrapLines={true}>
+              {svg}
+            </SyntaxHighlighter>
+          </div>
+        </ThemeProvider>
       </div>
-      <div style={{ width: 800, margin: '0 auto', maxWidth: '90%' }}>
-        <SyntaxHighlighter language="xml" style={dracula} wrapLines={true}>
-          {svg}
-        </SyntaxHighlighter>
-      </div>
-    </ThemeProvider>
+    </Layout>
   )
 }

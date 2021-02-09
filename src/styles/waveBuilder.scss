@@ -1,5 +1,7 @@
 body {
   background: #333;
+  width: 100%;
+  overflow: hidden;
 }
 .hljs-string {
   color: rgb(185, 227, 251);
@@ -35,6 +37,7 @@ body pre {
   flex-wrap: wrap;
   justify-content: center;
   position: relative;
+  padding-top: 70px;
 
   .MuiRadio-root {
     padding: 2px;
@@ -86,7 +89,7 @@ body pre {
 
   .wave-icons-container {
     border: 1px solid rgba(120, 120, 120, 0.6);
-    height: 112px;
+    min-height: 140px;
     border-radius: 10px;
     margin-left: 30px;
     position: relative;
@@ -97,9 +100,13 @@ body pre {
 
     .save-button {
       position: absolute;
-      bottom: -15px;
+      bottom: -5px;
       right: 0;
       width: auto;
+
+      button {
+        margin-right: 6px;
+      }
 
       svg {
         background: transparent;
@@ -133,17 +140,19 @@ body pre {
     svg {
       opacity: 1;
       background: #151515;
+      border-radius: 3px;
     }
 
     .MuiIconButton-root {
-      color: #ccc;
+      color: #bbb;
 
       svg {
-        font-size: 22px !important;
       }
     }
   }
-
+  .wave-icons-container {
+    padding: 10px 5px;
+  }
   @media (max-width: 900px) {
     .wave-dimensions-controls {
       order: 2;
@@ -155,19 +164,28 @@ body pre {
       order: 3;
     }
   }
+
+  > .MuiFab-root {
+    position: absolute;
+    top: 0;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    z-index: 3;
+  }
   @media (max-width: 600px) {
     padding-top: 70px;
     padding-left: 3px;
     padding-right: 3px;
 
-    > .MuiFab-root {
-      position: absolute;
-      top: 0;
-      transform: translate(-50%, -50%);
-      left: 50%;
+    .wave-icons-container {
+      order: 4;
+      width: 90%;
     }
   }
-
+  .slider-container {
+    position: relative;
+    width: 72px;
+  }
   .MuiSlider-root.MuiSlider-vertical {
     margin: 15px auto;
     height: 65px;
@@ -186,21 +204,25 @@ body pre {
 }
 .checkered-bg {
   position: relative;
-  display: block;
+  display: flex;
 }
 .checkered-bg::before,
 .checkered-bg::after {
   content: '';
   width: 100%;
-  height: 100%;
+  height: calc(100% - 8px);
   position: absolute;
   top: 0;
   left: 0;
   pointer-events: none;
   z-index: -1;
   opacity: 0.04;
+  font-size: 0px;
+  height: calc(100% - 8px);
 }
-
+.notIsolated {
+  opacity: 0.05 !important;
+}
 .checkered-bg::before {
   background-image: linear-gradient(black 50%, transparent 50%),
     linear-gradient(to right, grey 50%, black 50%);
@@ -210,6 +232,105 @@ body pre {
 .checkered-bg::after {
   background-image: linear-gradient(black, transparent);
 }
+.add-button {
+  padding: 8px !important;
+  background-color: rgba(245, 0, 87, 0.18) !important;
+
+  svg {
+    background: transparent !important;
+    font-size: 18px !important;
+  }
+  &:hover {
+    background-color: rgba(245, 0, 87, 0.4) !important;
+  }
+}
 .wavestyle .MuiFormControlLabel-root {
-  max-height: 30px;
+  max-height: 50px;
+  min-height: 35px;
+}
+.waveicon {
+  opacity: 0.4;
+  transition: 400ms;
+
+  a {
+    z-index: 0;
+    position: relative;
+  }
+
+  .save-button {
+    z-index: -1;
+  }
+
+  button {
+    transform: scale(0);
+    z-index: -1;
+    transition: 400ms;
+    background-color: rgba(245, 0, 87, 0.6) !important;
+    padding: 5px;
+
+    svg {
+      font-size: 15px !important;
+    }
+
+    &:hover {
+      background-color: rgba(245, 0, 87, 1) !important;
+    }
+
+    &.alternate {
+      background-color: rgba(108, 16, 255, 0.6) !important;
+
+      &:hover {
+        background-color: rgba(108, 16, 255, 1) !important;
+      }
+      &.active {
+        color: rgb(181, 135, 255) !important;
+        background-color: rgba(0, 0, 0, 0.7) !important;
+      }
+    }
+  }
+
+  svg {
+    cursor: pointer;
+    transition: 400ms;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
+.add-button {
+  height: 100%;
+  width: 100%;
+  border-radius: 0 !important;
+}
+.waveicon.active {
+  opacity: 1;
+  svg {
+    transform: scale(1.2);
+  }
+  button svg {
+    border: none;
+  }
+  .save-button {
+    z-index: 1;
+  }
+  button {
+    transform: scale(1);
+
+    z-index: 1;
+  }
+}
+path {
+  transition: 200ms !important;
+}
+
+.logo svg {
+  max-width: 50% !important;
+  margin: 0 auto;
+  transform: scale(1.5);
+}
+.logo a {
+  margin: 0 auto;
+  display: block;
+  text-align: center;
 }

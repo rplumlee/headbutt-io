@@ -65,12 +65,13 @@ class BlogIndex extends React.Component {
         <Tilt
           tiltMaxAngleX={6}
           tiltMaxAngleY={6}
-          className="parallax-effect card"
+          className="parallax-effect card checkered-bg"
           perspective={1000}
           scale={1.05}
+          style={{ background: '#222', margin: '0 auto' }}
         >
           <Link
-            to="/waveBackground"
+            to="/makeWaves"
             style={{
               position: 'absolute',
               height: '100%',
@@ -80,17 +81,39 @@ class BlogIndex extends React.Component {
               justifyContent: 'space-between',
             }}
           >
-            <Waves />
+            <motion.svg viewBox="0 0 1300 600" style={{ y: 40 }}>
+              <path
+                opacity=".5"
+                fill="url(#grad1)"
+                d="M0,123C434,406,868,98,1302,444,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
+              />
+              <path
+                opacity=".9"
+                fill="url(#grad1)"
+                d="M0,332C434,117,868,302,1302,370,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
+              />
+              <path
+                opacity=".5"
+                fill="url(#grad1)"
+                d="M0,234C434,312,868,62,1302,209,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
+              />
+              <path
+                opacity=".7"
+                fill="url(#grad1)"
+                d="M0,235C434,333,868,252,1302,243,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
+              />
+            </motion.svg>
             <motion.div className="inner-element">
               {' '}
               <div>
-                <h5>Waves Background Animation</h5> <p>{'<Waves />'}</p>
+                <h5 style={{ color: '#fff' }}>MakeWaves SVG Wave Generator</h5>{' '}
+                <p style={{ color: '#fff' }}>{'<MakeWaves />'}</p>
               </div>
             </motion.div>
           </Link>
         </Tilt>
 
-        <Tilt
+        {/* <Tilt
           tiltMaxAngleX={6}
           tiltMaxAngleY={6}
           className="parallax-effect card"
@@ -123,7 +146,7 @@ class BlogIndex extends React.Component {
               </div>
             </motion.div>
           </Link>
-        </Tilt>
+        </Tilt> */}
         {/* <div className="post-list">
           {posts.map(({ node }) => {
             const title = get(node, 'title') || node.slug

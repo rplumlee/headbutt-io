@@ -98,12 +98,12 @@ export default ({ children, location }) => (
             style={{
               ...scale(1.3),
               textAlign: 'center',
-              height: rhythm(2.5),
+
               color: '#333',
-              transform: 'scale(2)',
-              maxWidth: '100vw',
+
+              maxWidth: '100%',
               overflow: 'hidden',
-              marginBottom: 100,
+              marginBottom: 50,
               zIndex: 6,
               position: 'relative',
             }}
@@ -148,7 +148,7 @@ export default ({ children, location }) => (
                         stopColor: ['#FF7744', '#4d3e96'],
                       }}
                       transition={{
-                        yoyo: Infinity,
+                        repeat: Infinity,
                         ease: 'linear',
                         duration: 8,
                       }}
@@ -160,7 +160,7 @@ export default ({ children, location }) => (
                         stopColor: ['#BF5FFF', '#FFC6A8', '#FF7744', '#5f41f2'],
                       }}
                       transition={{
-                        yoyo: Infinity,
+                        repeat: Infinity,
                         ease: 'linear',
                         duration: 8,
                       }}
@@ -172,7 +172,7 @@ export default ({ children, location }) => (
                         stopColor: ['#5f41f2', '#BF5FFF'],
                       }}
                       transition={{
-                        yoyo: Infinity,
+                        repeat: Infinity,
                         ease: 'linear',
                         duration: 8,
                       }}
@@ -184,7 +184,7 @@ export default ({ children, location }) => (
                         stopColor: ['#D4504C', '#5f41f2', '#f7d319'],
                       }}
                       transition={{
-                        yoyo: Infinity,
+                        repeat: Infinity,
                         ease: 'linear',
                         duration: 8,
                       }}
@@ -337,16 +337,18 @@ export default ({ children, location }) => (
       )
 
       return (
-        <div style={{ overflow: 'hidden', position: 'relative' }}>
+        <div
+          style={{ overflow: 'hidden', position: 'relative', maxWidth: '100%' }}
+        >
           {header}
           <div
             style={{
               marginLeft: 'auto',
               marginRight: 'auto',
-              maxWidth: rhythm(36),
-              padding: `0 ${rhythm(3 / 4)} ${rhythm(1.5)} ${rhythm(3 / 4)}`,
+              padding: `0`,
               minHeight: 'calc(100vh - 42px)',
               display: 'flex',
+              maxWidth: '100%',
             }}
           >
             {children}
@@ -358,7 +360,7 @@ export default ({ children, location }) => (
             }}
           ></footer>
 
-          <div className="navv">
+          <div className="navv" style={{ display: 'none' }}>
             <a>
               {' '}
               <svg

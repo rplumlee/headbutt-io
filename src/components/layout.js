@@ -130,17 +130,13 @@ export default ({ children, location }) => (
               >
                 {' '}
                 <defs>
-                  <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop
-                      offset="0%"
-                      style={{ stopColor: 'purple', stopOpacity: 1 }}
-                    />
-                    <stop
-                      offset="100%"
-                      style={{ stopColor: '#a01aed', stopOpacity: 1 }}
-                    />
-                  </linearGradient>
-                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="50%">
+                  <linearGradient
+                    id="rainbow"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="50%"
+                  >
                     <motion.stop
                       stopColor="#FF7744"
                       animate={{
@@ -148,6 +144,7 @@ export default ({ children, location }) => (
                       }}
                       transition={{
                         repeat: Infinity,
+                        repeatType: 'reverse',
                         ease: 'linear',
                         duration: 8,
                       }}
@@ -162,6 +159,7 @@ export default ({ children, location }) => (
                         repeat: Infinity,
                         ease: 'linear',
                         duration: 8,
+                        repeatType: 'reverse',
                       }}
                       offset="50%"
                     />
@@ -174,6 +172,7 @@ export default ({ children, location }) => (
                         repeat: Infinity,
                         ease: 'linear',
                         duration: 8,
+                        repeatType: 'reverse',
                       }}
                       offset="75%"
                     />
@@ -186,6 +185,7 @@ export default ({ children, location }) => (
                         repeat: Infinity,
                         ease: 'linear',
                         duration: 8,
+                        repeatType: 'reverse',
                       }}
                       offset="100%"
                     />

@@ -103,7 +103,6 @@ export default ({ children, location }) => (
 
               maxWidth: '100%',
               overflow: 'hidden',
-              marginBottom: 20,
               zIndex: 6,
               position: 'relative',
             }}

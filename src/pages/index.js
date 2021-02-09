@@ -80,10 +80,10 @@ class BlogIndex extends React.Component {
           >
             <motion.svg
               viewBox="0 0 1300 600"
-              style={{
-                y: 40,
+              initial={{
+                y: 60,
                 scale: 1.2,
-                transformOrigin: '50% 50%',
+                x: 100,
               }}
             >
               <path

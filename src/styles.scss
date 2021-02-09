@@ -4,8 +4,10 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 .logo {
+  margin-bottom: 50px;
   @media (max-width: 800px) {
     margin-top: 30px;
+    margin-bottom: 20px;
   }
 }
 #profile {

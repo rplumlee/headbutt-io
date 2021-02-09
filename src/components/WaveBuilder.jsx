@@ -166,7 +166,7 @@ export default function WaveBuilder() {
   const [orientation, setOrientation] = React.useState('middle-1')
   const [intensity, setIntensity] = React.useState(3)
   const [width, setWidth] = React.useState(1300)
-  const [height, setHeight] = React.useState(600)
+  const [height, setHeight] = React.useState(700)
   const [isolatedIndex, setIsolatedIndex] = React.useState(-1)
   const [waves, setWaves] = React.useState([
     {

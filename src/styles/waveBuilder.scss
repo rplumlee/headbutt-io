@@ -31,6 +31,10 @@ body pre {
   border-radius: 14px;
   padding: 40px;
   align-items: center;
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
 
   .MuiRadio-root {
     padding: 2px;
@@ -119,6 +123,13 @@ body pre {
       justify-content: center;
     }
 
+    @media (max-width: 900px) {
+      margin: 40px auto 0 auto;
+      > div {
+        padding: 5px 10px;
+      }
+    }
+
     svg {
       opacity: 1;
       background: #151515;
@@ -130,6 +141,30 @@ body pre {
       svg {
         font-size: 22px !important;
       }
+    }
+  }
+
+  @media (max-width: 900px) {
+    .wave-dimensions-controls {
+      order: 2;
+    }
+    .wave-icons-container {
+      order: 4;
+    }
+    .MuiFab-root {
+      order: 3;
+    }
+  }
+  @media (max-width: 600px) {
+    padding-top: 70px;
+    padding-left: 3px;
+    padding-right: 3px;
+
+    > .MuiFab-root {
+      position: absolute;
+      top: 0;
+      transform: translate(-50%, -50%);
+      left: 50%;
     }
   }
 

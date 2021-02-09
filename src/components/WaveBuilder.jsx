@@ -161,7 +161,7 @@ export default function WaveBuilder() {
   const [number, setNumber] = React.useState(1)
   const [opacity, setOpacity] = React.useState(0.8)
   const [bumps, setBumps] = React.useState(3)
-  const [orientation, setOrientation] = React.useState('top')
+  const [orientation, setOrientation] = React.useState('middle-1')
   const [intensity, setIntensity] = React.useState(3)
   const [width, setWidth] = React.useState(1600)
   const [height, setHeight] = React.useState(600)
@@ -538,7 +538,10 @@ export default function WaveBuilder() {
               )
             })}
           </div>
-          <div style={{ width: 100, marginLeft: 20 }}>
+          <div
+            style={{ width: 100, marginLeft: 20 }}
+            className="wave-dimensions-controls"
+          >
             <FormControl>
               <Input
                 id="standard-adornment-weight"

@@ -162,6 +162,7 @@ export default function WaveBuilder() {
   const [animating, setAnimating] = React.useState(false)
   const [number, setNumber] = React.useState(1)
   const [opacity, setOpacity] = React.useState(0.8)
+  const [tempOpacity, setTempOpacity] = React.useState(0.8)
   const [bumps, setBumps] = React.useState(3)
   const [orientation, setOrientation] = React.useState('middle-1')
   const [intensity, setIntensity] = React.useState(3)
@@ -206,6 +207,9 @@ export default function WaveBuilder() {
     setSelectedIndex(0)
   }
 
+  function updateTempOpacity(v) {
+    setTempOpacity(v)
+  }
   function updateOpacity(v) {
     setWaves((oldWaves) => {
       return oldWaves.map((wave, index) => {
@@ -235,6 +239,10 @@ export default function WaveBuilder() {
   React.useEffect(() => {
     randomizeWave()
   }, [number, intensity, bumps, orientation])
+
+  React.useEffect(() => {
+    setTempOpacity(waves[selectedIndex].opacity)
+  }, [selectedIndex])
 
   let svg = `<svg viewBox="0 0 ${width} ${height}">`
 
@@ -293,6 +301,7 @@ export default function WaveBuilder() {
                         }}
                         transition={{
                           repeat: Infinity,
+                          repeatType: 'reverse',
                           ease: 'linear',
                           duration: 8,
                         }}
@@ -312,6 +321,7 @@ export default function WaveBuilder() {
                           repeat: Infinity,
                           ease: 'linear',
                           duration: 8,
+                          repeatType: 'reverse',
                         }}
                         offset="50%"
                       />
@@ -324,6 +334,7 @@ export default function WaveBuilder() {
                           repeat: Infinity,
                           ease: 'linear',
                           duration: 8,
+                          repeatType: 'reverse',
                         }}
                         offset="75%"
                       />
@@ -336,6 +347,7 @@ export default function WaveBuilder() {
                           repeat: Infinity,
                           ease: 'linear',
                           duration: 8,
+                          repeatType: 'reverse',
                         }}
                         offset="100%"
                       />
@@ -350,7 +362,9 @@ export default function WaveBuilder() {
                         : ''
                     }
                     d={waves[0].d}
-                    animate={{ d: waves[0].d, transition: { duration: 0.5 } }}
+                    animate={{
+                      d: waves[0].d,
+                    }}
                     style={{ opacity: waves[0].opacity }}
                   />
 
@@ -362,7 +376,9 @@ export default function WaveBuilder() {
                           ? 'notIsolated'
                           : ''
                       }
-                      animate={{ d: waves[1].d, transition: { duration: 0.5 } }}
+                      animate={{
+                        d: waves[1].d,
+                      }}
                       d={waves[0].d}
                       style={{ opacity: waves[1].opacity }}
                     />
@@ -531,15 +547,16 @@ export default function WaveBuilder() {
                   <circle fill="#ccc" cx="4" cy="4" r="4" />
                 </svg>
                 <Slider
-                  value={waves[selectedIndex].opacity}
+                  value={tempOpacity}
                   aria-labelledby="discrete-slider"
                   valueLabelDisplay="auto"
                   step={0.1}
                   orientation="vertical"
-                  min={0.05}
+                  min={0.1}
                   max={1}
                   color="secondary"
-                  onChange={(e, v) => updateOpacity(v)}
+                  onChange={(e, v) => updateTempOpacity(v)}
+                  onChangeCommitted={(e, v) => updateOpacity(v)}
                 />
                 <svg viewBox="0 0 12 12">
                   <circle

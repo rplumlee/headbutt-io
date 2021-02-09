@@ -22,6 +22,7 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
 import SyntaxHighlighter from 'react-syntax-highlighter'
+import ColorPicker from 'material-ui-color-picker'
 import Layout from '../components/layout'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import {
@@ -33,6 +34,47 @@ const theme = createMuiTheme({
     type: 'dark',
   },
 })
+
+const presets = [
+  [
+    {
+      id: 1,
+      fill: '#d5b71e',
+      opacity: 0.7,
+      d:
+        'M0,582C178,387,356,561,534,604,C712,647,890,556,1068,372,C1246,188,1424,539,1602,381C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450L1600,450C1422,450,1244,450,1066,450,C888,450,710,450,532,450,C354,450,176,450,-2,450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450L1404,450L0,450Z',
+    },
+    {
+      id: 2,
+      fill: '#ee0404',
+      opacity: 0.5,
+      d:
+        'M0,408C178,150,356,119,534,412,C712,705,890,272,1068,582,C1246,892,1424,502,1602,586C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450L1600,450C1422,450,1244,450,1066,450,C888,450,710,450,532,450,C354,450,176,450,-2,450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450L1404,450L0,450Z',
+    },
+    {
+      id: 3,
+      fill: 'url(#rainbow)',
+      opacity: 0.5,
+      d:
+        'M0,493C178,426,356,495,534,293,C712,91,890,584,1068,385,C1246,186,1424,411,1602,433C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450L1600,450C1422,450,1244,450,1066,450,C888,450,710,450,532,450,C354,450,176,450,-2,450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450L1404,450L0,450Z',
+    },
+    {
+      id: 4,
+      fill: 'url(#rainbow)',
+      opacity: 0.5,
+      d:
+        'M0,542C178,501,356,318,534,308,C712,298,890,475,1068,419,C1246,363,1424,590,1602,383C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450L1600,450C1422,450,1244,450,1066,450,C888,450,710,450,532,450,C354,450,176,450,-2,450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450L1404,450L0,450Z',
+    },
+    {
+      id: 5,
+      fill: '#3ce5ec',
+      opacity: 0.4,
+      d:
+        'M0,804C178,757,356,603,534,506,C712,409,890,641,1068,735,C1246,829,1424,664,1602,504C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0L1600,350C1422,335,1244,260,1066,94,C888,-72,710,240,532,370,C354,500,176,0,-2,16C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0L1404,0L0,0Z',
+    },
+  ],
+]
+
 function getRandomInt(min, max) {
   min = Math.ceil(min)
   max = Math.floor(max)
@@ -166,15 +208,15 @@ export default function WaveBuilder() {
   const [bumps, setBumps] = React.useState(3)
   const [orientation, setOrientation] = React.useState('middle-1')
   const [intensity, setIntensity] = React.useState(3)
-  const [width, setWidth] = React.useState(1300)
-  const [height, setHeight] = React.useState(700)
+  const [width, setWidth] = React.useState(1600)
+  const [height, setHeight] = React.useState(900)
   const [isolatedIndex, setIsolatedIndex] = React.useState(-1)
   const [waves, setWaves] = React.useState([
     {
       id: 1,
-      saved: false,
       d: generateWaves(intensity, bumps, orientation, width, height),
       opacity: 0.7,
+      fill: 'url(#rainbow)',
     },
   ])
   const [selectedIndex, setSelectedIndex] = React.useState(0)
@@ -208,9 +250,6 @@ export default function WaveBuilder() {
   }
 
   function updateTempOpacity(v) {
-    setTempOpacity(v)
-  }
-  function updateOpacity(v) {
     setWaves((oldWaves) => {
       return oldWaves.map((wave, index) => {
         return index == selectedIndex
@@ -223,6 +262,21 @@ export default function WaveBuilder() {
     })
     setOpacity(v)
   }
+  function updateOpacity(v) {}
+
+  function updateColor(v) {
+    console.log(waves[selectedIndex].fill)
+    setWaves((oldWaves) => {
+      return oldWaves.map((wave, index) => {
+        return index == selectedIndex
+          ? {
+              ...wave,
+              fill: v,
+            }
+          : wave
+      })
+    })
+  }
 
   function addWave() {
     setWaves((oldWaves) => [
@@ -231,6 +285,7 @@ export default function WaveBuilder() {
         id: waves[waves.length - 1].id + 1,
         d: generateWaves(intensity, bumps, orientation, width, height),
         opacity: opacity,
+        fill: 'url(#rainbow)',
       },
     ])
     setSelectedIndex(waves.length)
@@ -249,7 +304,9 @@ export default function WaveBuilder() {
   waves.length > 0
     ? waves.map((wave) => {
         svg += `
-  <path opacity="${wave.opacity}" d="${wave.d}" />`
+  <path fill="${
+    wave.fill == 'url(#rainbow)' ? '#40e0d0' : wave.fill
+  }" opacity="${wave.opacity}" d="${wave.d}" />`
       })
     : ''
   svg += `
@@ -257,6 +314,7 @@ export default function WaveBuilder() {
   if (typeof window === `undefined`) {
     return <></>
   }
+  console.log(waves)
   return (
     <div style={{ maxWidth: '100%', width: '100%' }}>
       <ThemeProvider theme={theme}>
@@ -325,6 +383,7 @@ export default function WaveBuilder() {
                   d={waves[0].d}
                   animate={{
                     d: waves[0].d,
+                    fill: waves[0].fill,
                   }}
                   style={{ opacity: waves[0].opacity }}
                 />
@@ -339,6 +398,7 @@ export default function WaveBuilder() {
                     }
                     animate={{
                       d: waves[1].d,
+                      fill: waves[1].fill,
                     }}
                     d={waves[0].d}
                     style={{ opacity: waves[1].opacity }}
@@ -355,7 +415,7 @@ export default function WaveBuilder() {
                         : ''
                     }
                     d={waves[0].d}
-                    animate={{ d: waves[2].d, transition: { duration: 0.5 } }}
+                    animate={{ d: waves[2].d, fill: waves[2].fill }}
                     style={{ opacity: waves[2].opacity }}
                   />
                 ) : (
@@ -370,7 +430,7 @@ export default function WaveBuilder() {
                         : ''
                     }
                     d={waves[0].d}
-                    animate={{ d: waves[3].d, transition: { duration: 0.5 } }}
+                    animate={{ d: waves[3].d, fill: waves[3].fill }}
                     style={{ opacity: waves[3].opacity }}
                   />
                 ) : (
@@ -384,7 +444,7 @@ export default function WaveBuilder() {
                         ? 'notIsolated'
                         : ''
                     }
-                    animate={{ d: waves[4].d, transition: { duration: 0.5 } }}
+                    animate={{ d: waves[4].d, fill: waves[4].fill }}
                     d={waves[0].d}
                     style={{ opacity: waves[4].opacity }}
                   />
@@ -399,7 +459,7 @@ export default function WaveBuilder() {
                         ? 'notIsolated'
                         : ''
                     }
-                    animate={{ d: waves[5].d, transition: { duration: 0.5 } }}
+                    animate={{ d: waves[5].d, fill: waves[5].fill }}
                     d={waves[0].d}
                     style={{ opacity: waves[5].opacity }}
                   />
@@ -508,7 +568,7 @@ export default function WaveBuilder() {
                 <circle fill="#ccc" cx="4" cy="4" r="4" />
               </svg>
               <Slider
-                value={tempOpacity}
+                value={waves[selectedIndex].opacity}
                 aria-labelledby="discrete-slider"
                 valueLabelDisplay="auto"
                 step={0.1}
@@ -531,6 +591,90 @@ export default function WaveBuilder() {
                 />
               </svg>
             </div>
+            <div>
+              <div
+                style={{
+                  width: 100,
+                  marginLeft: 20,
+
+                  flexDirection: 'row',
+                  marginBottom: 30,
+                  overflow: 'visible',
+                }}
+                className="color-picker-r"
+              >
+                <ColorPicker
+                  name="color"
+                  color="secondary"
+                  value={waves[selectedIndex].fill}
+                  placeholder={waves[selectedIndex].fill}
+                  onChange={(color) => updateColor(color)}
+                  onKeyDown={(e) => {
+                    e.preventDefault()
+                    return false
+                  }}
+                />
+                <FormHelperText
+                  id="standard-weight-helper-text"
+                  style={{ whiteSpace: 'nowrap' }}
+                >
+                  Wave Color
+                </FormHelperText>
+              </div>
+
+              <div
+                style={{
+                  width: 100,
+                  marginLeft: 20,
+                  display: 'flex',
+                  flexDirection: 'row',
+                }}
+                className="wave-dimensions-controls"
+              >
+                <FormControl style={{ width: '50%' }}>
+                  <Input
+                    id="standard-adornment-weight"
+                    value={width / 100}
+                    color={`secondary`}
+                    disabled
+                    onChange={(e) => {
+                      e.target.value != width / 100
+                        ? setWidth(e.target.value * 100)
+                        : ''
+                    }}
+                    aria-describedby="standard-weight-helper-text"
+                    inputProps={{
+                      'aria-label': 'width',
+                    }}
+                    size="small"
+                  />
+                  <FormHelperText
+                    id="standard-weight-helper-text"
+                    style={{ whiteSpace: 'nowrap' }}
+                  >
+                    Aspect Ratio
+                  </FormHelperText>
+                </FormControl>
+                :
+                <FormControl style={{ width: '50%' }}>
+                  <Input
+                    id="standard-adornment-weight"
+                    value={height / 100}
+                    color={`secondary`}
+                    size="small"
+                    onChange={(e) => {
+                      e.target.value != height / 100
+                        ? setHeight(e.target.value * 100)
+                        : ''
+                    }}
+                    aria-describedby="standard-weight-helper-text"
+                    inputProps={{
+                      'aria-label': 'height',
+                    }}
+                  />
+                </FormControl>
+              </div>
+            </div>
             <div className={`wave-icons-container`}>
               <h5>Waves</h5>
 
@@ -551,7 +695,7 @@ export default function WaveBuilder() {
                       }}
                     >
                       <motion.path
-                        fill="url(#rainbow)"
+                        fill={wave.fill}
                         d={wave.d}
                         animate={{
                           d: wave.d,
@@ -608,54 +752,6 @@ export default function WaveBuilder() {
               ) : (
                 ''
               )}
-            </div>
-            <div
-              style={{ width: 100, marginLeft: 20 }}
-              className="wave-dimensions-controls"
-            >
-              <FormControl>
-                <Input
-                  id="standard-adornment-weight"
-                  value={width}
-                  color={`secondary`}
-                  disabled
-                  onBlur={(e) => {
-                    e.target.value != width ? setWidth(e.target.value) : ''
-                  }}
-                  endAdornment={
-                    <InputAdornment position="end">px</InputAdornment>
-                  }
-                  aria-describedby="standard-weight-helper-text"
-                  inputProps={{
-                    'aria-label': 'width',
-                  }}
-                  size="small"
-                />
-                <FormHelperText id="standard-weight-helper-text">
-                  Width
-                </FormHelperText>
-              </FormControl>
-              <FormControl>
-                <Input
-                  id="standard-adornment-weight"
-                  value={height}
-                  color={`secondary`}
-                  size="small"
-                  onChange={(e) => {
-                    e.target.value != height ? setHeight(e.target.value) : ''
-                  }}
-                  endAdornment={
-                    <InputAdornment position="end">px</InputAdornment>
-                  }
-                  aria-describedby="standard-weight-helper-text"
-                  inputProps={{
-                    'aria-label': 'height',
-                  }}
-                />
-                <FormHelperText id="standard-weight-helper-text">
-                  Height
-                </FormHelperText>
-              </FormControl>
             </div>
             {/* <div>
             <Checkbox

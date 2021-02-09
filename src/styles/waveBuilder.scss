@@ -152,6 +152,11 @@ body pre {
   .wave-icons-container {
     padding: 10px 5px;
   }
+  .wave-dimensions-controls .MuiInputBase-input {
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+  }
   @media (max-width: 900px) {
     .wave-dimensions-controls {
       order: 2;
@@ -298,10 +303,20 @@ body pre {
 
   svg {
     cursor: pointer;
-    transition: 200ms;
+    max-height: 130px;
   }
 
   &:hover {
+    opacity: 1;
+  }
+}
+.color-picker-r {
+  input {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.05rem;
+  }
+  input.MuiInputBase-input.MuiInput-input::placeholder {
     opacity: 1;
   }
 }

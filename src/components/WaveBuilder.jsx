@@ -6,8 +6,8 @@ import Fab from '@material-ui/core/Fab'
 import { GiPerspectiveDiceSixFacesThree } from 'react-icons/gi'
 import { BiAddToQueue } from 'react-icons/bi'
 import { IoIosSave } from 'react-icons/io'
-import { IoIosTrash } from 'react-icons/io'
-import { GiConvergenceTarget } from 'react-icons/gi'
+import { AiFillDelete } from 'react-icons/ai'
+import { MdPhotoSizeSelectLarge } from 'react-icons/md'
 import Checkbox from '@material-ui/core/Checkbox'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
@@ -643,14 +643,14 @@ export default function WaveBuilder() {
                                 : 'alternate'
                             }
                           >
-                            <GiConvergenceTarget style={{ fontSize: 40 }} />
+                            <MdPhotoSizeSelectLarge />
                           </IconButton>
                           <IconButton
                             color="secondary"
                             aria-label="delete"
                             onClick={(e) => deleteWave(wave.id)}
                           >
-                            <IoIosTrash style={{ fontSize: 40 }} />
+                            <AiFillDelete />
                           </IconButton>
                         </div>
                       ) : (

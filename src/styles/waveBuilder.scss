@@ -107,7 +107,6 @@ body pre {
       width: auto;
 
       button {
-        margin-right: 6px;
       }
 
       svg {
@@ -146,8 +145,6 @@ body pre {
     }
 
     .MuiIconButton-root {
-      color: #bbb;
-
       svg {
       }
     }
@@ -272,26 +269,28 @@ body pre {
   button {
     transform: scale(0);
     z-index: -1;
-    transition: 400ms;
-    background-color: rgba(245, 0, 87, 0.6) !important;
-    padding: 5px;
-
+    transition: 200ms;
+    //background-color: rgba(245, 0, 87, 0.6) !important;
+    padding: 4px;
+    color: #333;
+    transition: color 00ms !important;
     svg {
-      font-size: 15px !important;
+      font-size: 13px !important;
     }
 
     &:hover {
-      background-color: rgba(245, 0, 87, 1) !important;
+      color: rgba(245, 0, 87, 1) !important;
+      background-color: transparent !important;
     }
 
     &.alternate {
-      background-color: rgba(108, 16, 255, 0.6) !important;
+      //background-color: rgba(108, 16, 255, 0.6) !important;
 
       &:hover {
-        background-color: rgba(108, 16, 255, 1) !important;
+        color: rgb(0, 131, 218) !important;
       }
       &.active {
-        color: rgb(181, 135, 255) !important;
+        color: rgb(0, 131, 218) !important;
         background-color: rgba(0, 0, 0, 0.7) !important;
       }
     }
@@ -299,7 +298,7 @@ body pre {
 
   svg {
     cursor: pointer;
-    transition: 400ms;
+    transition: 200ms;
   }
 
   &:hover {
@@ -321,10 +320,17 @@ body pre {
   }
   .save-button {
     z-index: 1;
+    background: #ccc;
+    padding: 4px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
   }
   button {
     transform: scale(1);
-
+    svg {
+      font-size: 13px !important;
+    }
     z-index: 1;
   }
 }

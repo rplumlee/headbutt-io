@@ -348,3 +348,19 @@ path {
   width: 100% !important;
   height: auto !important;
 }
+.logo-container-makewaves {
+  display: flex;
+  justify-content: center;
+
+  h2 {
+    font-family: 'Montserrat';
+    color: #ddd;
+    font-weight: 700;
+    width: auto;
+    padding-bottom: 15px;
+    font-size: 1.25rem;
+  }
+  svg {
+    transform: scaleY(3);
+  }
+}

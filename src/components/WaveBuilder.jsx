@@ -262,6 +262,100 @@ export default function WaveBuilder() {
       <div style={{ maxWidth: '100%', width: '100%' }}>
         <ThemeProvider theme={theme}>
           <div style={{ width: '100%' }}>
+            <div className="logo-container-makewaves">
+              <svg
+                viewBox="0 0 1300 700"
+                style={{ width: 60, transform: 'scaleY(3) rotate(180deg)' }}
+              >
+                <defs>
+                  <linearGradient
+                    id="rainbow"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="50%"
+                  >
+                    <motion.stop
+                      stopColor="#FF7744"
+                      animate={{
+                        stopColor: ['#FF7744', '#4d3e96'],
+                      }}
+                      transition={{
+                        repeat: Infinity,
+                        repeatType: 'reverse',
+                        ease: 'linear',
+                        duration: 8,
+                      }}
+                      offset="25%"
+                    />
+                    <motion.stop
+                      stopColor="#BF5FFF"
+                      animate={{
+                        stopColor: ['#BF5FFF', '#FFC6A8', '#FF7744', '#5f41f2'],
+                      }}
+                      transition={{
+                        repeat: Infinity,
+                        ease: 'linear',
+                        duration: 8,
+                        repeatType: 'reverse',
+                      }}
+                      offset="50%"
+                    />
+                    <motion.stop
+                      stopColor="#5f41f2"
+                      animate={{
+                        stopColor: ['#5f41f2', '#BF5FFF'],
+                      }}
+                      transition={{
+                        repeat: Infinity,
+                        ease: 'linear',
+                        duration: 8,
+                        repeatType: 'reverse',
+                      }}
+                      offset="75%"
+                    />
+                    <motion.stop
+                      stopColor="#D4504C"
+                      animate={{
+                        stopColor: ['#D4504C', '#5f41f2', '#f7d319'],
+                      }}
+                      transition={{
+                        repeat: Infinity,
+                        ease: 'linear',
+                        duration: 8,
+                        repeatType: 'reverse',
+                      }}
+                      offset="100%"
+                    />
+                  </linearGradient>
+                </defs>
+                <path
+                  fill="url(#rainbow)"
+                  opacity="1"
+                  d="M0,96C145,350,290,516,435,495,C580,474,725,121,870,325,C1015,529,1160,504,1305,170C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350L1300,350C1155,350,1010,350,865,350,C720,350,575,350,430,350,C285,350,140,350,-5,350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350L1404,350L0,350Z"
+                />
+              </svg>
+              <h2 style={{ marginRight: 5, marginLeft: 2 }}>ake</h2>{' '}
+              <svg viewBox="0 0 1300 700" style={{ width: 60 }}>
+                <path
+                  fill="url(#rainbow)"
+                  opacity="1"
+                  d="M0,96C145,350,290,516,435,495,C580,474,725,121,870,325,C1015,529,1160,504,1305,170C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350L1300,350C1155,350,1010,350,865,350,C720,350,575,350,430,350,C285,350,140,350,-5,350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350L1404,350L0,350Z"
+                />
+              </svg>
+              <h2>aves</h2>
+            </div>
+            <p
+              style={{
+                textAlign: 'center',
+                color: '#ddd',
+                fontSize: 13,
+                marginTop: -20,
+                paddingBottom: 20,
+              }}
+            >
+              SVG wave generation and composition
+            </p>
             <div
               style={{ background: '#222', position: 'relative', zIndex: 1 }}
             >
@@ -286,74 +380,6 @@ export default function WaveBuilder() {
                     display: 'flex',
                   }}
                 >
-                  <defs>
-                    <linearGradient
-                      id="rainbow"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="50%"
-                    >
-                      <motion.stop
-                        stopColor="#FF7744"
-                        animate={{
-                          stopColor: ['#FF7744', '#4d3e96'],
-                        }}
-                        transition={{
-                          repeat: Infinity,
-                          repeatType: 'reverse',
-                          ease: 'linear',
-                          duration: 8,
-                        }}
-                        offset="25%"
-                      />
-                      <motion.stop
-                        stopColor="#BF5FFF"
-                        animate={{
-                          stopColor: [
-                            '#BF5FFF',
-                            '#FFC6A8',
-                            '#FF7744',
-                            '#5f41f2',
-                          ],
-                        }}
-                        transition={{
-                          repeat: Infinity,
-                          ease: 'linear',
-                          duration: 8,
-                          repeatType: 'reverse',
-                        }}
-                        offset="50%"
-                      />
-                      <motion.stop
-                        stopColor="#5f41f2"
-                        animate={{
-                          stopColor: ['#5f41f2', '#BF5FFF'],
-                        }}
-                        transition={{
-                          repeat: Infinity,
-                          ease: 'linear',
-                          duration: 8,
-                          repeatType: 'reverse',
-                        }}
-                        offset="75%"
-                      />
-                      <motion.stop
-                        stopColor="#D4504C"
-                        animate={{
-                          stopColor: ['#D4504C', '#5f41f2', '#f7d319'],
-                        }}
-                        transition={{
-                          repeat: Infinity,
-                          ease: 'linear',
-                          duration: 8,
-                          repeatType: 'reverse',
-                        }}
-                        offset="100%"
-                      />
-                    </linearGradient>
-                  </defs>
-
                   <motion.path
                     fill="url(#rainbow)"
                     className={

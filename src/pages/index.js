@@ -10,6 +10,7 @@ import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
 import Tilt from 'react-parallax-tilt'
 import { motion } from 'framer-motion'
+import { GoTools } from 'react-icons/go'
 
 import '../styles.scss'
 
@@ -59,64 +60,90 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={location}>
         <Helmet title={siteTitle} />
-        <Tilt
-          tiltMaxAngleX={6}
-          tiltMaxAngleY={6}
-          className="parallax-effect card checkered-bg"
-          perspective={1000}
-          scale={1.05}
-          style={{ background: '#222', margin: '0 auto', maxWidth: '90%' }}
-        >
-          <Link
-            to="/makeWaves"
-            style={{
-              position: 'absolute',
-              height: '100%',
-              width: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
+        <div className="tools-container">
+          <h4>
+            <svg viewBox="0 0 100 100" className="bgg">
+              <path
+                fill="url(#rainbow)"
+                d="M0,0L0,100,L100,100L100,0L0,0"
+              ></path>
+            </svg>
+            <GoTools /> Tools
+          </h4>
+          <Tilt
+            tiltMaxAngleX={6}
+            tiltMaxAngleY={6}
+            className="parallax-effect card checkered-bg"
+            perspective={1000}
+            scale={1.05}
+            style={{ background: '#222', maxWidth: '90%' }}
           >
-            <motion.svg
-              viewBox="0 0 1300 600"
-              initial={{
-                y: 60,
-                scale: 1.2,
-                x: 100,
+            <Link
+              to="/makeWaves"
+              style={{
+                position: 'absolute',
+                height: '100%',
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
               }}
+              className="makewaves-card"
             >
-              <path
-                opacity=".5"
-                fill="url(#grad1)"
-                d="M0,123C434,406,868,98,1302,444,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
-              />
-              <path
-                opacity=".9"
-                fill="url(#grad1)"
-                d="M0,332C434,117,868,302,1302,370,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
-              />
-              <path
-                opacity=".5"
-                fill="url(#grad1)"
-                d="M0,234C434,312,868,62,1302,209,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
-              />
-              <path
-                opacity=".7"
-                fill="url(#grad1)"
-                d="M0,235C434,333,868,252,1302,243,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
-              />
-            </motion.svg>
-            <motion.div className="inner-element">
-              {' '}
-              <div>
-                <h5 style={{ color: '#fff' }}>MakeWaves SVG Wave Generator</h5>{' '}
-                <p style={{ color: '#fff' }}>{'<MakeWaves />'}</p>
-              </div>
-            </motion.div>
-          </Link>
-        </Tilt>
-
+              <motion.svg
+                viewBox="0 0 1300 600"
+                initial={{
+                  y: 30,
+                }}
+              >
+                <path
+                  opacity=".5"
+                  fill="url(#rainbow)"
+                  d="M0,123C434,406,868,98,1302,444,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
+                />
+                <path
+                  opacity=".9"
+                  fill="url(#rainbow)"
+                  d="M0,332C434,117,868,302,1302,370,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
+                />
+                <path
+                  opacity=".5"
+                  fill="url(#rainbow)"
+                  d="M0,234C434,312,868,62,1302,209,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
+                />
+                <path
+                  opacity=".7"
+                  fill="url(#rainbow)"
+                  d="M0,235C434,333,868,252,1302,243,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
+                />
+              </motion.svg>
+              <motion.div className="inner-element">
+                {' '}
+                <div className="logo-container-makewaves" style={{}}>
+                  <svg
+                    viewBox="0 0 1300 700"
+                    style={{ width: 60, transform: 'scaleY(3) rotate(180deg)' }}
+                  >
+                    <path
+                      fill="url(#rainbow)"
+                      opacity="1"
+                      d="M0,96C145,350,290,516,435,495,C580,474,725,121,870,325,C1015,529,1160,504,1305,170C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350L1300,350C1155,350,1010,350,865,350,C720,350,575,350,430,350,C285,350,140,350,-5,350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350L1404,350L0,350Z"
+                    />
+                  </svg>
+                  <h2 style={{ marginRight: 8, marginLeft: 3 }}>ake</h2>{' '}
+                  <svg viewBox="0 0 1300 700" style={{ width: 60 }}>
+                    <path
+                      fill="url(#rainbow)"
+                      opacity="1"
+                      d="M0,96C145,350,290,516,435,495,C580,474,725,121,870,325,C1015,529,1160,504,1305,170C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350L1300,350C1155,350,1010,350,865,350,C720,350,575,350,430,350,C285,350,140,350,-5,350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350L1404,350L0,350Z"
+                    />
+                  </svg>
+                  <h2 style={{ marginLeft: 4 }}>aves</h2>
+                </div>
+              </motion.div>
+            </Link>
+          </Tilt>
+        </div>
         {/* <Tilt
           tiltMaxAngleX={6}
           tiltMaxAngleY={6}

@@ -155,6 +155,10 @@ body pre {
     text-align: center;
     font-size: 12px;
     font-weight: bold;
+
+    @media (max-width: 600px) {
+      font-size: 16px;
+    }
   }
   @media (max-width: 900px) {
     .wave-dimensions-controls {

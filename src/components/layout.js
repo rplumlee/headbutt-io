@@ -7,6 +7,7 @@ import cosmicjsLogo from '../../static/cosmicjs.svg'
 import gatsbyLogo from '../../static/gatsby.png'
 import { rhythm, scale } from '../utils/typography'
 import { motion, useAnimation } from 'framer-motion'
+
 import Waves from './Waves'
 
 // Import typefaces
@@ -113,6 +114,7 @@ export default ({ children, location }) => (
                 boxShadow: 'none',
                 textDecoration: 'none',
                 color: 'inherit',
+                paddingTop: 5,
               }}
               to={'/'}
             >
@@ -345,7 +347,7 @@ export default ({ children, location }) => (
               marginLeft: 'auto',
               marginRight: 'auto',
               padding: `0`,
-              minHeight: 'calc(100vh - 42px)',
+
               display: 'flex',
               maxWidth: '100%',
             }}

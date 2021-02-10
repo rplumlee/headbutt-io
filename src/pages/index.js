@@ -11,6 +11,7 @@ import { rhythm } from '../utils/typography'
 import Tilt from 'react-parallax-tilt'
 import { motion } from 'framer-motion'
 import { GoTools } from 'react-icons/go'
+import { BsViewList } from 'react-icons/bs'
 
 import '../styles.scss'
 
@@ -60,91 +61,109 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={location}>
         <Helmet title={siteTitle} />
-        <div className="tools-container">
-          <h4>
-            <svg viewBox="0 0 100 100" className="bgg">
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: 800,
+            maxWidth: '90%',
+            paddingTop: 40,
+            margin: '0 auto',
+          }}
+        >
+          <h4 className="badge">
+            <svg viewBox="0 0 1300 700" className="bgg">
               <path
+                opacity=".5"
                 fill="url(#rainbow)"
-                d="M0,0L0,100,L100,100L100,0L0,0"
-              ></path>
+                d="M0,123C434,406,868,98,1302,444,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
+              />
+              <path
+                opacity=".9"
+                fill="url(#rainbow)"
+                d="M0,332C434,117,868,302,1302,370,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
+              />
+              <path
+                opacity=".5"
+                fill="url(#rainbow)"
+                d="M0,234C434,312,868,62,1302,209,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
+              />
+              <path
+                opacity=".7"
+                fill="url(#rainbow)"
+                d="M0,235C434,333,868,252,1302,243,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
+              />
             </svg>
             <GoTools /> Tools
           </h4>
-          <Tilt
-            tiltMaxAngleX={6}
-            tiltMaxAngleY={6}
-            className="parallax-effect card checkered-bg"
-            perspective={1000}
-            scale={1.05}
-            style={{ background: '#222', maxWidth: '90%' }}
-          >
-            <Link
-              to="/makeWaves"
-              style={{
-                position: 'absolute',
-                height: '100%',
-                width: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-              }}
-              className="makewaves-card"
+          <div className="tools-container">
+            <Tilt
+              tiltMaxAngleX={6}
+              tiltMaxAngleY={6}
+              className="parallax-effect card checkered-bg"
+              perspective={1000}
+              scale={1.05}
+              style={{ background: '#222', maxWidth: '90%' }}
             >
-              <motion.svg
-                viewBox="0 0 1300 600"
-                initial={{
-                  y: 30,
+              <Link
+                to="/makeWaves"
+                style={{
+                  position: 'absolute',
+                  height: '100%',
+                  width: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
                 }}
+                className="makewaves-card"
               >
-                <path
-                  opacity=".5"
-                  fill="url(#rainbow)"
-                  d="M0,123C434,406,868,98,1302,444,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
-                />
-                <path
-                  opacity=".9"
-                  fill="url(#rainbow)"
-                  d="M0,332C434,117,868,302,1302,370,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
-                />
-                <path
-                  opacity=".5"
-                  fill="url(#rainbow)"
-                  d="M0,234C434,312,868,62,1302,209,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
-                />
-                <path
-                  opacity=".7"
-                  fill="url(#rainbow)"
-                  d="M0,235C434,333,868,252,1302,243,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
-                />
-              </motion.svg>
-              <motion.div className="inner-element">
-                {' '}
-                <div className="logo-container-makewaves" style={{}}>
-                  <svg
-                    viewBox="0 0 1300 700"
-                    style={{ width: 60, transform: 'scaleY(3) rotate(180deg)' }}
-                  >
-                    <path
-                      fill="url(#rainbow)"
-                      opacity="1"
-                      d="M0,96C145,350,290,516,435,495,C580,474,725,121,870,325,C1015,529,1160,504,1305,170C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350L1300,350C1155,350,1010,350,865,350,C720,350,575,350,430,350,C285,350,140,350,-5,350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350L1404,350L0,350Z"
-                    />
-                  </svg>
-                  <h2 style={{ marginRight: 8, marginLeft: 3 }}>ake</h2>{' '}
-                  <svg viewBox="0 0 1300 700" style={{ width: 60 }}>
-                    <path
-                      fill="url(#rainbow)"
-                      opacity="1"
-                      d="M0,96C145,350,290,516,435,495,C580,474,725,121,870,325,C1015,529,1160,504,1305,170C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350L1300,350C1155,350,1010,350,865,350,C720,350,575,350,430,350,C285,350,140,350,-5,350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350L1404,350L0,350Z"
-                    />
-                  </svg>
-                  <h2 style={{ marginLeft: 4 }}>aves</h2>
-                </div>
-              </motion.div>
-            </Link>
-          </Tilt>
-        </div>
-        {/* <Tilt
+                <motion.svg
+                  viewBox="0 0 1600 900"
+                  initial={{
+                    y: 25,
+                    overflow: 'visible',
+                  }}
+                >
+                  <path
+                    opacity=".7"
+                    fill="#d5b71e"
+                    d="M0,582C178,387,356,561,534,604,C712,647,890,556,1068,372,C1246,188,1424,539,1602,381C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450L1600,450C1422,450,1244,450,1066,450,C888,450,710,450,532,450,C354,450,176,450,-2,450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450L1404,450L0,450Z"
+                  />
+                </motion.svg>
+                <motion.div className="inner-element">
+                  {' '}
+                  <div className="logo-container-makewaves" style={{}}>
+                    <svg
+                      viewBox="0 0 1300 700"
+                      style={{
+                        width: 60,
+                        transform: 'scaleY(3) rotate(180deg)',
+                      }}
+                    >
+                      <path
+                        fill="url(#rainbow)"
+                        opacity="1"
+                        d="M0,96C145,350,290,516,435,495,C580,474,725,121,870,325,C1015,529,1160,504,1305,170C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350L1300,350C1155,350,1010,350,865,350,C720,350,575,350,430,350,C285,350,140,350,-5,350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350L1404,350L0,350Z"
+                      />
+                    </svg>
+                    <h2 style={{ marginRight: 8, marginLeft: 3 }}>ake</h2>{' '}
+                    <svg viewBox="0 0 1300 700" style={{ width: 60 }}>
+                      <path
+                        fill="url(#rainbow)"
+                        opacity="1"
+                        d="M0,96C145,350,290,516,435,495,C580,474,725,121,870,325,C1015,529,1160,504,1305,170C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350C1300, 350,1300, 350,1300, 350L1300,350C1155,350,1010,350,865,350,C720,350,575,350,430,350,C285,350,140,350,-5,350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350C0, 350,0, 350,0, 350L1404,350L0,350Z"
+                      />
+                    </svg>
+                    <h2 style={{ marginLeft: 4 }}>aves</h2>
+                  </div>
+                </motion.div>
+              </Link>
+            </Tilt>
+          </div>
+          <h4 className="badge">
+            <BsViewList /> Blog
+          </h4>
+          {/* <Tilt
           tiltMaxAngleX={6}
           tiltMaxAngleY={6}
           className="parallax-effect card"
@@ -178,7 +197,7 @@ class BlogIndex extends React.Component {
             </motion.div>
           </Link>
         </Tilt> */}
-        {/* <div className="post-list">
+          {/* <div className="post-list">
           {posts.map(({ node }) => {
             const title = get(node, 'title') || node.slug
             return (
@@ -202,6 +221,7 @@ class BlogIndex extends React.Component {
             )
           })}
         </div> */}
+        </div>
       </Layout>
     )
   }

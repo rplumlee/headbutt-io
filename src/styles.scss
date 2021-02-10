@@ -151,7 +151,7 @@ body {
   .logo-container-makewaves {
     transform: scale(0.7) translateY(20px);
     @media (max-width: 600px) {
-      transform: scale(0.6) translateY(40px);
+      transform: scale(0.6) translateY(25px);
     }
   }
   .logo-container-makewaves path {
@@ -240,8 +240,9 @@ h5 {
       left: 0;
       opacity: 0.5;
       path {
-        transform: scale(3);
-        transform-origin: left center;
+        margin-left: 50px;
+        transform: scale(3) translateX(10px);
+        transform-origin: center center;
       }
     }
   }

@@ -51,7 +51,6 @@ body pre {
   }
 
   button {
-    margin-left: auto;
   }
 
   h5,
@@ -196,6 +195,10 @@ body pre {
   }
   .opacity {
     padding-bottom: 3px;
+
+    @media (max-width: 900px) {
+      padding-right: 0;
+    }
     svg {
       width: 12px !important;
       margin: 0 auto;
@@ -239,14 +242,13 @@ body pre {
 .add-button {
   padding: 8px !important;
   margin-top: 5px;
-  background-color: rgba(245, 0, 87, 0.18) !important;
 
   svg {
     background: transparent !important;
     font-size: 18px !important;
+    color: #ccc !important;
   }
   &:hover {
-    background-color: rgba(245, 0, 87, 0.4) !important;
   }
 }
 .add-container {
@@ -328,9 +330,6 @@ body pre {
   }
 }
 .add-button {
-  height: 100%;
-  width: 100%;
-  border-radius: 0 !important;
 }
 .waveicon.active {
   opacity: 1;

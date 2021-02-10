@@ -32,6 +32,9 @@ import {
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
+    secondary: {
+      main: '#8a2be2',
+    },
   },
 })
 
@@ -220,8 +223,14 @@ export default function WaveBuilder() {
     },
   ])
   const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const controls = useAnimation()
 
   function randomizeWave() {
+    controls.start({ rotate: 15, scale: 1.1 })
+    setTimeout(() => {
+      controls.start({ rotate: 0, scale: 1.0 })
+    }, 200)
+
     setWaves((oldWaves) => {
       return oldWaves.map((wave, index) => {
         return selectedIndex == index
@@ -761,11 +770,18 @@ export default function WaveBuilder() {
             />
             <h5>Animate</h5>
           </div> */}
-            <Fab color="secondary" aria-label="edit">
-              <GiPerspectiveDiceSixFacesThree
-                style={{ fontSize: 40 }}
-                onClick={(e) => randomizeWave()}
-              />
+            <Fab
+              color="secondary"
+              aria-label="edit"
+              onClick={(e) => randomizeWave()}
+            >
+              <motion.span
+                initial={{ rotate: 0, scale: 1.0 }}
+                animate={controls}
+                style={{ height: 40, width: 40, display: 'block' }}
+              >
+                <GiPerspectiveDiceSixFacesThree style={{ fontSize: 40 }} />
+              </motion.span>
             </Fab>
           </div>
         </div>

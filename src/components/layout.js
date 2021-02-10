@@ -21,50 +21,41 @@ const clip_path_variants = {
       duration: 0.7 + i,
       delay: 1 - i,
     },
+    opacity: [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+    ],
   }),
   closed: (i) => ({
     pathLength: 0,
-  }),
-}
-
-const clip_path_variants1 = {
-  open: (i) => ({
-    opacity: [
-      0.1,
-      0.1,
-      0.2,
-      0.1,
-      0.3,
-      0.1,
-      0.4,
-      0.5,
-      0.1,
-      0.4,
-      0.1,
-      0.1,
-      0.4,
-      0.1,
-      0.7,
-      0.1,
-      0.7,
-      0.75,
-      0.78,
-      0.82,
-      0.84,
-      0.86,
-      0.88,
-      0.9,
-      0.92,
-      0.94,
-      0.98,
-      1,
-    ],
-    pathLength: 1,
-    transition: { duration: 2 },
-  }),
-  closed: (i) => ({
-    opacity: 0.1,
-    pathLength: 1,
+    opacity: 0,
   }),
 }
 
@@ -126,6 +117,10 @@ export default ({ children, location }) => (
       if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
         rootPath = __PATH_PREFIX__ + `/`
         postsPath = __PATH_PREFIX__ + `/posts`
+      }
+      let roote = false
+      if (location.pathname === rootPath) {
+        roote = true
       }
 
       header = (
@@ -295,7 +290,7 @@ export default ({ children, location }) => (
 		z M207.709,32.408c0-1.211-0.439-2.207-1.318-2.988c-0.879-0.781-2.041-1.172-3.486-1.172h-4.98v8.584h4.219
 		c1.718,0,3.076-0.396,4.072-1.187S207.709,33.775,207.709,32.408z"
                     variants={clip_path_variants}
-                    initial={'closed'}
+                    initial={roote ? 'closed' : 'open'}
                     animate={'open'}
                     custom={0.2}
                   />
@@ -308,7 +303,7 @@ export default ({ children, location }) => (
 		v23.525c0,2.695,0.503,4.771,1.509,6.226c1.006,1.455,2.446,2.183,4.321,2.183c1.895,0,3.335-0.684,4.321-2.051
 		c0.986-1.367,1.479-3.388,1.479-6.064V3.346h12.744V26.168z"
                     variants={clip_path_variants}
-                    initial={'closed'}
+                    initial={roote ? 'closed' : 'open'}
                     animate={'open'}
                     custom={0.5}
                   />
@@ -319,7 +314,7 @@ export default ({ children, location }) => (
                     d="M298.377,13.248v32.109h-12.715V13.248h-11.748
 		V3.346h36.357v9.902H298.377z"
                     variants={clip_path_variants}
-                    initial={'closed'}
+                    initial={roote ? 'closed' : 'open'}
                     animate={'open'}
                     custom={0.7}
                   />
@@ -330,7 +325,7 @@ export default ({ children, location }) => (
                     d="M339.551,13.248v32.109h-12.715V13.248h-11.748
 		V3.346h36.357v9.902H339.551z"
                     variants={clip_path_variants}
-                    initial={'closed'}
+                    initial={roote ? 'closed' : 'open'}
                     animate={'open'}
                     custom={0}
                   />
@@ -342,7 +337,7 @@ export default ({ children, location }) => (
 		s-2.979,1.641-5.186,1.641c-2.012,0-3.657-0.571-4.937-1.714s-1.919-2.553-1.919-4.233c0-1.718,0.63-3.11,1.89-4.175
 		c1.26-1.064,2.954-1.597,5.083-1.597c2.07,0,3.745,0.532,5.024,1.597C371.267,37.033,371.906,38.424,371.906,40.143z"
                     variants={clip_path_variants}
-                    initial={'closed'}
+                    initial={roote ? 'closed' : 'open'}
                     animate={'open'}
                     custom={1}
                   />
@@ -352,7 +347,7 @@ export default ({ children, location }) => (
                     stroke-miterlimit="10"
                     d="M380.531,45.357v-30h12.48v30H380.531z"
                     variants={clip_path_variants}
-                    initial={'closed'}
+                    initial={roote ? 'closed' : 'open'}
                     animate={'open'}
                     custom={0.5}
                   />
@@ -367,7 +362,7 @@ export default ({ children, location }) => (
 		c0-4.082-1.563-6.123-4.688-6.123s-4.688,2.139-4.688,6.416c0,4.512,1.582,6.768,4.746,6.768
 		C421.188,36.949,422.73,34.596,422.73,29.889z"
                     variants={clip_path_variants}
-                    initial={'closed'}
+                    initial={roote ? 'closed' : 'open'}
                     animate={'open'}
                     custom={0}
                   />

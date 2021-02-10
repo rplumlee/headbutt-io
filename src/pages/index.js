@@ -117,7 +117,7 @@ class BlogIndex extends React.Component {
                 }}
                 className="makewaves-card"
               >
-                <motion.svg
+                {/* <motion.svg
                   viewBox="0 0 1600 900"
                   initial={{
                     y: 25,
@@ -129,7 +129,7 @@ class BlogIndex extends React.Component {
                     fill="#d5b71e"
                     d="M0,582C178,387,356,561,534,604,C712,647,890,556,1068,372,C1246,188,1424,539,1602,381C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450L1600,450C1422,450,1244,450,1066,450,C888,450,710,450,532,450,C354,450,176,450,-2,450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450L1404,450L0,450Z"
                   />
-                </motion.svg>
+                </motion.svg> */}
                 <motion.div className="inner-element">
                   {' '}
                   <div className="logo-container-makewaves" style={{}}>

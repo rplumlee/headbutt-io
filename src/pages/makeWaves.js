@@ -28,7 +28,7 @@ export default function MakeWaves() {
           width: '100%',
         }}
       >
-        <Layout>
+        <Layout location={location}>
           <WaveBuilder />
         </Layout>
       </div>

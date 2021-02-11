@@ -16,6 +16,7 @@ import '../styles.scss'
 
 export default function MakeWaves() {
   const siteTitle = 'Headbutt.io - MakeWaves SVG Wave Generator'
+  const location = get(this, 'props.location')
   return (
     <>
       <Helmet title={siteTitle} />

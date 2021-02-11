@@ -14,25 +14,28 @@ import { makeStyles } from '@material-ui/core/styles'
 import Slider from '@material-ui/core/Slider'
 import '../styles.scss'
 
-export default function MakeWaves() {
-  const siteTitle = 'Headbutt.io - MakeWaves SVG Wave Generator'
-  const location = get(this, 'props.location')
-  return (
-    <>
-      <Helmet title={siteTitle} />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-          width: '100%',
-        }}
-      >
-        <Layout location={location}>
-          <WaveBuilder />
-        </Layout>
-      </div>
-    </>
-  )
+class MakeWaves extends React.Component {
+  render() {
+    const siteTitle = 'Headbutt.io - MakeWaves SVG Wave Generator'
+    const location = get(this, 'props.location')
+    return (
+      <>
+        <Helmet title={siteTitle} />
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            width: '100%',
+          }}
+        >
+          <Layout location={location}>
+            <WaveBuilder />
+          </Layout>
+        </div>
+      </>
+    )
+  }
 }
+export default MakeWaves

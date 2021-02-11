@@ -119,6 +119,9 @@ export default ({ children, location }) => (
         postsPath = __PATH_PREFIX__ + `/posts`
       }
       let roote = false
+      if (typeof window === 'undefined') {
+        return
+      }
       if (location.pathname === rootPath) {
         roote = true
       }

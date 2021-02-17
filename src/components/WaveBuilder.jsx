@@ -208,7 +208,7 @@ export default function WaveBuilder() {
   const [number, setNumber] = React.useState(1)
   const [opacity, setOpacity] = React.useState(0.8)
   const [tempOpacity, setTempOpacity] = React.useState(0.8)
-  const [bumps, setBumps] = React.useState(3)
+  const [bumps, setBumps] = React.useState(2)
   const [orientation, setOrientation] = React.useState('middle-1')
   const [intensity, setIntensity] = React.useState(3)
   const [width, setWidth] = React.useState(1600)

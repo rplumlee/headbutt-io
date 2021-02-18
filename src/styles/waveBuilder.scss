@@ -364,14 +364,15 @@ path {
 }
 
 .logo svg {
-  max-width: 50% !important;
-  margin: 0 auto;
-  transform: scale(1.5);
+  max-width: 75% !important;
+  margin: 0 5%;
+  width: 800px;
+  transform: scale(1);
+  transform-origin: left center;
 }
 .logo a {
-  margin: 0 auto;
   display: block;
-  text-align: center;
+  text-align: left;
 }
 #waves {
   min-width: 100% !important;

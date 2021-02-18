@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
-import WaveBuilder from '../components/WaveBuilder'
+import OperatorLookup from '../components/OperatorLookup'
 import Bio from '../components/Bio'
 import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
@@ -29,11 +29,11 @@ class MakeWaves extends React.Component {
               justifyContent: 'flex-start',
               alignItems: 'center',
               width: 900,
-              maxWidth: '100%',
+              maxWidth: '90%',
               margin: '0 auto',
             }}
           >
-            <WaveBuilder />
+            <OperatorLookup />
           </div>{' '}
         </Layout>
       </>

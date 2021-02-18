@@ -152,7 +152,7 @@ class BlogIndex extends React.Component {
               }}
             >
               <Link
-                to="/useAsync"
+                to="/operatorLookup"
                 style={{
                   position: 'absolute',
                   height: '100%',
@@ -203,6 +203,24 @@ class BlogIndex extends React.Component {
           </div>
           <h4 className="badge">
             <BsViewList /> Blog
+            <motion.svg
+              viewBox="0 0 200 200"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                y: '-44%',
+                x: '-35%',
+                zIndex: -1,
+              }}
+            >
+              <path
+                fill="rgb(22, 22, 62)"
+                d="M42.3,-59.9C56.5,-65,70.9,-57.1,78.6,-45C86.4,-32.9,87.4,-16.4,75.4,-6.9C63.5,2.6,38.5,5.2,30.1,16.1C21.6,27,29.7,46.2,27.4,58.6C25.2,71,12.6,76.6,2.1,73C-8.4,69.3,-16.8,56.5,-29.6,50.2C-42.4,43.9,-59.6,44.1,-66.2,36.9C-72.7,29.6,-68.6,14.8,-58.8,5.6C-49.1,-3.5,-33.7,-7.1,-29.7,-18.7C-25.7,-30.4,-33,-50.2,-30,-51.5C-26.9,-52.9,-13.5,-35.9,0.3,-36.4C14,-36.9,28,-54.9,42.3,-59.9Z"
+                transform="translate(100 100) scale(1.2)"
+              />
+            </motion.svg>
           </h4>
           <div className="blog-post">
             <Link to="/useAsync">

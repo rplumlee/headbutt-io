@@ -126,6 +126,7 @@ export default ({ children, location }) => (
 
       header = (
         <>
+          >
           <div
             className={profile ? `profile-container open` : 'profile-container'}
           >
@@ -291,7 +292,7 @@ export default ({ children, location }) => (
 		z M207.709,32.408c0-1.211-0.439-2.207-1.318-2.988c-0.879-0.781-2.041-1.172-3.486-1.172h-4.98v8.584h4.219
 		c1.718,0,3.076-0.396,4.072-1.187S207.709,33.775,207.709,32.408z"
                     variants={clip_path_variants}
-                    initial={roote ? 'closed' : 'open'}
+                    initial={'open'}
                     animate={'open'}
                     custom={0.2}
                   />
@@ -304,7 +305,7 @@ export default ({ children, location }) => (
 		v23.525c0,2.695,0.503,4.771,1.509,6.226c1.006,1.455,2.446,2.183,4.321,2.183c1.895,0,3.335-0.684,4.321-2.051
 		c0.986-1.367,1.479-3.388,1.479-6.064V3.346h12.744V26.168z"
                     variants={clip_path_variants}
-                    initial={roote ? 'closed' : 'open'}
+                    initial={'open'}
                     animate={'open'}
                     custom={0.5}
                   />
@@ -315,7 +316,7 @@ export default ({ children, location }) => (
                     d="M298.377,13.248v32.109h-12.715V13.248h-11.748
 		V3.346h36.357v9.902H298.377z"
                     variants={clip_path_variants}
-                    initial={roote ? 'closed' : 'open'}
+                    initial={'open'}
                     animate={'open'}
                     custom={0.7}
                   />
@@ -326,7 +327,7 @@ export default ({ children, location }) => (
                     d="M339.551,13.248v32.109h-12.715V13.248h-11.748
 		V3.346h36.357v9.902H339.551z"
                     variants={clip_path_variants}
-                    initial={roote ? 'closed' : 'open'}
+                    initial={'open'}
                     animate={'open'}
                     custom={0}
                   />
@@ -378,6 +379,21 @@ export default ({ children, location }) => (
         <div
           style={{ overflow: 'hidden', position: 'relative', maxWidth: '100%' }}
         >
+          <svg
+            viewBox="0 0 1600 900"
+            style={{
+              width: '100vw',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+            }}
+          >
+            <path
+              fill="rgb(22, 22, 62)"
+              opacity="0.7"
+              d="M0,389C534,506,1068,205,1602,521,C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0L1600,0C1066,0,532,0,-2,0,C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0L1398,0L0,0Z"
+            />
+          </svg>
           {header}
           <div
             style={{

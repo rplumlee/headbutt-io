@@ -21,19 +21,21 @@ class MakeWaves extends React.Component {
     return (
       <>
         <Helmet title={siteTitle} />
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            width: '100%',
-          }}
-        >
-          <Layout location={location}>
+        <Layout location={location}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              width: 900,
+              maxWidth: '90%',
+              margin: '0 auto',
+            }}
+          >
             <WaveBuilder />
-          </Layout>
-        </div>
+          </div>{' '}
+        </Layout>
       </>
     )
   }

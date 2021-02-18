@@ -72,37 +72,15 @@ class BlogIndex extends React.Component {
           }}
         >
           <h4 className="badge">
-            <svg viewBox="0 0 1300 700" className="bgg">
-              <path
-                opacity=".5"
-                fill="url(#rainbow)"
-                d="M0,123C434,406,868,98,1302,444,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
-              />
-              <path
-                opacity=".9"
-                fill="url(#rainbow)"
-                d="M0,332C434,117,868,302,1302,370,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
-              />
-              <path
-                opacity=".5"
-                fill="url(#rainbow)"
-                d="M0,234C434,312,868,62,1302,209,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
-              />
-              <path
-                opacity=".7"
-                fill="url(#rainbow)"
-                d="M0,235C434,333,868,252,1302,243,C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300C1300, 300,1300, 300,1300, 300L1300,300C866,300,432,300,-2,300,C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300C0, 300,0, 300,0, 300L1398,300L0,300Z"
-              />
-            </svg>
             <GoTools /> Tools
           </h4>
           <div className="tools-container">
             <Tilt
-              tiltMaxAngleX={6}
-              tiltMaxAngleY={6}
+              tiltMaxAngleX={9}
+              tiltMaxAngleY={9}
               className="parallax-effect card checkered-bg"
-              perspective={1000}
-              scale={1.05}
+              perspective={400}
+              scale={1.15}
               style={{ background: '#222', maxWidth: '90%' }}
             >
               <Link
@@ -113,7 +91,7 @@ class BlogIndex extends React.Component {
                   width: '100%',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'space-between',
+                  justifyContent: 'flex-start',
                 }}
                 className="makewaves-card"
               >
@@ -155,6 +133,69 @@ class BlogIndex extends React.Component {
                       />
                     </svg>
                     <h2 style={{ marginLeft: 4 }}>aves</h2>
+                  </div>
+                </motion.div>
+              </Link>
+            </Tilt>
+
+            <Tilt
+              tiltMaxAngleX={9}
+              tiltMaxAngleY={9}
+              className="parallax-effect card checkered-bg"
+              perspective={400}
+              scale={1.15}
+              style={{
+                background:
+                  'url(https://scotch-res.cloudinary.com/image/upload/w_1050,q_auto:good,f_auto/media/4741/PTLHvdFMQuW7VhAXQc0G_es6_what_to_use_and_what_not_to.png.jpg)',
+                maxWidth: '90%',
+                backgroundSize: '150%',
+              }}
+            >
+              <Link
+                to="/makeWaves"
+                style={{
+                  position: 'absolute',
+                  height: '100%',
+                  width: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                }}
+                className="makewaves-card"
+              >
+                {/* <motion.svg
+                  viewBox="0 0 1600 900"
+                  initial={{
+                    y: 25,
+                    overflow: 'visible',
+                  }}
+                >
+                  <path
+                    opacity=".7"
+                    fill="#d5b71e"
+                    d="M0,582C178,387,356,561,534,604,C712,647,890,556,1068,372,C1246,188,1424,539,1602,381C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450L1600,450C1422,450,1244,450,1066,450,C888,450,710,450,532,450,C354,450,176,450,-2,450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450L1404,450L0,450Z"
+                  />
+                </motion.svg> */}
+                <motion.div
+                  className="inner-element"
+                  style={{ height: '100%' }}
+                >
+                  {' '}
+                  <div
+                    className="logo-container-makewaves"
+                    style={{ width: '100%', height: '100%', padding: 0 }}
+                  >
+                    <h2
+                      style={{
+                        color: '#222',
+                        textAlign: 'left',
+                        width: '100%',
+                        margin: 0,
+                        height: 'auto',
+                      }}
+                    >
+                      Operator<br></br>Lookup
+                    </h2>
                   </div>
                 </motion.div>
               </Link>

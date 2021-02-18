@@ -208,7 +208,6 @@ export default function WaveBuilder() {
   const [number, setNumber] = React.useState(1)
   const [opacity, setOpacity] = React.useState(0.8)
   const [tempOpacity, setTempOpacity] = React.useState(0.8)
-  const [bumps, setBumps] = React.useState(2)
   const [orientation, setOrientation] = React.useState('middle-1')
   const [intensity, setIntensity] = React.useState(3)
   const [width, setWidth] = React.useState(1600)
@@ -217,9 +216,10 @@ export default function WaveBuilder() {
   const [waves, setWaves] = React.useState([
     {
       id: 1,
-      d: generateWaves(intensity, bumps, orientation, width, height),
+      d: generateWaves(intensity, 2, orientation, width, height),
       opacity: 0.7,
       fill: 'url(#rainbow)',
+      bumps: 2,
     },
   ])
   const [selectedIndex, setSelectedIndex] = React.useState(0)
@@ -236,7 +236,13 @@ export default function WaveBuilder() {
         return selectedIndex == index
           ? {
               ...wave,
-              d: generateWaves(intensity, bumps, orientation, width, height),
+              d: generateWaves(
+                intensity,
+                waves[selectedIndex].bumps,
+                orientation,
+                width,
+                height
+              ),
             }
           : wave
       })
@@ -271,6 +277,20 @@ export default function WaveBuilder() {
     })
     setOpacity(v)
   }
+
+  function updateBumps(v) {
+    setWaves((oldWaves) => {
+      return oldWaves.map((wave, index) => {
+        return index == selectedIndex
+          ? {
+              ...wave,
+              bumps: v,
+            }
+          : wave
+      })
+    })
+    randomizeWave()
+  }
   function updateOpacity(v) {}
 
   function updateColor(v) {
@@ -291,9 +311,16 @@ export default function WaveBuilder() {
       ...oldWaves,
       {
         id: waves[waves.length - 1].id + 1,
-        d: generateWaves(intensity, bumps, orientation, width, height),
-        opacity: opacity,
+        d: generateWaves(
+          intensity,
+          waves[selectedIndex].bumps,
+          orientation,
+          width,
+          height
+        ),
+        opacity: waves[selectedIndex].opacity,
         fill: 'url(#rainbow)',
+        bumps: waves[selectedIndex].bumps,
       },
     ])
     setSelectedIndex(waves.length)
@@ -301,7 +328,7 @@ export default function WaveBuilder() {
 
   React.useEffect(() => {
     randomizeWave()
-  }, [number, intensity, bumps, orientation])
+  }, [number, intensity, orientation])
 
   React.useEffect(() => {
     setTempOpacity(waves[selectedIndex].opacity)
@@ -355,6 +382,8 @@ export default function WaveBuilder() {
               fontSize: 13,
               marginTop: -20,
               paddingBottom: 20,
+              zIndex: 5,
+              position: 'relative',
             }}
           >
             SVG wave generation and composition
@@ -551,14 +580,16 @@ export default function WaveBuilder() {
                 />
               </svg>
               <Slider
-                defaultValue={3}
+                value={waves[selectedIndex].bumps}
                 aria-labelledby="discrete-slider"
                 step={1}
                 orientation="vertical"
                 min={1}
                 max={5}
                 color="secondary"
-                onChange={(e, v) => setBumps(v)}
+                onChange={(e, v) =>
+                  v != waves[selectedIndex].bumps ? updateBumps(v) : null
+                }
               />{' '}
               <svg
                 viewBox="0 0 1440 500"

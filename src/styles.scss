@@ -1,5 +1,5 @@
 @import './styles/waveBuilder.scss';
-
+@import './styles/blog.scss';
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -95,7 +95,7 @@ body {
 }
 .card {
   background: #fff;
-  height: 140px;
+  height: 120px;
   width: 200px;
   margin: 20px;
 
@@ -152,7 +152,7 @@ body {
     }
   }
   .logo-container-makewaves {
-    transform: scale(0.7) translateY(20px);
+    transform: scale(0.7) translateY(0px);
     @media (max-width: 600px) {
       transform: scale(0.6) translateY(25px);
     }
@@ -190,7 +190,7 @@ h5 {
   .inner-element {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     transition: 800ms;
     //opacity: 0.5;
@@ -211,10 +211,11 @@ h5 {
   min-height: none;
   flex-direction: row;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   .card {
     margin: 0;
+    margin-right: 30px;
   }
 }
 
@@ -225,7 +226,7 @@ h4.badge {
   font-family: Montserrat;
   //border-bottom: 1px solid #aaa;
   //padding-bottom: 5px;
-  margin: 0 0 50px 0;
+  margin: 0 0 20px 0;
   font-weight: 600;
   width: auto;
   height: auto;
@@ -239,7 +240,6 @@ h4.badge {
 
   svg {
     margin-right: 8px;
-    z-index: -1;
   }
   .bgg {
     margin: 0;

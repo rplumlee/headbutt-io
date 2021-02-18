@@ -1,5 +1,5 @@
 body {
-  background: rgb(17, 17, 35);
+  background: rgb(42, 42, 92);
   width: 100%;
   overflow: hidden;
 }
@@ -382,7 +382,9 @@ path {
 .logo-container-makewaves {
   display: flex;
   justify-content: center;
-  margin-top: -20px;
+  margin-top: 0px;
+  z-index: 5;
+  position: relative;
 
   h2 {
     font-family: 'Montserrat';
@@ -391,6 +393,8 @@ path {
     width: auto;
     padding-bottom: 15px;
     font-size: 1.25rem;
+    position: relative;
+    z-index: 5;
 
     @media (max-width: 600px) {
       padding-bottom: 5px;

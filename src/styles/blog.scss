@@ -9,3 +9,26 @@
     font-weight: 400;
   }
 }
+
+.blog-post {
+  padding: 10px;
+  color: #ccc;
+
+  h3 {
+    font-family: 'Montserrat';
+    margin: 0 0 10px 0;
+    text-decoration: underline;
+    color: #d5d5d5;
+  }
+  p {
+    color: #bbb;
+  }
+  &:hover {
+    h3 {
+      color: #fff;
+    }
+    p {
+      color: #ddd;
+    }
+  }
+}

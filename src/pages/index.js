@@ -152,7 +152,7 @@ class BlogIndex extends React.Component {
               }}
             >
               <Link
-                to="/makeWaves"
+                to="/useAsync"
                 style={{
                   position: 'absolute',
                   height: '100%',
@@ -204,64 +204,16 @@ class BlogIndex extends React.Component {
           <h4 className="badge">
             <BsViewList /> Blog
           </h4>
-          {/* <Tilt
-          tiltMaxAngleX={6}
-          tiltMaxAngleY={6}
-          className="parallax-effect card"
-          perspective={1000}
-          scale={1.05}
-          style={{
-            background: '#333',
-          }}
-        >
-          <Link
-            to="/waveBackground"
-            style={{
-              position: 'absolute',
-              height: '100%',
-              width: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
-          >
-            <DarkToggleDemo />
-            <motion.div
-              className="inner-element"
-              style={{ background: '#333' }}
-            >
-              {' '}
-              <div>
-                <h5 style={{ color: '#fff' }}>SVG Dark Mode Toggle</h5>{' '}
-                <p style={{ color: '#fff' }}>{'<DarkToggle />'}</p>
-              </div>
-            </motion.div>
-          </Link>
-        </Tilt> */}
-          {/* <div className="post-list">
-          {posts.map(({ node }) => {
-            const title = get(node, 'title') || node.slug
-            return (
-              <div key={node.slug}>
-                <h3
-                  style={{
-                    marginBottom: rhythm(1 / 4),
-                  }}
-                >
-                  <Link style={{ boxShadow: 'none' }} to={`posts/${node.slug}`}>
-                    {title}
-                  </Link>
-                </h3>
-                <small>{node.created}</small>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: node.metadata.description,
-                  }}
-                />
-              </div>
-            )
-          })}
-        </div> */}
+          <div className="blog-post">
+            <Link to="/useAsync">
+              <h3>Creating a useAsync Hook Like React Query</h3>
+              <p>
+                React Query is great. So great that we should understand it
+                better because it was designed by Tanner Linsley who is{' '}
+                <i>really</i> good at this.
+              </p>
+            </Link>
+          </div>
         </div>
       </Layout>
     )

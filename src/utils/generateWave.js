@@ -1,9 +1,9 @@
-function getRandomInt(min, max) {
+export function getRandomInt(min, max) {
   min = Math.ceil(min)
   max = Math.floor(max)
   return Math.floor(Math.random() * (max - min) + min) //The maximum is exclusive and the minimum is inclusive
 }
-function generateWaveString(coord, index, x, rtl, width, bumps) {
+export function generateWaveString(coord, index, x, rtl, width, bumps) {
   let string = ''
   let pointString = `C`
 
@@ -17,7 +17,7 @@ function generateWaveString(coord, index, x, rtl, width, bumps) {
 
   return string
 }
-function generateYCoords(bumps, orientation, height, orient) {
+export function generateYCoords(bumps, orientation, height, orient) {
   let topCoords = []
   let bottomCoords = []
   let lastPoints = []

@@ -331,7 +331,7 @@ export default ({ children, location }) => (
                     custom={0}
                   />
                   <motion.path
-                    fill="none"
+                    fill="url(#rainbow)"
                     stroke="url(#rainbow)"
                     strokeWidth="3px"
                     strokeMiterlimit="10"
@@ -347,7 +347,6 @@ export default ({ children, location }) => (
                     fill="none"
                     stroke="#eee"
                     strokeMiterlimit="10"
-                    strokeWidth="3px"
                     d="M380.531,45.357v-30h12.48v30H380.531z"
                     variants={clip_path_variants}
                     initial={roote ? 'closed' : 'open'}
@@ -356,7 +355,6 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    strokeWidth="3px"
                     stroke="#eee"
                     strokeMiterlimit="10"
                     d="M435.387,29.83c0,5.059-1.528,9.034-4.585,11.924

@@ -60,7 +60,7 @@ function generateYCoords(bumps, orientation, height, orient) {
   }
   return [topCoords, bottomCoords]
 }
-export default function generateWaves(
+export function generateWaves(
   bumps = 3,
   orientation,
   width = 1600,

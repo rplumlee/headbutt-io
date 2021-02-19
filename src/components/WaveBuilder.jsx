@@ -23,7 +23,7 @@ import TextField from '@material-ui/core/TextField'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import ColorPicker from 'material-ui-color-picker'
 import Layout from '../components/layout'
-import generateWaves from '../utils/generateWave'
+import { generateWaves } from '../utils/generateWave'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import {
   materialDark,

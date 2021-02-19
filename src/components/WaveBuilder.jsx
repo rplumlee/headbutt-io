@@ -23,12 +23,7 @@ import TextField from '@material-ui/core/TextField'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import ColorPicker from 'material-ui-color-picker'
 import Layout from '../components/layout'
-import {
-  generateWaves,
-  generateWaveString,
-  generateYCoords,
-  getRandomInt,
-} from '../utils/generateWave'
+import generateWaves from '../utils/generateWave'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import {
   materialDark,
@@ -103,6 +98,8 @@ function wavesReducer(state, action) {
 }
 
 export default function WaveBuilder() {
+  const [width, setWidth] = React.useState(1600)
+  const [height, setHeight] = React.useState(900)
   const [waves, dispatchWaves] = React.useReducer(wavesReducer, [
     {
       id: 1,
@@ -113,8 +110,7 @@ export default function WaveBuilder() {
       orientation: 'middle-1',
     },
   ])
-  const [width, setWidth] = React.useState(1600)
-  const [height, setHeight] = React.useState(900)
+
   const [isolatedIndex, setIsolatedIndex] = React.useState(-1)
   const [selectedIndex, setSelectedIndex] = React.useState(0)
   const controls = useAnimation()

@@ -5,13 +5,36 @@ body {
 }
 .logo {
   margin-bottom: 50px;
-  padding-top: 50px;
+  padding-top: 20px;
   margin-top: 0;
 
   @media (max-width: 800px) {
     margin-top: 0px;
     margin-bottom: 20px;
     padding-top: 15px;
+  }
+}
+.header-wave {
+  transform: scaleY(0.4);
+  transform-origin: center top;
+
+  @media (max-width: 1200px) {
+    transform: scaleY(0.5);
+  }
+  @media (max-width: 1000px) {
+    transform: scaleY(0.6);
+  }
+  @media (max-width: 850px) {
+    transform: scaleY(0.7);
+  }
+  @media (max-width: 700px) {
+    transform: scaleY(0.8);
+  }
+  @media (max-width: 550px) {
+    transform: scaleY(0.9);
+  }
+  @media (max-width: 450px) {
+    transform: scaleY(1);
   }
 }
 #profile {
@@ -104,7 +127,7 @@ body {
   margin: 20px;
 
   @media (max-width: 600px) {
-    height: 110px;
+    height: 80px;
     width: 160px;
   }
 
@@ -158,7 +181,17 @@ body {
   .logo-container-makewaves {
     transform: scale(0.7) translateY(0px);
     @media (max-width: 600px) {
-      transform: scale(0.6) translateY(25px);
+      transform: scale(0.6) translateY(0px);
+
+      &.operator {
+        transform: scale(1) translateY(0px);
+      }
+    }
+    &.operator h5 {
+      font-size: 1.2rem !important;
+      @media (max-width: 600px) {
+        font-size: 0.8rem !important;
+      }
     }
   }
   .logo-container-makewaves path {
@@ -167,6 +200,10 @@ body {
 
   .inner-element {
     opacity: 1;
+
+    @media (max-width: 600px) {
+      height: 80px;
+    }
   }
 }
 h5 {
@@ -226,7 +263,7 @@ h5 {
 h4.badge {
   color: #fff;
   background: transparent;
-  padding: 4px 12px;
+  padding: 8px 14px;
   font-family: Montserrat;
   //border-bottom: 1px solid #aaa;
   //padding-bottom: 5px;
@@ -235,15 +272,41 @@ h4.badge {
   width: auto;
   height: auto;
   font-size: 0.9rem;
-  border-radius: 10px;
+  border-radius: 20px;
   display: inline-flex;
-  align-items: center;
 
   position: relative;
-  max-width: 200px;
+  //box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
 
+  span {
+    background: rgb(42, 52, 92);
+    z-index: 1;
+    position: relative;
+    display: inline-flex;
+    //padding: 0 10px;
+  }
+
+  // &:before {
+  //   position: absolute;
+  //   content: '';
+  //   left: 0;
+  //   top: 50%;
+  //   width: 100%;
+  //   height: 1px;
+  //   background: rgba(255, 255, 255, 0.3);
+  //   z-index: 0;
+  // }
   svg {
     margin-right: 8px;
+  }
+  .blob {
+    transform: scaleY(0.6) scaleX(1.3) !important;
+    transform-origin: left top !important;
+    position: absolute;
+    left: -90px;
+    width: 200px;
+    top: -40px;
+    z-index: -1;
   }
   .bgg {
     margin: 0;

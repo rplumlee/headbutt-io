@@ -345,7 +345,7 @@ export default ({ children, location }) => (
                   />
                   <motion.path
                     fill="none"
-                    stroke="url(#rainbow)"
+                    stroke="#eee"
                     strokeMiterlimit="10"
                     strokeWidth="3px"
                     d="M380.531,45.357v-30h12.48v30H380.531z"
@@ -357,7 +357,7 @@ export default ({ children, location }) => (
                   <motion.path
                     fill="none"
                     strokeWidth="3px"
-                    stroke="url(#rainbow)"
+                    stroke="#eee"
                     strokeMiterlimit="10"
                     d="M435.387,29.83c0,5.059-1.528,9.034-4.585,11.924
 		c-3.057,2.891-7.329,4.336-12.817,4.336c-5.449,0-9.692-1.411-12.729-4.233c-3.037-2.822-4.556-6.713-4.556-11.675
@@ -383,6 +383,7 @@ export default ({ children, location }) => (
         >
           <svg
             viewBox="0 0 1600 900"
+            className="header-wave"
             style={{
               width: '100vw',
               position: 'absolute',
@@ -392,8 +393,8 @@ export default ({ children, location }) => (
             }}
           >
             <path
-              fill="rgb(22, 22, 62)"
-              opacity="0.7"
+              fill="#111"
+              opacity=".4"
               d="M0,389C534,506,1068,205,1602,521,C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0L1600,0C1066,0,532,0,-2,0,C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0L1398,0L0,0Z"
             />
           </svg>

@@ -72,7 +72,9 @@ class BlogIndex extends React.Component {
           }}
         >
           <h4 className="badge">
-            <GoTools /> Tools
+            <span>
+              <GoTools /> Tools
+            </span>
           </h4>
           <div className="tools-container">
             <Tilt
@@ -148,7 +150,8 @@ class BlogIndex extends React.Component {
                 background:
                   'url(https://scotch-res.cloudinary.com/image/upload/w_1050,q_auto:good,f_auto/media/4741/PTLHvdFMQuW7VhAXQc0G_es6_what_to_use_and_what_not_to.png.jpg)',
                 maxWidth: '90%',
-                backgroundSize: '150%',
+                backgroundSize: '350%',
+                backgroundPosition: 'right center',
               }}
             >
               <Link
@@ -182,45 +185,33 @@ class BlogIndex extends React.Component {
                 >
                   {' '}
                   <div
-                    className="logo-container-makewaves"
+                    className="logo-container-makewaves operator"
                     style={{ width: '100%', height: '100%', padding: 0 }}
                   >
-                    <h2
+                    <h5
                       style={{
                         color: '#222',
                         textAlign: 'left',
                         width: '100%',
                         margin: 0,
                         height: 'auto',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'flex-start',
+                        fontSize: '.8rem',
                       }}
                     >
-                      Operator<br></br>Lookup
-                    </h2>
+                      ES6<br></br>Operator<br></br>Lookup
+                    </h5>
                   </div>
                 </motion.div>
               </Link>
             </Tilt>
           </div>
           <h4 className="badge">
-            <BsViewList /> Blog
-            <motion.svg
-              viewBox="0 0 200 200"
-              xmlns="http://www.w3.org/2000/svg"
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                y: '-44%',
-                x: '-35%',
-                zIndex: -1,
-              }}
-            >
-              <path
-                fill="rgb(22, 22, 62)"
-                d="M25.8,-32.2C37.1,-32.8,52.5,-31.9,60.3,-24.6C68.1,-17.4,68.3,-3.8,66.9,10C65.5,23.7,62.4,37.6,52.5,40.8C42.5,44.1,25.5,36.7,12.4,39.3C-0.8,41.9,-10.2,54.4,-15.6,52.9C-21,51.5,-22.4,36,-23.5,25.5C-24.7,15,-25.7,9.4,-34.2,0.3C-42.7,-8.8,-58.7,-21.5,-61.6,-33.5C-64.5,-45.5,-54.2,-56.9,-41.7,-55.7C-29.3,-54.5,-14.6,-40.7,-3.7,-35C7.2,-29.2,14.5,-31.5,25.8,-32.2Z"
-                transform="translate(100 100) scale(1)"
-              />
-            </motion.svg>
+            <span>
+              <BsViewList /> Blog
+            </span>
           </h4>
           <div className="blog-post">
             <Link to="/useAsync">

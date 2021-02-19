@@ -1,5 +1,5 @@
 body {
-  background: rgb(42, 42, 92);
+  background: rgb(42, 52, 92);
   width: 100%;
   overflow: hidden;
 }
@@ -365,10 +365,11 @@ path {
 
 .logo svg {
   max-width: 75% !important;
-  margin: 0 5%;
-  width: 800px;
-  transform: scale(1);
-  transform-origin: left center;
+  margin: 0 30px;
+
+  @media (max-width: 800px) {
+    margin: 0 5%;
+  }
 }
 .logo a {
   display: block;

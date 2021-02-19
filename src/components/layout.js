@@ -7,12 +7,22 @@ import cosmicjsLogo from '../../static/cosmicjs.svg'
 import gatsbyLogo from '../../static/gatsby.png'
 import { rhythm, scale } from '../utils/typography'
 import { motion, useAnimation } from 'framer-motion'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
 import Waves from './Waves'
 
 // Import typefaces
 import 'typeface-montserrat'
 import 'typeface-merriweather'
+
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    secondary: {
+      main: '#8a2be2',
+    },
+  },
+})
 
 const clip_path_variants = {
   open: (i) => ({
@@ -376,85 +386,91 @@ export default ({ children, location }) => (
       )
 
       return (
-        <div
-          style={{ overflow: 'hidden', position: 'relative', maxWidth: '100%' }}
-        >
-          <svg
-            viewBox="0 0 1600 900"
-            className="header-wave"
+        <ThemeProvider theme={theme}>
+          <div
             style={{
-              width: '100vw',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              zIndex: 0,
+              overflow: 'hidden',
+              position: 'relative',
+              maxWidth: '100%',
             }}
           >
-            <path
-              fill="#111"
-              opacity=".4"
-              d="M0,389C534,506,1068,205,1602,521,C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0L1600,0C1066,0,532,0,-2,0,C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0L1398,0L0,0Z"
-            />
-          </svg>
-          <div style={{ position: 'relative', zIndex: 1 }}>
-            {header}
-            <div
+            <svg
+              viewBox="0 0 1600 900"
+              className="header-wave"
               style={{
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                padding: `0`,
-
-                display: 'flex',
-                maxWidth: '100%',
+                width: '100vw',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                zIndex: 0,
               }}
             >
-              {children}
-            </div>
-            <footer
-              style={{
-                textAlign: 'center',
-                padding: `0 20px 80px 0`,
-              }}
-            ></footer>
+              <path
+                fill="#111"
+                opacity=".4"
+                d="M0,389C534,506,1068,205,1602,521,C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0L1600,0C1066,0,532,0,-2,0,C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0L1398,0L0,0Z"
+              />
+            </svg>
+            <div style={{ position: 'relative', zIndex: 1 }}>
+              {header}
+              <div
+                style={{
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  padding: `0`,
 
-            <div className="navv" style={{ display: 'none' }}>
-              <a>
-                {' '}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                  />
-                </svg>
-              </a>
-              <a
-                onClick={() => setProfile(!profile)}
-                className={profile ? 'active' : ''}
+                  display: 'flex',
+                  maxWidth: '100%',
+                }}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                {children}
+              </div>
+              <footer
+                style={{
+                  textAlign: 'center',
+                  padding: `0 20px 80px 0`,
+                }}
+              ></footer>
+
+              <div className="navv" style={{ display: 'none' }}>
+                <a>
+                  {' '}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    />
+                  </svg>
+                </a>
+                <a
+                  onClick={() => setProfile(!profile)}
+                  className={profile ? 'active' : ''}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </a>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        </ThemeProvider>
       )
     }}
   />

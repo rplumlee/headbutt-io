@@ -1,4 +1,4 @@
-const useAsyncString = `function asyncReducer(state, action) {
+const stringUseAsync = `function asyncReducer(state, action) {
   switch (action.type) {
     case 'pending': {
       return {status: 'pending', data: null, error: null}
@@ -62,4 +62,4 @@ function useAsync(initialState) {
   }
 }`
 
-export default useAsyncString
+export default stringUseAsync

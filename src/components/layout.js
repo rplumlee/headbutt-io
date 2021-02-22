@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { StaticQuery, graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
-import Profile from './Profile'
+
 import cosmicjsLogo from '../../static/cosmicjs.svg'
 import gatsbyLogo from '../../static/gatsby.png'
 import { rhythm, scale } from '../utils/typography'
@@ -136,34 +136,30 @@ export default ({ children, location }) => (
 
       header = (
         <>
-          <div
-            className={profile ? `profile-container open` : 'profile-container'}
-          >
-            <Profile profile={profile} />
-          </div>
-          <div className={profile ? `background open` : 'background'}></div>
-          <h1
+          <Link
             style={{
-              ...scale(1.3),
-              textAlign: 'center',
-
-              color: '#333',
-
-              maxWidth: '100%',
-              overflow: 'hidden',
-              zIndex: 6,
-              position: 'relative',
+              boxShadow: 'none',
+              textDecoration: 'none',
+              color: 'inherit',
+              paddingTop: 5,
+              textAlign: 'left',
             }}
-            className="logo"
+            to={'/'}
           >
-            <Link
+            <h1
               style={{
-                boxShadow: 'none',
-                textDecoration: 'none',
-                color: 'inherit',
-                paddingTop: 5,
+                ...scale(1.3),
+                textAlign: 'left',
+
+                color: '#333',
+
+                maxWidth: '100%',
+
+                zIndex: 6,
+                position: 'relative',
+                marginBottom: 0,
               }}
-              to={'/'}
+              className="logo"
             >
               <svg
                 version="1.1"
@@ -380,8 +376,35 @@ export default ({ children, location }) => (
                   />
                 </g>
               </svg>
+            </h1>
+            <p
+              className="header-p"
+              style={{
+                color: '#ddd',
+                margin: '-10px 0 0 30px',
+                fontWeight: 400,
+              }}
+            >
+              Another React & Frontend blog ft. Framer Motion
+            </p>
+          </Link>
+
+          <div className="avatar-image">
+            <Link
+              to="/profile"
+              style={{
+                zIndex: 40,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textDecoration: 'none',
+                boxShadow: 'none',
+              }}
+            >
+              <img src="https://media-exp1.licdn.com/dms/image/C5603AQGzv0iuAwEQwA/profile-displayphoto-shrink_400_400/0/1594944140377?e=1619049600&v=beta&t=jQsVGyq12km7nwSbn3CUu5GtbsKZqsGKAU8u7MDyYw4" />
+              {/* <p>Reid Plumlee</p> */}
             </Link>
-          </h1>
+          </div>
         </>
       )
 
@@ -421,6 +444,7 @@ export default ({ children, location }) => (
 
                   display: 'flex',
                   maxWidth: '100%',
+                  marginTop: 50,
                 }}
               >
                 {children}

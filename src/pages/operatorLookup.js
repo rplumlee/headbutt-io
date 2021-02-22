@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Slider from '@material-ui/core/Slider'
 import '../styles.scss'
 
-class MakeWaves extends React.Component {
+class OperatorLookupPage extends React.Component {
   render() {
     const siteTitle = 'Headbutt.io - MakeWaves SVG Wave Generator'
     const location = get(this, 'props.location')
@@ -40,4 +40,4 @@ class MakeWaves extends React.Component {
     )
   }
 }
-export default MakeWaves
+export default OperatorLookupPage

@@ -5,16 +5,23 @@ body {
 }
 .hljs-string {
   color: rgb(185, 227, 251);
+  background: transparent;
 }
 .hljs-attr {
   color: rgb(226, 207, 255);
 }
 .hljs-name {
   color: rgb(255, 189, 198);
+  font-style: italic;
+  background: transparent;
+}
+body code {
+  background: transparent !important;
 }
 body pre {
-  background: #1a1a1a !important;
   padding: 1.5em !important;
+  background: rgba(00, 0, 0, 0.3) !important;
+  border-radius: 12px;
 
   &::-webkit-scrollbar {
     background: #222;
@@ -364,7 +371,7 @@ path {
 }
 
 .logo svg {
-  max-width: 75% !important;
+  max-width: 50% !important;
   margin: 0 30px;
 
   @media (max-width: 800px) {

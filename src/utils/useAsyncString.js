@@ -1,5 +1,3 @@
-import { useAsync } from '../../../../advanced-react-hooks/src/utils'
-
 const useAsyncString = `function asyncReducer(state, action) {
   switch (action.type) {
     case 'pending': {

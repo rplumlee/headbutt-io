@@ -34,6 +34,10 @@ pre {
   display: flex;
   flex-direction: column;
 
+  @media (max-width: 800px) {
+    right: 5%;
+  }
+
   img {
     height: 80px;
     width: 80px;
@@ -99,8 +103,7 @@ pre {
 #profile {
   min-height: 500px;
   z-index: 48;
-  top: 0;
-  left: 0;
+
   width: 800px;
   display: flex;
   align-items: center;
@@ -136,15 +139,11 @@ pre {
   }
 
   @media (max-width: 800px) {
+    max-width: 90%;
+
     h2 {
-      font-size: 16px;
-      padding-top: 70px;
-    }
-    p {
-      font-size: 13px;
-    }
-    p svg {
-      font-size: 30px;
+      font-size: 24px;
+      padding-top: 0px;
     }
   }
 }

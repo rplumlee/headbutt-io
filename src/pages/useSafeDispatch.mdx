@@ -14,7 +14,7 @@ import {
       I found out recently that one great way to create a memory leak in React
       is by trying to manage state on a component that has been unmounted.{' '}
     </p>
-    <p>
+    <aside>
       One solution (that I've seen some claim to be the best) involves having an{' '}
       <a
         href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController"
@@ -23,9 +23,9 @@ import {
         abortController
       </a>{' '}
       to abort your fetch if the component unmounts. If you haven't read up on
-      aborting HTTP signals it's worth doing, but it looked like more code than
-      I wanted to write.{' '}
-    </p>
+      aborting HTTP signals it's worth doing, but I wanted a simpler
+      solution.{' '}
+    </aside>
     <p>
       What if we could do this without having to much with our http requests? I
       found this great little hook from the legendary{' '}
@@ -60,9 +60,15 @@ import {
       The return function on useEffect and useLayoutEffect (with an empty
       dependency array) will run when the component unmounts, and the ref will
       be set back to false.
+      <br />
+      <br />
+      <img
+        style={{ minWidth: 400, maxWidth: '90%' }}
+        src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif"
+      />
     </p>
     <p>
-      <strong>Putting it all together</strong>
+      <strong>Putting it all together:</strong>
     </p>
     <p>
       Now we have a ref that tells us in real time whether the component is
@@ -84,5 +90,16 @@ import {
       mounted. Finally, we wrap it all in a useCallback so that people using our
       code can use it as a dependency.
     </p>
+    <aside>
+      <strong>
+        Will I really need this?
+        <br />
+        <br />
+      </strong>
+      Maybe, maybe not. Server state management libraries like React Query are already
+      doing this behind the scenes, so you won't actually have to implement it if
+      you're using a prebuilt solution. Either way, I think it's a potential pitfall
+      that is useful to know about.
+    </aside>
   </div>
 </Layout>

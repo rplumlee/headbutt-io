@@ -139,7 +139,7 @@ class BlogIndex extends React.Component {
                 </motion.div>
               </Link>
             </Tilt>
-
+            {/* 
             <Tilt
               tiltMaxAngleX={9}
               tiltMaxAngleY={9}
@@ -179,7 +179,7 @@ class BlogIndex extends React.Component {
                     d="M0,582C178,387,356,561,534,604,C712,647,890,556,1068,372,C1246,188,1424,539,1602,381C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450C1600, 450,1600, 450,1600, 450L1600,450C1422,450,1244,450,1066,450,C888,450,710,450,532,450,C354,450,176,450,-2,450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450C0, 450,0, 450,0, 450L1404,450L0,450Z"
                   />
                 </motion.svg> */}
-                <motion.div
+            {/*<motion.div
                   className="inner-element"
                   style={{ height: '100%' }}
                 >
@@ -206,7 +206,7 @@ class BlogIndex extends React.Component {
                   </div>
                 </motion.div>
               </Link>
-            </Tilt>
+            </Tilt> */}
           </div>
           <h4 className="badge">
             <span>
@@ -214,12 +214,13 @@ class BlogIndex extends React.Component {
             </span>
           </h4>
           <div className="blog-post">
-            <Link to="/useAsync">
-              <h3>Creating a useAsync Hook Like React Query</h3>
+            <Link to="/useSafeDispatch">
+              <h3>Avoid Async Memory Leaks With This useSafeDispatch Hook</h3>
               <p>
-                React Query is great. So great that we should understand it
-                better because it was designed by Tanner Linsley who is{' '}
-                <i>really</i> good at this.
+                I found out recently that one great way to create a memory leak
+                in React is by trying to manage state on a component that has
+                been unmounted. These 13 lines of code will optimize your
+                dispatch functions so that you don't have to worry.
               </p>
             </Link>
           </div>

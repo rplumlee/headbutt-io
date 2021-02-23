@@ -1,0 +1,88 @@
+import Layout from '../components/layout'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { materialDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import stringUseAsync from '../utils/stringUseAsync'
+import {
+  stringUseSafeDispatch,
+  stringUseSafeDispatch2,
+} from '../utils/stringUseSafeDispatch'
+
+<Layout location={{ pathname: '/useAsync' }}>
+  <div className="blog-layout">
+    <h1>Avoid Async Memory Leaks With This useSafeDispatch Hook</h1>
+    <p>
+      I found out recently that one great way to create a memory leak in React
+      is by trying to manage state on a component that has been unmounted.{' '}
+    </p>
+    <p>
+      One solution (that I've seen some claim to be the best) involves having an{' '}
+      <a
+        href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController"
+        target="_blank"
+      >
+        abortController
+      </a>{' '}
+      to abort your fetch if the component unmounts. If you haven't read up on
+      aborting HTTP signals it's worth doing, but it looked like more code than
+      I wanted to write.{' '}
+    </p>
+    <p>
+      What if we could do this without having to much with our http requests? I
+      found this great little hook from the legendary{' '}
+      <a href="https://kentcdodds.com" target="_blank">
+        Kent C. Dodds
+      </a>{' '}
+      to wrap your dispatch function and do just that.
+    </p>
+    <SyntaxHighlighter
+      language="jsx"
+      style={materialDark}
+      customStyle={{ fontFamily: 'Dank Mono', margin: '45px 0' }}
+    >
+      {stringUseSafeDispatch}
+    </SyntaxHighlighter>
+    <p>
+      It's simple enough, we start by creating a ref and initialize it to false.
+    </p>
+    <p>
+      Then, using React.useLayoutEffect with an empty dependency array, we set
+      that ref to true when the component mounts (but before it renders - read
+      more{' '}
+      <a
+        href="https://kentcdodds.com/blog/useeffect-vs-uselayouteffect"
+        target="_blank"
+      >
+        here
+      </a>{' '}
+      for the differences between useEffect and useLayoutEffect).
+    </p>
+    <p>
+      The return function on useEffect and useLayoutEffect (with an empty
+      dependency array) will run when the component unmounts, and the ref will
+      be set back to false.
+    </p>
+    <p>
+      <strong>Putting it all together</strong>
+    </p>
+    <p>
+      Now we have a ref that tells us in real time whether the component is
+      mounted or not, and our hook receives the dispatch function as an
+      argument. We just need to give them back a new version of the dispatch
+      function that doesn't run if the component is unmounted (we don't care if
+      the fetch finishes, as long as we don't try to setState or dispatch).
+    </p>
+    <SyntaxHighlighter
+      language="jsx"
+      style={materialDark}
+      customStyle={{ fontFamily: 'Dank Mono', margin: '45px 0' }}
+    >
+      {stringUseSafeDispatch2}
+    </SyntaxHighlighter>
+    <p>
+      Here we spread the args from the dispatch function into our new dispatch
+      function that returns void if our ref indicates that the component isn't
+      mounted. Finally, we wrap it all in a useCallback so that people using our
+      code can use it as a dependency.
+    </p>
+  </div>
+</Layout>

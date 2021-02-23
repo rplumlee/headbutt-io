@@ -6,7 +6,27 @@
   text-align: left;
 
   h1 {
-    font-weight: 400;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 45px;
+  }
+
+  p {
+    max-width: 650px;
+    color: #eee;
+    font-size: 1.2rem;
+
+    strong {
+      text-decoration: underline;
+    }
+  }
+
+  span {
+    font-size: 1.2rem;
+  }
+
+  a {
+    color: #fff;
   }
 }
 

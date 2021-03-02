@@ -244,6 +244,16 @@ pre {
   opacity: 1 !important;
   margin: 0 auto;
 
+  @media (max-width: 850px) {
+    flex-direction: column;
+    img {
+      min-width: 0 !important;
+      max-width: 450px;
+      width: 100%;
+      margin-top: 80px;
+    }
+  }
+
   h2 {
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;

@@ -39,8 +39,8 @@ pre {
   }
 
   img {
-    height: 80px;
-    width: 80px;
+    height: auto;
+    width: 58px;
     border-radius: 45px;
     margin: 10px auto;
     transition: 200ms;
@@ -49,14 +49,137 @@ pre {
     }
 
     @media (max-width: 800px) {
-      height: 70px;
-      width: 70px;
     }
   }
   p {
     color: #ccc;
     margin: 2px 0 0 0;
   }
+}
+.layout-div {
+  z-index: 1;
+  position: relative;
+  margin-top: 90px;
+  @media (max-width: 950px) {
+    margin-top: 80px;
+  }
+
+  padding-top: 80px;
+  background: rgb(42, 52, 92);
+  clip-path: polygon(
+    100% 100%,
+    0% 100%,
+    0% 65px,
+    1% 64.95px,
+    2% 64.8px,
+    3% 64.6px,
+    4% 64.3px,
+    5% 63.9px,
+    6% 63.45px,
+    7% 62.9px,
+    8% 62.25px,
+    9% 61.55px,
+    10% 60.8px,
+    11% 59.95px,
+    12% 59.05px,
+    13% 58.1px,
+    14% 57.1px,
+    15% 56.05px,
+    16% 55px,
+    17% 53.9px,
+    18% 52.8px,
+    19% 51.65px,
+    20% 50.5px,
+    21% 49.35px,
+    22% 48.2px,
+    23% 47.05px,
+    24% 45.9px,
+    25% 44.8px,
+    26% 43.75px,
+    27% 42.75px,
+    28% 41.75px,
+    29% 40.8px,
+    30% 39.9px,
+    31% 39.1px,
+    32% 38.35px,
+    33% 37.65px,
+    34% 37px,
+    35% 36.5px,
+    36% 36.05px,
+    37% 35.65px,
+    38% 35.35px,
+    39% 35.15px,
+    40% 35.05px,
+    41% 35px,
+    42% 35.05px,
+    43% 35.2px,
+    44% 35.45px,
+    45% 35.75px,
+    46% 36.15px,
+    47% 36.65px,
+    48% 37.2px,
+    49% 37.85px,
+    50% 38.55px,
+    51% 39.35px,
+    52% 40.2px,
+    53% 41.1px,
+    54% 42.05px,
+    55% 43.05px,
+    56% 44.1px,
+    57% 45.15px,
+    58% 46.3px,
+    59% 47.4px,
+    60% 48.55px,
+    61% 49.7px,
+    62% 50.85px,
+    63% 52px,
+    64% 53.15px,
+    65% 54.25px,
+    66% 55.35px,
+    67% 56.4px,
+    68% 57.45px,
+    69% 58.4px,
+    70% 59.35px,
+    71% 60.2px,
+    72% 61.05px,
+    73% 61.8px,
+    74% 62.45px,
+    75% 63.05px,
+    76% 63.6px,
+    77% 64.05px,
+    78% 64.4px,
+    79% 64.7px,
+    80% 64.85px,
+    81% 65px,
+    82% 65px,
+    83% 64.9px,
+    84% 64.75px,
+    85% 64.5px,
+    86% 64.2px,
+    87% 63.75px,
+    88% 63.25px,
+    89% 62.7px,
+    90% 62.05px,
+    91% 61.3px,
+    92% 60.5px,
+    93% 59.65px,
+    94% 58.75px,
+    95% 57.8px,
+    96% 56.8px,
+    97% 55.75px,
+    98% 54.65px,
+    99% 53.55px,
+    100% 52.4px
+  );
+}
+.headerWrap {
+  background: rgba(0, 0, 0, 0.3);
+  padding-bottom: 100px;
+  position: fixed;
+  width: 100%;
+  z-index: 0;
+  top: 0;
+  left: 0;
 }
 .logo {
   margin-bottom: 50px;
@@ -72,6 +195,11 @@ pre {
 .header-p {
   max-width: 70%;
   @media (max-width: 800px) {
+    font-size: 14px;
+    line-height: 18px;
+    margin: -5px 0 0 5% !important;
+  }
+  @media (max-width: 600px) {
     font-size: 14px;
     line-height: 18px;
     margin: -20px 0 0 5% !important;
@@ -307,7 +435,7 @@ h5 {
   border-radius: 12px;
   padding: 0;
   position: relative;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
   min-height: none;
   flex-direction: row;
   display: flex;

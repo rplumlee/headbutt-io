@@ -1,0 +1,207 @@
+import Layout from '../components/layout'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { materialDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import {
+  stringUseAsync,
+  stringUseAsync2,
+  stringUseAsync3,
+  stringUseAsync4,
+  stringUseAsync5,
+  stringUseAsync6,
+} from '../utils/stringUseAsync'
+import { Helmet } from 'react-helmet'
+import {
+  stringUseSafeDispatch,
+  stringUseSafeDispatch2,
+} from '../utils/stringUseSafeDispatch'
+
+<Layout location={{ pathname: '/picking-apart-kents-useasync' }}>
+  <Helmet title={`Picking Apart Kent's useAsync Hook`} />
+  <div className="blog-layout">
+    <h1>Picking Apart Kent's useAsync Hook</h1>
+    <p>
+      One of the snippet's I picked up from Kent C. Dodds'{' '}
+      <a href="https://epicreact.dev" target="_blank">
+        EpicReact
+      </a>{' '}
+      course was this super cool useAsync function, and it's a masterclass in
+      elegance. There are several patterns I want to call out that he uses here
+      that every React dev should know.
+    </p>
+    <br />
+    <h5>
+      1. Safe Dispatching:{' '}
+      <span style={{ fontWeight: 400 }}>
+        This is a technique to prevent memory leaks if the component unmounts.
+        Fortunately, I've already written{' '}
+        <a href="https://headbutt.io/useSafeDispatch" target="_blank">
+          a short breakdown of this here
+        </a>
+      </span>
+    </h5>
+    <h5>
+      2. Returning a run function:{' '}
+      <span style={{ fontWeight: 400 }}>
+        Running an async function lends itself really well to abstracting more
+        of the logic into the hook with this cool pattern
+      </span>
+    </h5>
+    <h5>
+      3. Returning setters:{' '}
+      <span style={{ fontWeight: 400 }}>
+        Again, this is a way to not make your fellow dev's mess around with your
+        reducer actions
+      </span>
+    </h5>
+    <br />
+    <aside>
+      I was watching a conversation between Kent and{' '}
+      <a href="https://github.com/tannerlinsley" target="_blank">
+        Tanner Linsley
+      </a>{' '}
+      the other day and this hook came up. Tanner confirmed that it uses the
+      same patterns as React Query. This means two things:
+      <ol style={{ margin: '15px 0 0 0', padding: '0 50px 0 30px' }}>
+        <li>
+          For most projects you're just going to want to use React Query. The
+          caching optimization is second to none and this hook doesn't deal with
+          that
+        </li>
+        <li>
+          This code uses patterns that are the gold standard for async handling
+          in React, so it is a GREAT topic to dive deeper on
+        </li>
+      </ol>
+    </aside>
+    <br />
+    <p>
+      Without further ado, here's the code for you to skim. We'll break it down
+      in a second.
+    </p>
+    <SyntaxHighlighter
+      language="jsx"
+      style={materialDark}
+      customStyle={{ fontFamily: 'Dank Mono', margin: '45px 0' }}
+    >
+      {stringUseAsync}
+    </SyntaxHighlighter>
+    <h5 style={{ marginLeft: 0 }}>
+      1. Using a safe dispatch:{' '}
+      <span>
+        I'm not going to cover this right now because you can find a quick write
+        up on it{' '}
+        <a href="https://headbutt.io/useSafeDispatch" target="_blank">
+          here
+        </a>
+        . Just know that if you try to set state (dispatch) on an unmounted component,
+        you'll have problems. I detail a simple hook guards against that.
+      </span>
+    </h5>
+    <br />
+    <h5 style={{ marginLeft: 0 }}>2. Returning a run function</h5>
+    <p>
+      This one is great. All too often I've seen people return their state
+      setting function from their hook without wondering whether it could be
+      abstracted further.
+    </p>
+    <SyntaxHighlighter
+      language="jsx"
+      style={materialDark}
+      customStyle={{ fontFamily: 'Dank Mono', margin: '45px 0' }}
+    >
+      {stringUseAsync2}
+    </SyntaxHighlighter>
+    <p>Look familiar? Well it turns out we can do better. Much better.</p>
+    <p>
+      Let's take a look at the code someone using this hook would have to write:
+    </p>
+    <SyntaxHighlighter
+      language="jsx"
+      style={materialDark}
+      customStyle={{ fontFamily: 'Dank Mono', margin: '45px 0' }}
+    >
+      {stringUseAsync3}
+    </SyntaxHighlighter>
+    <p>
+      Something like this. They have to run the fetch themselves, and resolve
+      the promise with a dispatch. Is this the end of the world?
+    </p>
+    <p>Of course not.</p>
+    <p>
+      But why are we bothering them with our action types? We know everything
+      that has to happen when that fetch is called.. Why not do it for them?
+    </p>
+    <p>Enter Kent's run function:</p>
+    <SyntaxHighlighter
+      language="jsx"
+      style={materialDark}
+      customStyle={{ fontFamily: 'Dank Mono', margin: '45px 0' }}
+    >
+      {stringUseAsync4}
+    </SyntaxHighlighter>
+    <p>
+      We accept a promise, and handle things accordingly when it resolves. All
+      of the chaining and worrying about action types has moved from our fellow
+      dev's component into our hook. Neat!
+    </p>
+    <aside>
+      Don't forget to throw React.useCallback on their so that they can use it
+      as a dependency!
+    </aside>
+    <p>This is how their implementation looks now:</p>
+    <SyntaxHighlighter
+      language="jsx"
+      style={materialDark}
+      customStyle={{ fontFamily: 'Dank Mono', margin: '45px 0' }}
+    >
+      {stringUseAsync5}
+    </SyntaxHighlighter>
+    <br />
+    <p>
+      Beautiful! But what if they need to set state manually? This brings me to
+      our third pattern:
+    </p>
+    <h5 style={{ marginLeft: 0 }}>
+      <br />
+      3. Returning Setters:{' '}
+    </h5>
+    <p>
+      The run function makes it so we actually <i>NEED</i> to use this pattern,
+      but it's a great one to keep in mind even when you don't need it because
+      it is more widely applicable than the run function we just went over.
+    </p>
+    <p>
+      We aren't providing our fellow devs a dispatch anymore, so they have no
+      way to force state. We need to provide one, so we'll just make some
+      setters.
+    </p>
+    <aside>
+      Why would I use this when I don't need it? <br />
+      <br />
+      Errors are more likely to occur when we make other developers memorize our
+      action types. We can do it for them and return easily understandable
+      setData and setError functions wrapped in React.useCallback.
+      <br />
+      <br />
+      Would you rather worry about dispatching, or just use a setter? me too :)
+    </aside>
+    <SyntaxHighlighter
+      language="jsx"
+      style={materialDark}
+      customStyle={{ fontFamily: 'Dank Mono', margin: '45px 0' }}
+    >
+      {stringUseAsync6}
+    </SyntaxHighlighter>
+    <br />
+    <p>
+      Hopefully you learned something here to help you write hooks a little bit
+      more elegantly :)
+    </p>
+    <p>
+      I know I glossed over creating the reducer and some pieces here. Really I
+      just wanted to call out these few patterns but if you have questions, feel
+      free to email me at{' '}
+      <a href="mailto:reid@43webstudio.com">reid@43webstudio.com</a>.
+    </p>
+  </div>
+</Layout>

@@ -62,4 +62,68 @@ function useAsync(initialState) {
   }
 }`
 
-export default stringUseAsync
+const stringUseAsync2 = `function useAsync(initialState) {
+  const [state, dispatch] = React.useReducer(asyncReducer)
+
+  //...do some stuff
+
+  return {
+    state,
+    dispatch
+  }
+}`
+
+const stringUseAsync3 = `const [state, dispatch] = useAsync()
+
+React.useEffect(() => {
+  dispatch({type: 'pending'})
+  fetch("https://api.example.com/items").then(
+      data => {
+        dispatch({type: 'resolved', data})
+      },
+      error => {
+        dispatch({type: 'rejected', error})
+      },
+    )
+},[])`
+
+const stringUseAsync4 = `const run = React.useCallback(
+    promise => {
+      dispatch({type: 'pending'})
+      promise.then(
+        data => {
+          dispatch({type: 'resolved', data})
+        },
+        error => {
+          dispatch({type: 'rejected', error})
+        },
+      )
+    },
+    [dispatch],
+  )`
+
+const stringUseAsync5 = `const {state, run} = useAsync()
+
+React.useEffect(() => {
+  run(fetch("https://api.example.com/items"))
+}, [])`
+
+const stringUseAsync6 = `const setData = React.useCallback(
+  data => dispatch({type: 'resolved', data}),
+  [dispatch],
+)
+const setError = React.useCallback(
+  error => dispatch({type: 'rejected', error}),
+  [dispatch],
+)`
+
+const strings = { stringUseAsync, stringUseAsync2, stringUseAsync3 }
+export default strings
+export {
+  stringUseAsync,
+  stringUseAsync2,
+  stringUseAsync3,
+  stringUseAsync4,
+  stringUseAsync5,
+  stringUseAsync6,
+}

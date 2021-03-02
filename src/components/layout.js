@@ -135,7 +135,7 @@ export default ({ children, location }) => (
       }
 
       header = (
-        <>
+        <div className="headerWrap">
           <Link
             style={{
               boxShadow: 'none',
@@ -171,7 +171,7 @@ export default ({ children, location }) => (
                 height="47.59px"
                 viewBox="0 0 436.887 47.59"
                 enableBackground="new 0 0 436.887 47.59"
-                style={{ maxWidth: 'calc(50vw - 30px)' }}
+                style={{ maxWidth: 'calc(40vw - 30px)' }}
               >
                 {' '}
                 <defs>
@@ -333,19 +333,18 @@ export default ({ children, location }) => (
 		V3.346h36.357v9.902H339.551z"
                     variants={clip_path_variants}
                     initial={'open'}
-                    animate={'open'}
+                    initial={'open'}
                     custom={0}
                   />
                   <motion.path
-                    fill="url(#rainbow)"
-                    stroke="url(#rainbow)"
-                    strokeWidth="3px"
+                    fill="none"
+                    stroke="#eee"
                     strokeMiterlimit="10"
                     d="M371.906,40.143c0,1.777-0.625,3.213-1.875,4.307
 		s-2.979,1.641-5.186,1.641c-2.012,0-3.657-0.571-4.937-1.714s-1.919-2.553-1.919-4.233c0-1.718,0.63-3.11,1.89-4.175
 		c1.26-1.064,2.954-1.597,5.083-1.597c2.07,0,3.745,0.532,5.024,1.597C371.267,37.033,371.906,38.424,371.906,40.143z"
                     variants={clip_path_variants}
-                    initial={'open'}
+                    initial={roote ? 'closed' : 'open'}
                     animate={'open'}
                     custom={1}
                   />
@@ -401,11 +400,11 @@ export default ({ children, location }) => (
                 boxShadow: 'none',
               }}
             >
-              <img src="https://media-exp1.licdn.com/dms/image/C5603AQGzv0iuAwEQwA/profile-displayphoto-shrink_400_400/0/1594944140377?e=1619049600&v=beta&t=jQsVGyq12km7nwSbn3CUu5GtbsKZqsGKAU8u7MDyYw4" />
+              <img src="https://pocketmortys.net/images/assets/MortyButtFaceFront.png" />
               {/* <p>Reid Plumlee</p> */}
             </Link>
           </div>
-        </>
+        </div>
       )
 
       return (
@@ -417,8 +416,8 @@ export default ({ children, location }) => (
               maxWidth: '100%',
             }}
           >
-            <svg
-              viewBox="0 0 1600 900"
+            {/* <svg
+              viewBox="0 0 1600 521"
               className="header-wave"
               style={{
                 width: '100vw',
@@ -428,24 +427,36 @@ export default ({ children, location }) => (
                 zIndex: 0,
               }}
             >
+              <clipPath id="myClip">
+                <path
+                  fill="#111"
+                  opacity=".4"
+                  d="M0,389C534,506,1068,205,1602,521,C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0L1600,0C1066,0,532,0,-2,0,C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0L1398,0L0,0Z"
+                />
+              </clipPath>
               <path
-                fill="#111"
-                opacity=".4"
-                d="M0,389C534,506,1068,205,1602,521,C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0C1600, 0,1600, 0,1600, 0L1600,0C1066,0,532,0,-2,0,C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0C0, 0,0, 0,0, 0L1398,0L0,0Z"
+                fill="#000"
+                opacity=".3"
+                d="M0,0L0,521L1600,521,L1600,0L0,0"
+                clipPath="url(#myClip)"
+              ></path>
+              <image
+                href="https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png"
+                height="200"
+                width="200"
               />
-            </svg>
+            </svg> */}
             <div style={{ position: 'relative', zIndex: 1 }}>
               {header}
               <div
                 style={{
                   marginLeft: 'auto',
                   marginRight: 'auto',
-                  padding: `0`,
 
                   display: 'flex',
                   maxWidth: '100%',
-                  marginTop: 50,
                 }}
+                className="layout-div"
               >
                 {children}
               </div>

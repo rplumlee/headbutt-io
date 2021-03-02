@@ -208,11 +208,22 @@ class BlogIndex extends React.Component {
               </Link>
             </Tilt> */}
           </div>
-          <h4 className="badge">
+          {/* <h4 className="badge">
             <span>
               <BsViewList /> Blog
             </span>
-          </h4>
+          </h4> */}
+          <div className="blog-post">
+            <Link to="/picking-apart-kents-useasync">
+              <h3>Picking Apart Kent's useAsync Hook</h3>
+              <p>
+                One of the snippet's I picked up from Kent C. Dodds' EpicReact
+                course was this super cool useAsync function, and it's a
+                masterclass in elegance. There are several patterns I want to
+                call out that he uses here that every React dev should know.
+              </p>
+            </Link>
+          </div>
           <div className="blog-post">
             <Link to="/useSafeDispatch">
               <h3>Avoid Async Memory Leaks With This useSafeDispatch Hook</h3>

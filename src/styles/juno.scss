@@ -95,6 +95,13 @@ p {
   }
 }
 
+@media (max-width: 600px) {
+  h1 {
+    font-size: 46px;
+    line-height: 42px;
+  }
+}
+
 #navbar {
   padding: 30px 60px;
   display: flex;

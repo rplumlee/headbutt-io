@@ -96,7 +96,7 @@ export default Juno
 const Navbar = function () {
   return (
     <div id="navbar">
-      <img src="junolive.png" />
+      <img src="/junolive.png" />
       <div id="nav-menu">
         <a href="/login" className="login">
           Login

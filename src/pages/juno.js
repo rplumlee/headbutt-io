@@ -77,14 +77,14 @@ class Juno extends React.Component {
         `}
         render={(data) => {
           return (
-            <>
+            <div className="juno-layout">
               <Helmet title={siteTitle} />
               <Navbar />
               <Hero data={data} />
               <Devices data={data} />
               <Partners />
               <Demo data={data} />
-            </>
+            </div>
           )
         }}
       />

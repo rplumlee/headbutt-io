@@ -228,7 +228,9 @@ function Partners({ data }) {
   return (
     <div id="partners">
       <h2>Our Partners</h2>
-      <p>Trusted by world-leading organizations</p>
+      <p>
+        <strong>Trusted by world-leading organizations</strong>
+      </p>
       <div className="partners--logos">
         <div>
           <img src="/image11.png" />

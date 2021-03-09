@@ -182,23 +182,23 @@ function Devices({ data }) {
         </motion.div>
         <div className="motivators--table">
           <div className="motivators--table_number">1</div>
-          <div className="motivators--table_title">Connect your Crowds</div>
+          <h4 className="motivators--table_title">Connect your Crowds</h4>
           <div className="motivators--table_body">
             Onboard users around interests, strengths and desired improvement
             areas and allow machine learning triggers to recommend peer
             connections, mainstage, and breakout learning opportunities.{' '}
           </div>
           <div className="motivators--table_number">2</div>
-          <div className="motivators--table_title">Gamify the Experience</div>
+          <h4 className="motivators--table_title">Gamify the Experience</h4>
           <div className="motivators--table_body">
             Deliver powerful gamification tools supporting real-time and ongoing
             user competition. Weighted algorithms are also designed to increase
             check-ins and deeper discovery through rewards and recognition.
           </div>
           <div className="motivators--table_number">3</div>
-          <div className="motivators--table_title">
+          <h4 className="motivators--table_title">
             Engage with Business Growth
-          </div>
+          </h4>
           <div className="motivators--table_body">
             Support users and partners by facilitating business connections
             through live exhibit experiences, digital think-tank sessions,
@@ -206,7 +206,7 @@ function Devices({ data }) {
             tools.
           </div>
           <div className="motivators--table_number">4</div>
-          <div className="motivators--table_title">Continuous Interaction</div>
+          <h4 className="motivators--table_title">Continuous Interaction</h4>
           <div className="motivators--table_body">
             Create EQ and IQ learning pathways to engage users on all levels.
             From certification and badging to goal setting and performance

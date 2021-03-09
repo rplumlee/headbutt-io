@@ -134,7 +134,7 @@ function Hero({ data }) {
           <BsPlay />
           Get Started
         </button>
-        <div className="apps">
+        <div className="hero--apps">
           <AiFillAndroid />
           <FaApple />
           <p>Get the app today</p>
@@ -167,7 +167,7 @@ function Devices({ data }) {
           Juno equips you to step in without the barriers of <br />
           location
         </p>
-        <div className="img-container">
+        <div className="devices--img-container">
           <Img fluid={homePageDevices} />
         </div>
       </div>
@@ -273,7 +273,7 @@ function Demo({ data }) {
         fluid={junoBottom}
         style={{ height: '60.8vw', minHeight: '500px' }}
       >
-        <div className="content">
+        <div className="hero-bottom--content">
           <h2>Show Me Juno</h2>
           <p>
             <strong>
@@ -286,7 +286,7 @@ function Demo({ data }) {
             Schedule a demo today
           </a>
         </div>
-        <div className="video">
+        <div className="hero-bottom--video">
           <iframe
             src="https://player.vimeo.com/video/30280349?title=0&byline=0&portrait=0"
             width="100%"

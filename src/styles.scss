@@ -17,9 +17,14 @@
   src: url('../static/DankMono-Bold.woff2');
   font-style: bold;
 }
-
+.juno-code {
+  pre {
+    margin-bottom: 140px;
+  }
+}
 body {
   font-family: 'Open Sans', sans-serif;
+  background: rgb(42, 52, 92);
 }
 pre {
   span {

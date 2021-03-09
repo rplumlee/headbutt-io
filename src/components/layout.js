@@ -414,6 +414,7 @@ export default ({ children, location }) => (
               overflow: 'hidden',
               position: 'relative',
               maxWidth: '100%',
+              background: 'rgb(42, 52, 92)',
             }}
           >
             {/* <svg

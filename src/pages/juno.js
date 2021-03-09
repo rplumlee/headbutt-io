@@ -231,28 +231,28 @@ function Partners({ data }) {
       <p>Trusted by world-leading organizations</p>
       <div className="partners--logos">
         <div>
-          <img src="./image11.png" />
+          <img src="/image11.png" />
         </div>
         <div>
-          <img src="./image15.png" />
+          <img src="/image15.png" />
         </div>
         <div>
-          <img src="./image18.png" />
+          <img src="/image18.png" />
         </div>
         <div>
-          <img src="./image14.png" />
+          <img src="/image14.png" />
         </div>
         <div>
-          <img src="./image12.png" />
+          <img src="/image12.png" />
         </div>
         <div>
-          <img src="./image17.png" />
+          <img src="/image17.png" />
         </div>
         <div>
-          <img src="./image16.png" />
+          <img src="/image16.png" />
         </div>
         <div>
-          <img src="./image13.png" />
+          <img src="/image13.png" />
         </div>
       </div>
     </div>

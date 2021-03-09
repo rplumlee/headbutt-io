@@ -206,12 +206,21 @@ p {
       margin-right: 5px;
       font-size: 24px;
     }
+
+    @media (max-width: 800px) {
+      width: 100%;
+      justify-content: center;
+    }
   }
 }
 
 .devices {
   padding: 100px 60px 50px 60px;
   position: relative;
+
+  @media (max-width: 800px) {
+    padding: 100px 20px 50px 20px;
+  }
   .img-container {
     width: 75%;
     margin-left: 25%;
@@ -240,6 +249,9 @@ p {
 .motivators {
   padding: 100px 60px 50px 60px;
   position: relative;
+  @media (max-width: 800px) {
+    padding: 100px 20px 50px 20px;
+  }
 
   > p {
     margin-bottom: 10px;
@@ -303,10 +315,19 @@ p {
   }
   @media (max-width: 800px) {
     .motivators--table {
-      grid-template: 25% 25% 25% 25% / 10% 40% 50%;
+      grid-template: 25% 25% 25% 25% / 8% 50% 42%;
+    }
+    .motivators--table_number {
+      font-size: 42px;
+      line-height: 42px;
     }
     .motivators--table_title {
-      padding-left: 30px;
+      padding-left: 20px;
+      padding-right: 20px;
+      font-size: 22px;
+    }
+    .motivators--table_body {
+      font-size: 14px;
     }
 
     .motivators--img-1 {
@@ -378,6 +399,10 @@ p {
   align-items: flex-start;
   padding: 15vw 60px;
   justify-content: center;
+
+  @media (max-width: 800px) {
+    padding: 100px 60px 50px 60px;
+  }
 
   .content {
     width: 35%;
